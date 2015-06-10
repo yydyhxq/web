@@ -16,7 +16,7 @@ public class MyHandlerInterceptorAdapter extends HandlerInterceptorAdapter {
 			HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("被执行");
+		System.out.println("exeuce");
 		super.afterCompletion(request, response, handler, ex);
 	}
 
@@ -28,7 +28,7 @@ public class MyHandlerInterceptorAdapter extends HandlerInterceptorAdapter {
 			HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("处理后");
+		System.out.println("after interceptor");
 		super.postHandle(request, response, handler, modelAndView);
 	}
 
@@ -39,7 +39,7 @@ public class MyHandlerInterceptorAdapter extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("处理前");
+		System.out.println("begin interceptor");
 		return super.preHandle(request, response, handler);
 	}
 

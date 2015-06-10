@@ -1,5 +1,6 @@
 package com.caocao.util;
 
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 /**
@@ -64,9 +65,9 @@ public class JsonUtil {
 	     */  
 	    public static String getJSONString(Object object) {  
 	        if (objectMapper == null) {  
-	            objectMapper = new ObjectMapper();  
+	            objectMapper = new ObjectMapper();       
 	        }  
-	  
+	        objectMapper.setSerializationInclusion(Include.NON_NULL);
 	        try {  
 	            return objectMapper.writeValueAsString(object);  
 	        } catch (Exception e) {  
