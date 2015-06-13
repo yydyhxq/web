@@ -27,7 +27,7 @@ public class JsonUtil {
 	        if (objectMapper == null) {  
 	            objectMapper = new ObjectMapper();  
 	        }  
-	  
+	        objectMapper.setSerializationInclusion(Include.NON_NULL);
 	        try {  
 	            return objectMapper.readValue(jsonStr, valueType);  
 	        } catch (Exception e) {  

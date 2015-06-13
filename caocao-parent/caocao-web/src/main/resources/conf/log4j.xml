@@ -34,7 +34,10 @@
 		<level value="debug" />
 	<appender-ref ref="console"/>
 	</logger> -->
-
+   <logger name="com.caocao.service.integration.iget" additivity="false">
+   	<level value="info" />
+	<appender-ref ref="console"/>
+   </logger>
 	<root>
 		<priority value="info" />
 		<!-- <appender-ref ref="console" /> -->

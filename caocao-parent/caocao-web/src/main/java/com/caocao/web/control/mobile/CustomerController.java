@@ -30,6 +30,7 @@ import com.caocao.core.service.impl.OrderServiceImpl;
 import com.caocao.service.integration.sms.MessageFactory;
 import com.caocao.util.CalculateCost;
 import com.caocao.util.MobileCode;
+import com.caocao.util.StringUtils;
 import com.caocao.web.constant.OrderState;
 import com.caocao.web.constant.OrderType;
 import com.caocao.web.constant.ResultCode;
@@ -38,6 +39,7 @@ import com.caocao.web.constant.SysConstant;
 import com.caocao.web.dto.MobileHttpDto;
 import com.caocao.web.dto.MobileHttpDto.Error;
 import com.caocao.web.dto.PriceEstimateDto;
+import com.caocao.web.extend.SmsTemplate;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
 
 @Controller
@@ -51,6 +53,10 @@ public class CustomerController {
 	private BankServiceImpl bankService;
 	@Resource
 	private OrderServiceImpl orderService;
+/*	@Resource
+	private AndroidPushtoSingle androidPushtoSingle;
+	@Resource
+	private IosPushtoSingle iosPushtoSingle;*/
 	@Resource(name="messageFactory")
 	private MessageFactory messageFactory;
     @Value("${car.fare}")
@@ -72,13 +78,13 @@ public class CustomerController {
 	@ResponseBody
 	public MobileHttpDto acquireCode(@RequestParam String mobile,
 			@RequestParam String token, HttpSession session) {
+		System.out.println("进入");
 		String code = MobileCode.createRandom(true, 6);
 		session.setAttribute("mobileCode", code);
-	//	messageFactory.sendSMS("1324", "15068175541","","");
-		System.out.println("当前的验证码为:" + messageFactory.sendSMS("1324", "15068175541","",""));
-		/**
-		 * 此处为发送短信逻辑
-		 */
+		session.setMaxInactiveInterval(60*5);
+	   //发送短信
+	   messageFactory.sendSMS(SmsTemplate.mobileValidateCode(code), mobile,null);
+
 		MobileHttpDto dto = new MobileHttpDto();
 		dto.setStatus(ResultState.SUCCESS);
 		return dto;
@@ -99,7 +105,7 @@ public class CustomerController {
 
 		MobileHttpDto dto = new MobileHttpDto();
 		String mobileCode = String.valueOf(session.getAttribute("mobileCode"));
-		if (!verifyCode.equalsIgnoreCase(mobileCode)) {
+		if (!verifyCode.equalsIgnoreCase(mobileCode)||StringUtils.isNotEmpty(mobileCode)) {
 			dto.setStatus(ResultState.FAIL);
 
 			dto.setError(new Error(
@@ -362,7 +368,7 @@ public class CustomerController {
 			@RequestParam int userid, @RequestParam int pageNum,
 			@RequestParam int pageSize) {
 		MobileHttpDto dto = new MobileHttpDto();
-
+//		System.out.println(iosPushtoSingle.apnpush("8ec3bba7de23cda5e8a2726c081be79204faede67529e617b625c984d61cf5c1","42345"));
 		try {
 			PageList<Order> order = orderService.acquireHistoryOrder(pageNum,
 					pageSize, userid);

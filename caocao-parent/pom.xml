@@ -186,6 +186,16 @@
 				<version>${org.apache.commons.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>commons-configuration</groupId>
+				<artifactId>commons-configuration</artifactId>
+				<version>${commons-configuration.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.protobuf</groupId>
+				<artifactId>protobuf-java</artifactId>
+				<version>${protobuf-java.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>commons-httpclient</groupId>
 				<artifactId>commons-httpclient</artifactId>
 				<version>${commons-httpclient.version}</version>
@@ -200,6 +210,11 @@
 				<artifactId>servlet-api</artifactId>
 				<version>${javax.servlet.version}</version>
 				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-all</artifactId>
+				<version>${jackson-all.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
@@ -271,7 +286,21 @@
 				<artifactId>hibernate-validator</artifactId>
 				<version>${hibernate.validator.version}</version>
 			</dependency>
-
+			<dependency>
+				<groupId>fakepath</groupId>
+				<artifactId>gexin-rp-sdk-base</artifactId>
+				<version>${gexin-rp.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>fakepath</groupId>
+				<artifactId>gexin-rp-sdk-http</artifactId>
+				<version>${gexin-rp.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>fakepath</groupId>
+				<artifactId>gexin-rp-sdk-template</artifactId>
+				<version>${gexin-rp.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-webmvc</artifactId>
@@ -401,5 +430,9 @@
 		<io.netty.version>4.0.25.Final</io.netty.version>
 		<mybatis-paginator.version>1.2.8</mybatis-paginator.version>
 		<commons-httpclient.version>3.0</commons-httpclient.version>
+		<gexin-rp.version>4.0.0.1</gexin-rp.version>
+		<commons-configuration.version>1.6</commons-configuration.version>
+		<protobuf-java.version>2.5.0</protobuf-java.version>
+		<jackson-all.version>1.8.5</jackson-all.version>
 	</properties>
 </project>

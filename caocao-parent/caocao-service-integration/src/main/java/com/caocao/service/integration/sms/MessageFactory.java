@@ -22,8 +22,7 @@ public class MessageFactory {
 	private String SpCode;
 	@Value("${msg.LoginName}")
 	private String LoginName;
-	
-	
+
 	@Value("${msg.Password}")
 	private String Password;
 	private HttpClient httpclient;
@@ -39,16 +38,13 @@ public class MessageFactory {
 		return LoginName;
 	}
 
-
 	public void setLoginName(String loginName) {
 		LoginName = loginName;
 	}
 
-
-	public boolean sendSMS(String msg, String phoneNum, String SerialNumber,
-			String ScheduleTime) {
+	public boolean sendSMS(String msg, String phoneNum, String ScheduleTime) {
 		boolean result = false;
-		System.out.println("LoginName:"+LoginName);
+		System.out.println("LoginName:" + LoginName);
 		try {
 			post.getParams().setParameter(
 					HttpMethodParams.HTTP_CONTENT_CHARSET, "gbk");
@@ -57,11 +53,7 @@ public class MessageFactory {
 			post.addParameter("Password", Password);
 			post.addParameter("MessageContent", msg);
 			post.addParameter("UserNumber", phoneNum);
-			if (StringUtils.isEmpty(SerialNumber)) {
-				post.addParameter("SerialNumber", "");
-			} else {
-				post.addParameter("SerialNumber", SerialNumber);
-			}
+			post.addParameter("SerialNumber", "");
 			if (StringUtils.isEmpty(ScheduleTime)) {
 				post.addParameter("ScheduleTime", "");
 			} else {
@@ -71,7 +63,7 @@ public class MessageFactory {
 			post.addParameter("f", "1");
 			httpclient.executeMethod(post);
 			String info = new String(post.getResponseBody(), "gbk");
-			System.out.println("info:"+info);
+			System.out.println("info:" + info);
 			if (info.equals("0")) {
 				result = true;
 			}
@@ -81,5 +73,4 @@ public class MessageFactory {
 		return result;
 
 	}
-
 }
