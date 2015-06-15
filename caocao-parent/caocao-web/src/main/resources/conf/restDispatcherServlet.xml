@@ -11,7 +11,8 @@
 	<aop:aspectj-autoproxy />
 	<!-- <context:annotation-config /> 包含4个注解（已集成到context:component-scan中 -->
 	<context:component-scan base-package="com.caocao" />
-	<!-- <mvc:annotation-driven conversion-service="" validator="" />  包含AnnotationMethodHandlerAdapter和DefaultAnnotationHandlerMapping及FormattingConversionServiceFactoryBean
+	<!-- <mvc:annotation-driven conversion-service="" validator="" />  
+	包含AnnotationMethodHandlerAdapter和DefaultAnnotationHandlerMapping及FormattingConversionServiceFactoryBean
 		） -->
 	<!-- <mvc:default-servlet-handler/> 用于处理静态资源 -->
 	<!-- 对静态资源文件的访问 方案二 （二选一） -->
@@ -48,6 +49,9 @@
 							<value>text/html;charset=UTF-8</value>
 							<value>application/json;charset=UTF-8</value>
 						</list>
+					</property>
+					<property name="objectMapper">
+					<bean class="com.github.miemiedev.mybatis.paginator.jackson2.PageListJsonMapper" />
 					</property>
 				</bean>
 			</list>
@@ -142,6 +146,8 @@
 		<property name="prefix" value="/pages/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+	<mvc:resources location="/upload/" mapping="/upload/**"/>
+	<context:property-placeholder location="classpath:conf/sysConf.properties"/>
 	<!-- Spring @AutoWired 依赖自动注入,不需要setter方法 ,都已经包含在context:component-scan中了 -->
 	<!-- <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" 
 		/> -->

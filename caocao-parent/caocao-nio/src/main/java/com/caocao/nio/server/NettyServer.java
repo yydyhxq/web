@@ -47,6 +47,7 @@ public class NettyServer {
 
 	// @PostConstruct
 	public void initAndStart() {
+		System.out.println("port:"+port);
 		// Configure the server.
 		bossGroup = new NioEventLoopGroup(Runtime.getRuntime()
 				.availableProcessors() * 2);
