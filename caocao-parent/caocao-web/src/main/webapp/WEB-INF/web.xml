@@ -41,13 +41,8 @@
 		<listener-class>
 		org.springframework.web.util.Log4jConfigListener
 		</listener-class>
-	</listener>
-	
-	<listener>
-		<listener-class>
-		com.caocao.web.listener.NioServerListener
-		</listener-class>
-	</listener>
+	</listener>	
+
 	<!-- Spring MVC -->
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>
