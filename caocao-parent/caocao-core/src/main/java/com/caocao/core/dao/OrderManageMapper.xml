@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.caocao.core.dao.OrderManageMapper" >
+<select id="SelectBookOrder" resultType="com.caocao.core.model.BookOrder" parameterType="com.caocao.core.model.BookOrder" >
+    select	a._id as orderId,
+			a._book_time as appointmentTime,
+			a._book_now as appointStartTime,
+			a._start_location as startPlace,
+       	 	a._end_location as destination,
+			a._order_status as orderStatus,
+			a._cost_city as costCity,
+			b._name as passengerName,
+			b._phone as passengerPhone,
+			b._type as isBig,
+			c._name as driverName,
+			c._phone as driverPhone
+	from 
+			tsp_caocao_order a,
+			tsp_caocao_custumer b,
+			tsp_caocao_driver c
+	where
+			a._customer_id = b._id
+			and a._driver_id = c._id
+			and and a._order_type = 1
+ </select>
+ 
+ <select id="SelectSoonOrder" resultType="com.caocao.core.model.BookOrder" parameterType="com.caocao.core.model.BookOrder" >
+    select	a._id as orderId,
+			a._start_location as startPlace,
+			a._cost_city as costCity,
+			a._order_createtime as orderProduceTime,
+			a._customer_get_in as onCarTime,
+			b._name as passengerName,
+			b._phone as passengerPhone,
+			b._type as isBig,
+			c._name as driverName,
+			c._phone as driverPhone
+	from 
+			tsp_caocao_order a,
+			tsp_caocao_custumer b,
+			tsp_caocao_driver c
+	where
+			a._customer_id = b._id
+			and a._driver_id = c._id
+			and a._order_type = 0
+ </select>
+ 
+ <select id="SelectHistoryOrder" resultType="com.caocao.core.model.BookOrder" parameterType="com.caocao.core.model.BookOrder" >
+   select	a._id as orderId,
+				a._start_location as startPlace,
+				a._cost_city as costCity,
+				a._order_createtime as orderProduceTime,
+				b._name as passengerName,
+				b._phone as passengerPhone,
+				b._type as isBig,
+				c._name as driverName,
+				c._phone as driverPhone,
+				sum(d._cost_real_money) costMoney
+	from 
+				tsp_caocao_order a,
+				tsp_caocao_custumer b,
+				tsp_caocao_driver c,
+				tsp_caocao_customer_bill_info d
+	where
+				a._customer_id = b._id
+				and a._driver_id = c._id
+				and a._id = d._order_id
+ </select>
+ 
+ <select id="SelectOrderDetail" resultType="com.caocao.core.model.OrderDetail" parameterType="com.caocao.core.model.OrderDetail" >
+   select	a._start_location as startPlace,
+			a._end_location as endPlace,
+			b._privilege_code as privilegeCode,
+			b._start_price as startPrice,
+			b._distance as distance,
+			b._driver_minute as driverMinutes,
+			b._cost_money as costMoney,
+			b._discount_money as discountMoney,
+			b._cost_real_money as costRealMoney,
+			c._type as carType
+	from 		
+			tsp_caocao_order a,
+			tsp_caocao_customer_bill_info b,
+			tsp_caocao_car c
+	where
+			a._car_id = c._id
+			<if test="custumerId != ''">
+				and a._customer_id = #{custumerId} 
+			</if>
+ </select>
+</mapper>

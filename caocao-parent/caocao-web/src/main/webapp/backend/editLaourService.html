@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+<link href="css/common.css" type="text/css" rel="stylesheet"/>
+<link href="css/style.css" type="text/css" rel="stylesheet"/>
+<link href="js/select2/select2.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script> 
+<script type="text/javascript" src="js/select2/select2.js"></script>
+<script type="text/javascript" src="js/layer/layer.js"></script> 
+<script type="text/javascript" src="js/city.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script>
+	$(function(){
+		$("select").select2();
+		
+		//所在城市
+		  var test=new Vcity.CitySelector({input:'cityCode'});
+		  $(".layui-layer-btn1").click(function(){
+				var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+				parent.layer.close(index);  
+		  });
+		  $(".layui-layer-btn0").click(function(){
+			var name = $("#name").val(); //获取公司名称
+			var companyAddress = $("#companyAddress").val(); //获取公司地址
+			var cityCode = $("#cityCode").val(); //获取所在城市
+			var companyCode =$("#companyCode").val();//获取企业代码
+			var masterName = $("#masterName").val(); //获取法人
+			var masterNumber = $("#masterNumber").val(); //获取法人身份证
+			var contactPhone = $("#contactPhone").val(); //获取备联系电话
+			var signData = $("#signData").val(); //获取签约日期
+			var remark = $("#remark").val(); //获取备注名称
+			if(name==""){layer.msg("请输入公司名称");return false;}
+			if(companyAddress==""){layer.msg("请输入公司地址");return false;}
+			if(cityCode.indexOf("所在城市")!=-1){layer.msg("请选择所在城市");return false;}
+			if(companyCode==""){layer.msg("请输入企业代码");return false;}
+			if(masterName==""){layer.msg("法人不能为空");return false;}
+			if(masterNumber==""){layer.msg("请输入法人身份证");return false;}
+			if(contactPhone==""){layer.msg("请输联系电话");return false;}
+			if(signData==""){layer.msg("请输入签约日期");return false;}
+			var form = $("#form").serialize();
+			var url =" http://192.168.1.134:8080/caocao/usermanage/add.do "+form;
+			layer.confirm("确认保存?",{
+					btn:['确认','取消'],
+					shade:false 
+						},function(index1){	
+							$.ajax({
+								type:'post',
+								url:url,
+								dataType:'json',
+								success: function(data){
+								if(data.indexOf()){
+										
+								}else{
+									window.location.href=url;	
+								}	
+						},
+						error:function(){
+							layer.msg("网络异常，请稍后重试")	
+						}		
+			});		
+				layer.close(index1); //执行关闭					
+			});	
+		});
+		
+	})
+</script>
+<!--[if IE]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
+<title>新增</title>
+</head>
+
+<body>
+	<div class="perContent"  >
+    	<form  action=""  type="post" id="form">
+            <div class="toastcls">
+                <div class=" toastcls1 clearfix">
+                    <label>公司名称</label>
+                    <input type="text" class="inputcls required "  id="name" name="name"/>
+                    <label>公司地址</label>
+                    <input type="text" class="inputcls required"  id="companyAddress" name="companyAddress"/>
+                </div>
+                <div class=" toastcls1 clearfix">
+                    <label>所在城市</label>
+                    <input type="text"  placeholder="请输入城市名" id="cityCode"  class="inputcls required" name="cityCode"/>
+                    <label>企业代码</label>
+                    <input type="text" class="inputcls required" id="companyCode" name="companyCode" />
+                </div>
+                 <div class="toastcls1 clearfix">
+                    <label>法人</label>
+                    <input type="text" class="inputcls required" id="masterName" name="masterName"/>
+                    <label>法人身份证号</label>
+                    <input type="text" class="inputcls required" id="masterNumber" name="masterNumber" />
+                </div>
+                <div class="toastcls1 clearfix">
+                    <label>联系电话</label>
+                    <input type="text" class="inputcls required" id="contactPhone" name="contactPhone" />
+                    <label>签约日期</label>
+                    <input type="text" class="Wdate inputcls rightcls8 required"  onclick="WdatePicker()" id="signData" name="signData">
+                </div>
+                 <div class="toastcls1 clearfix">
+                    <label>备注</label>
+                    <textarea class="textareacls" id="remark"  name="remark"></textarea>
+                </div>
+             </div>
+             <div class="layui-layer-btn"><a class="layui-layer-btn0">保存</a><a class="layui-layer-btn1">取消</a></div>
+       	 </form>
+    </div>
+  
+</body>
+</html>

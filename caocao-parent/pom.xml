@@ -143,9 +143,9 @@
 		<module>caocao-util</module>
 		<module>caocao-core</module>
 		<module>caocao-service-integration</module>
-		<module>caocao-nio</module>
-	<!-- 	<module>caocao-web</module> -->
-        <module>caocao-server</module>
+		<!-- <module>caocao-nio</module> -->
+		<module>caocao-web</module>
+       <!--  <module>caocao-server</module> -->
   </modules>
 	<dependencyManagement>
 		<dependencies>

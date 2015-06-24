@@ -40,7 +40,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.caocao.zhuanche</groupId>
-			<artifactId>caocao-core</artifactId>
+			<artifactId>caocao-service-integration</artifactId>
 		</dependency>
 	</dependencies>
 </project>

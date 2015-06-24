@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+<link href="css/common.css" type="text/css" rel="stylesheet"/>
+<link href="css/style.css" type="text/css" rel="stylesheet"/>
+<link href="js/select2/select2.css" type="text/css" rel="stylesheet" />
+<link href="css/easyui.css" type="text/css" rel="stylesheet" />
+<link href="css/icon.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="js/jquery-1.9.0.js"></script>
+<script type="text/javascript" src="js/select2/select2.js"></script>
+<script type="text/javascript" src="js/layer/layer.js"></script> 
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="js/city.js"></script>
+<!--[if IE]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
+
+<script>
+	$(function(){
+		$(".select").select2();
+		
+		//所在城市
+		 var test=new Vcity.CitySelector({input:'costCity'});
+		 
+		//查询
+		$("#search").click(function(){
+			var phone = $("#phone").val(); //获取乘客手机号
+			var phone = $("#phone").val(); //获取司机手机号
+			var costCity =$("#costCity").val();//获取所在城市
+			var bookTime =$("#bookTime").val();//获取预约时间
+			var bookNow =$("#bookNow").val();//获取预约出发时间
+			$("#dg").datagrid('load',{
+				phone:phone,
+				phone:phone,
+				costCity:costCity,
+				bookTime:bookTime,
+				bookNow:bookNow
+			})
+			$('#dg').datagrid('reload');    // reload the current page data			
+		})
+		
+	})
+</script>
+<title>预约订单</title>
+</head>
+
+<body>
+	<!--header start-->
+    <div class="fn-title">
+        <div class="navbar navBg">
+        	<div class="navIcon">
+            	
+            </div>
+            <div class="navUser">
+            	<a href="login.html">退出</a>
+                <span class="sx">|</span>
+                <a href="userInfo.html">个人设置</a>
+                <span class="topUserInfo_manage">欢迎您，管理员</span>
+            </div>
+        </div>
+    </div>
+    <!--header end-->
+    <div class="container-fluid">
+      <div class="row-fluid">
+      	<!--菜单start-->
+        <div class="leftArea">
+         	      	   	<ul class="mainMenu">
+            	<!--<li ><a href="javascript:void;" class="mainMenucls">系统设置</a>
+                	<ul class="secondMenu">
+                    	<li><a href="#" class="mainMenucls" >系统参数设置</a> </li>
+                    </ul>
+                </li>-->
+                  <li class="mainMenu1 "><a  class="mainMenucls">用户管理</a>
+                	<ul class="secondMenu">
+                    	<li><em></em><a href="index.html">用户信息维护</a></li>
+                    </ul>
+                </li>
+                <li class="mainMenu1"><a  class="mainMenucls">企业管理</a>
+                	<ul class="secondMenu ">
+                    	<li><em></em><a href="vipCompanyService.html">大客户企业维护</a></li>
+                        <li><em></em><a href="rentService.html">租赁公司维护</a></li>
+                        <li><em></em><a href="labourService.html">劳务公司维护</a></li>
+                    </ul>
+                </li>
+                  <li class="mainMenu1" ><a class="mainMenucls">车辆管理</a>
+                 	<ul class="secondMenu">
+                    	<li><em></em><a href="carTypeSet.html">车型设置</a></li>
+                    </ul>
+                </li>
+                <li class="mainMenu1" ><a class="mainMenucls">司机管理</a>
+                	<ul class="secondMenu">
+                    	<li><em></em><a href="driverService.html">司机培训合格维护</a></li>
+                        <li><em></em><a href="driverWatch.html">司机信息查看</a></li>                    
+                    </ul>
+                </li>
+                <li class="mainMenu1"><a  class="mainMenucls">客户管理</a>
+                	<ul class="secondMenu">
+                    	<li><a class="mainMenucls">大客户管理</a>
+                        	<ul class="thirdMenu">
+                            	<li><em></em><a href="vipService.html">基本信息维护</a></li>
+                                <li><em></em><a href="vipWatch.html">账户明细查看</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="mainMenucls ">普通客户管理</a>
+                        	<ul class="thirdMenu">
+                            	<li><em></em><a href="basicService.html">基本信息维护</a></li>
+                                <li><em></em><a href="basicWatch.html">账户明细查看</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="mainMenu1 currentcls"><a  class="mainMenucls">订单管理</a>
+                	<ul class="secondMenu">
+                    	<li class="currentcls2"><em></em><a href="bookingOrder.html">预约订单</a></li>
+                        <li><em></em><a href="currentOrder.html">实时订单</a></li>
+                        <li><em></em><a href="historyOrder.html">历史订单</a></li>
+                    </ul>
+                </li>
+                <li class="mainMenu1" ><a  class="mainMenucls">推广管理</a>
+                	<ul class="secondMenu">
+                    	<li><em></em><a href="promotion.html">推广维护</a></li>                      
+                    </ul>
+                </li>
+                <li class="mainMenu1"><a  class="mainMenucls">财务管理</a>
+                	<ul class="secondMenu">
+                    	<li><em></em><a href="vipIncome.html">大客户应收账款</a></li>
+                        <li><em></em><a href="totalIncome.html">营业总收入</a></li>
+                        <li><em></em><a href="platform.html">平台返利</a></li>
+                        <li><em></em><a href="driverIncome.html">司机基本收入</a> </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!--菜单end-->
+         <!--Body content start-->
+        <div class="rightArea">
+        	<div class="mainCon">
+             
+               <h3>预约订单</h3>
+               <div class="mainConcls">
+               		<!--查询条件 start-->
+               		<div class="mainConcls1 clearfix">
+                    	<div class="mainConcls2 clearfix">
+                       		<label>乘客手机号</label><input type="text" class="inputcls" name="phone" id="phone" />
+                            <label>司机手机号</label><input type="text" class="inputcls" name="phone" id="phone" />
+                            <label>订单状态</label>
+                            <select class="select" name="orderStatus" id="orderStatus">
+                                  <option value ="3">已到达上车地</option>
+                                  <option value ="4">乘客已上车</option>
+                                  <option value="6">乘客已到达</option>
+                            </select>   
+                        </div>
+                        <div class="mainConcls2 mainConcls2_1 clearfix">
+                       		<label >预约出发日期</label>
+                            <input type="text" class="Wdate inputcls rightcls8"   onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" name="bookNow" id="bookNow">
+                            <label class="mainConcls2_2">至</label>
+                            <input type="text" class="Wdate inputcls currentTime"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" name="bookNow" id="bookNow">
+                       		 <label>消费城市</label> <input type="text"  placeholder="请输入城市名" id="costCity"  name="costCity"/>
+                        </div> 	
+                        <div class="mainConcls2 mainConcls2_1 clearfix">
+                       		<label >预约日期</label>
+                            <input type="text" class="Wdate inputcls rightcls8"  onclick="WdatePicker()" name="bookTime" id="bookTime">
+                            <label class="mainConcls2_2">至</label>
+                            <input type="text" class="Wdate inputcls"  onclick="WdatePicker()" name="bookTime" id="bookTime">
+                       		<input type="button" class="buttoncls" value="查询" />  
+                        </div> 	
+                    </div>	
+                    <!--查询条件end-->
+                   	
+                    
+                    <!--内容 start-->
+                    
+                   
+                    <div class="mainConcls3">
+                    	<table id="#dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'datagrid_data.json',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
+                                <thead>
+                                    <tr>
+                                        <th data-options="field:'id',width:90 ">订单号</th>
+                                        <th data-options="field:'customerId',width:90">乘客姓名</th>
+                                        <th data-options="field:'phone',width:90">乘客手机号</th>
+                                        <th data-options="field:'bookTime',width:90">预约时间</th>
+                                        <th data-options="field:'bookNow',width:90">预约出发时间</th>
+                                        <th data-options="field:'startLocation',width:90">出发点</th>
+                                        <th data-options="field:'endLocation ',width:90">目的地</th>
+                                        <th data-options="field:'driveId',width:90">司机姓名</th>
+                                      	<th data-options="field:'phone',width:90">司机手机号</th>
+                                        <th data-options="field:'orderStatus',width:90">订单状态</th>
+                                        <th data-options="field:'costCity',width:90">消费城市</th>
+                                        <th data-options="field:'type',width:100">是否大客户</th>
+                                    </tr>
+                                </thead>                   
+                           </table>
+                    </div>	
+                    
+                    <!--内容 end--> 
+               </div> 
+               
+            </div>
+        </div>
+         <!--Body content end-->
+      </div>
+    </div>
+    
+    
+  
+</body>
+</html>

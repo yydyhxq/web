@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.caocao.core.dao.BigCustumerManageMapper" >
+  <select id="SelectAll" resultType="com.caocao.core.model.BigCustumerAccount" parameterType="com.caocao.core.model.BigCustumerAccount" >
+    select aa._name as name,
+    	   aa._sex as sex, 
+    	   aa._phone as phone, 
+    	   aa._id as custumerId, 
+    	   (select d._name from tsp_caocao_vipcompany d where d._id=aa._company_code) as companyName,
+    	   sum(ownermoney) as totalownermoney,
+    	   sum(businessmoney) as totalbusinessmoney 
+    	   from tsp_caocao_custumer aa,
+			(select  a._customer_id,  sum(b._cost_real_money) as ownermoney, 0 as businessmoney from
+			                                                                          tsp_caocao_order a, 
+			                                                                          tsp_caocao_customer_bill_info b, 	
+			                                                                          tsp_caocao_custumer c																	
+			                                                                      where a._owner=1
+																						and a._id = b._order_id
+																						and b._customer_id = c._id
+                                                                                		and c._type = 1
+			                                                                      group by a._customer_id
+			union 
+			
+			select  a._customer_id,  0 as ownermoney, sum(b._cost_real_money) as businessmoney from
+			                                                                          tsp_caocao_order a, 
+			                                                                          tsp_caocao_customer_bill_info b, 
+			                                                                          tsp_caocao_custumer c																		
+			                                                                      where a._owner=2
+																						and a._id = b._order_id
+																						and b._customer_id = c._id
+                                                                                        and c._type = 1
+			                                                                      group by a._customer_id ) bb
+			where aa._id=bb._customer_id   group by aa._name, aa._sex, aa._phone, aa._id
+  </select>
+  
+   <select id="SelectBigCustumerCost" resultType="com.caocao.core.model.BigCustumerCost" parameterType="com.caocao.core.model.BigCustumerCost" >
+    select b._createtime as costDate,
+	       b._cost_money as costMoney,
+	       b._discount_money as discountMoney,
+	       b._cost_real_money as realMoney,
+	       b._privilege_code as privilegeCode,
+		   a._cost_city as costCity,
+		   a._start_location as startLocation,
+	       a._end_location as endLocation,
+	       a._owner as owner,
+	       c._type as carType
+       from 
+       		tsp_caocao_order a,
+       		tsp_caocao_customer_bill_info b,
+			tsp_caocao_car c
+       where a._id = b._order_id
+             and a._car_id = c._id
+             <if test="custumerId != ''">
+				and a._customer_id = #{custumerId} 
+			</if>
+       order by costDate desc
+  </select>
+
+</mapper>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.caocao.core.dao.ComCustumerManageMapper" >
+<select id="SelectComCustumer" resultType="com.caocao.core.model.ComCustumer" parameterType="com.caocao.core.model.ComCustumer" >
+    select
+			a._name,
+			a._sex,
+			a._phone,
+			a._invite_code,
+			a._createtime,
+			b._cost_city,
+			d._type,
+			count(*),
+			sum(c._cost_real_money)
+	from 
+			tsp_caocao_custumer a,
+	        tsp_caocao_order b,
+	        tsp_caocao_customer_bill_info c,
+			tsp_caocao_car d
+	where
+			b._customer_id = a._id
+			and a._type = 1
+			and c._order_id = b._id
+			and b._car_id = d._id
+			group by a._id
+  </select>
+  <select id="SelectComCustumerAccount" resultType="com.caocao.core.model.ComCustumerAccount" parameterType="com.caocao.core.model.ComCustumerAccount" >
+    select 	a._id,
+    		a._name,
+    		a._sex,
+    		a._phone,
+    		sum(b._cost_real_money)
+    from 
+    		tsp_caocao_custumer a,
+			tsp_caocao_customer_bill_info b
+	where 
+			a._type=1
+            and a._id = b._customer_id
+  </select>
+  
+   <select id="SelectComCustumerCost" resultType="com.caocao.core.model.ComCustumerCost" parameterType="com.caocao.core.model.ComCustumerCost" >
+    select	b._createtime as costDate,
+			b._start_price as startPrice,
+			b._distance as distance,
+			b._driver_minute as driverMinutes,
+			b._cost_money as costMoney,
+			b._discount_money as discountMoney,
+			b._cost_real_money as realMoney,
+			b._privilege_code as privilegeCode,
+			a._cost_city as costCity,
+			a._start_location as startLocation,
+    		a._end_location as endLocation,
+			c._type as carType
+	from 
+			tsp_caocao_order a,
+			tsp_caocao_customer_bill_info b,
+			tsp_caocao_car c
+	where
+	        a._id = b._order_id
+	        and a._car_id = c._id
+             <if test="custumerId != ''">
+				and a._customer_id = #{custumerId} 
+			</if>
+       order by costDate desc
+  </select>
+
+</mapper>

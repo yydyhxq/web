@@ -1,0 +1,95 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0px;padding:0px;font-family:12px/1.5 Tahoma, Helvetica, Arial, Microsoft YaHei, sans-serif;}
+/*解决IE6闪动问题 start*/
+*html{background-image:url(about:blank);background-attachment:fixed;height:100%;}
+/*解决IE6闪动问题 end*/
+body {margin:0; padding:0; font-size: 14px;color:#666666;font-family:"微软雅黑";font-size:14px;height:100%;background:#F1F1F1;}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,p{padding:0; margin:0;}
+ol,ul,li{list-style-type:none;}
+img{vertical-align:top;border:0;margin:0px;padding:0px;}
+a{cursor:pointer;}
+a,input,textarea{text-decoration:none;border:0;outline:none;}
+a:active {star:expression_r(this.onFocus=this.blur());background:none;text-decoration:none;color:#fff !important}
+:focus { outline:0; }
+table{table-layout:fixed;border-collapse:collapse;}
+table td{word-break:keep-all;white-space: nowrap;overflow: hidden;-o-text-overflow: ellipsis;text-overflow: ellipsis;}
+table td.tdborder,table th.tdborder{border-right:1px solid #CFCFCF;}
+table td.tdleft,table th.tdleft{text-align:left;text-indent:12px;}
+.overflowEll{word-break:keep-all;white-space: nowrap;overflow: hidden;-o-text-overflow: ellipsis;text-overflow: ellipsis;}
+table td.nooverflow{word-break:break-all;white-space:normal; overflow:visible;}
+.layerBody{background:#FFFFFF;}
+.textareacls{display:block;padding:3px 5px;height:64px;width:480px;border:1px solid #dfdfdf;float:left;margin-bottom:20px;}
+.layui-layer-btn a{background:#5f2967;color:#fff;}
+.currentcls .secondMenu{display:block;}
+.currentcls1 .thirdMenu{display:block;}
+ .mainMenu .currentcls2 a{color:#EFFF85}
+
+/*clear fix*/
+.clearfix:after{content:".";display:inline-block;height:0;clear:both;visibility:hidden;}
+.clearfix{display:block;}
+/*hide for IE mac start*/
+.toastcls1.clearfix{display:inline-block;}
+.per-content{width:930px;margin:auto;position:relative;}
+.inputcls{float:left;}
+.input[type="file"], input[type="image"], input[type="reset"], input[type="button"], input[type="radio"], input[type="checkbox"]{width:60px;height:30px;line-height:30px;}
+input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly]{cursor:default}
+.btn1{display:block;float:left;background: url(../images/btnup.png) no-repeat;width: 102px;height: 25px;line-height:25px;text-align:center;color: #fff;border: 0px;cursor: pointer;margin-right:10px;}
+.btn1:hover{color:#fff;text-decoration:none;}
+.btn1:active{color:#fff;}
+.btn1:focus {color:#fff;text-decoration:none;}
+.container-fluid{margin-bottom:50px;}
+.selectcls{margin-right:60px;}
+input, textarea, .uneditable-input{width:185px;}
+select{float:left;width:200px;font-family:"微软雅黑";}
+.radio{padding-left:210px;display:block;height:40px;line-height:40px;font-size:14px;}
+.radio input[type="radio"]{float:none;width:30px;height:20px;margin:0;}
+.select2-container{float:left;width:199px;}
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input{height:16px;font-family:"微软雅黑";font-size:12px;}
+.datagridCls{width:1077px;height:450px;}
+.current{}
+
+
+/*后台管理首页*/
+.navBg{background:#5f2967;height:98px;margin-bottom:10px;overflow:hidden}
+.navIcon{float:left;margin-left:105px;font-size:22px;color:#fff;background:url(../images/logo.png) no-repeat 0px 16px;width:198px;height:98px;}
+.navUser{float:right;margin-right:100px;padding-top:55px;width:400px;height:35px;color:#fff;font-size:12px;}
+.navUser a{color:#fff;float:right;}
+.sx{float:right;margin:0px 13px;}
+.topUserInfo_manage{float:right;margin-right:25px;}
+.leftArea{background:#5F2968;width:190px;float:left;min-height:700px;}
+.rightArea{background:#fff;margin-left:210px;min-height:700px;}
+
+/*导航栏*/
+.row-fluid .span2{padding-top:20px;background:#2065C9;min-width:190px;}
+.row-fluid .span10{background:#fff;}
+.mainMenu li{width:100%;line-height:40px;text-align:left;text-indent:30px;color:#fff;font-size:16px;cursor:pointer;position:relative;overflow:hidden;}
+.mainMenu li a{color:#fff;}
+.mainMenu li a:hover{text-decoration:none;}
+.fn-hide {display:none;}
+.secondMenu li{text-indent:40px;font-size:14px; }
+.secondMenu li em{display:inline-block;height:4px;width:4px;border-radius:100%;background:#fff;position:absolute;left:28px;top:50%;margin-top:-2px;}
+.thirdMenu li em{left:38px;}
+.mainMenu1{border-bottom:1px solid #fff;}
+.mainMenucls{display:block;width:100%;height:40px;}
+.secondMenu .mainMenucls{background:url(../images/right.png) no-repeat 25px;}
+.secondMenu .mainMenucls.currentcls{background:url(../images/down.png) no-repeat 25px;}
+.mainMenu1>.mainMenucls{border-top:1px solid #5f2967;}
+.mainMenu1.currentcls>.mainMenucls,.mainMenu1>.mainMenucls:hover{background:#fff;border-left:3px solid #5f2967;color:#5f2967;border-top:1px solid #5f2967}
+.thirdMenu li{text-indent:50px;font-size:12px;}
+.row-fluid [class*="span"]{min-height:700px;}
+
+/*toast弹窗框*/
+.perContent{margin:20px auto;width:600px;padding:0px 7px;font-size:12px;}
+.fn-hide{display:none;}
+.toastcls1{margin-top:10px}
+.toastbtns{margin-top:55px;text-align:center;}
+.toastbtns .btnA{margin:0px 10px;width:87px;height:28px;line-height:28px;}
+.toastbtns .btnA:hover{background:#8E8EE7;color:#fff;-webkit-transition: all 0.3s ease-in-out;-moz-transition: all 0.3s ease-in-out;-o-transition: all 0.3s ease-in-out;-ms-transition: all 0.3s ease-in-out;}
+.inputcls.required{background:#FFEE99;}
+.toastcls .select2-container .select2-choice{   background-color: #FFEE99;
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #FFEE99), color-stop(0.5, #FFEE99));
+    background-image: -webkit-linear-gradient(center bottom, #FFEE99 0%, #FFEE99 50%);
+    background-image: -moz-linear-gradient(center bottom, #FFEE99 0%, #FFEE99 50%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#FFEE99', endColorstr = '#FFEE99', GradientType = 0);
+    background-image: linear-gradient(to top, #FFEE99 0%, #FFEE99 50%);}

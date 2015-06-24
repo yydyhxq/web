@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+<link href="css/common.css" type="text/css" rel="stylesheet"/>
+<link href="css/style.css" type="text/css" rel="stylesheet"/>
+
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script> 
+<!--[if IE]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
+<script>
+	$(function(){
+		$("#driverTable").hide();
+		$(".tabcls li").click(function(){
+			$(this).addClass("current").siblings().removeClass("current");
+			var id= $(this).attr("id");
+			$("#"+id+"Table").show().siblings(".tabcls1").hide();
+		});
+	})
+</script>
+<title>推广维护历史记录</title>
+</head>
+
+<body>
+	
+
+	<!--header start-->
+    <div class="fn-title">
+        <div class="navbar navBg">
+        	<div class="navIcon">
+            	
+            </div>
+            <div class="navUser">
+            	<a href="login.html">退出</a>
+                <span class="sx">|</span>
+                <a href="userInfo.html">个人设置</a>
+                <span class="topUserInfo_manage">欢迎您，管理员</span>
+            </div>
+        </div>
+    </div>
+    <!--header end-->
+   <div class="container detailcls  detailcls1">
+   		<div class="mainCon">
+            <a href="promotion.html"><<返回</a>
+            <h3>推广维护历史记录 </h3>
+           	<div class="mainConcls3">
+                <ul class="tabcls">
+                	<li id="passenger" class="current">乘客</li>
+                    <li id="driver" >司机</li>
+                </ul>
+                <table class="tabcls1" id="passengerTable" >
+                	<thead>
+                    	<tr>
+                        	<th rowspan="2">日期</th>
+                            <th colspan="2">邀请码</th>                          
+                            <th colspan="2">普推码</th>
+                        </tr>
+                        <tr>
+                            <th>返现</th>
+                            <th>有效期</th>
+                            <th>上限</th>
+                            <th>有效期</th
+                        ></tr>
+                    </thead>
+                    <tbody>
+                    	<tr>
+                        	<td>2014/3/3</td>
+                            <td>22</td>
+                            <td>2014/3/3</td>
+                            <td>33</td>
+                            <td>2014/3/3</td>
+                        </tr>
+                        <tr>
+                        	<td>2014/3/3</td>
+                            <td>22</td>
+                            <td>2014/3/3</td>
+                            <td>33</td>
+                            <td>2014/3/3</td>
+                        </tr>
+                        <tr>
+                        	<td>2014/3/3</td>
+                            <td>22</td>
+                            <td>2014/3/3</td>
+                            <td>33</td>
+                            <td>2014/3/3</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <table class="tabcls1" id="driverTable" >
+                	<thead>
+                    	<tr>
+                        	<th rowspan="2">日期</th>
+                            <th colspan="2">邀请码</th>                          
+                            <th colspan="3">时段奖</th>
+                            <th rowspan="2">非双休单程上限</th>
+                            <th rowspan="2">双休单程上限</th>
+                            <th rowspan="2">接单量上限</th>
+                        </tr>
+                        <tr>
+                            <th>返现</th>
+                            <th>上限</th>
+                            <th>周</th>
+                            <th>时段</th>
+                            <th>单程返</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    	<tr>
+                        	<td>2014/3/3</td>
+                            <td>22</td>
+                            <td>23</td>
+                            <td>周一到周日</td>
+                            <td>12:00到13:00</td>
+                            <td>23</td>
+                            <td>23</td>
+                            <td>23</td>
+                            <td>23</td>
+                        </tr>
+                        <tr>
+                        	<td>2014/3/3</td>
+                            <td>22</td>
+                            <td>23</td>
+                            <td>周一到周日</td>
+                            <td>12:00到13:00</td>
+                            <td>23</td>
+                            <td>23</td>
+                            <td>23</td>
+                            <td>23</td>
+                        </tr>
+
+                        
+                      
+                    </tbody>
+                </table>
+                
+             </div>	
+        </div>
+   </div>
+    
+
+    
+</body>
+</html>

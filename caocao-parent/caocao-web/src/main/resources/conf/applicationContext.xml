@@ -6,5 +6,5 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
   <context:property-placeholder location="classpath:conf/sysConf.properties"/>
   <import resource="classpath*:conf/caocao-core-conf.xml"/>
-  
+  <import resource="classpath*:conf/caocao-integration-conf.xml"/>
 </beans>

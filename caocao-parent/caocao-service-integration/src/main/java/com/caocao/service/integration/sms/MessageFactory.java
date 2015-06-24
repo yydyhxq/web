@@ -1,7 +1,5 @@
 package com.caocao.service.integration.sms;
 
-import javax.annotation.PostConstruct;
-
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.params.HttpMethodParams;
