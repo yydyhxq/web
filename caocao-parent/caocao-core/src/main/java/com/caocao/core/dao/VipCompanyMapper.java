@@ -1,9 +1,11 @@
 package com.caocao.core.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.caocao.core.model.VipCompany;
 import com.caocao.core.model.VipCompanyExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
 public interface VipCompanyMapper {
     /**
@@ -117,4 +119,10 @@ public interface VipCompanyMapper {
      * @mbggenerated Thu Jun 18 13:20:28 CST 2015
      */
     int updateByPrimaryKey(VipCompany record);
+    
+    List<VipCompany> QueryPageList(VipCompany record);
+    
+    VipCompany QueryOne(VipCompany record);
+    
+    VipCompany QueryById(VipCompany record);
 }

@@ -117,4 +117,10 @@ public interface LabourMapper {
      * @mbggenerated Thu Jun 18 13:20:28 CST 2015
      */
     int updateByPrimaryKey(Labour record);
+    
+    List<Labour> QueryPageList(Labour record);
+    
+    Labour QueryOne(Labour record);
+    
+    Labour QueryById(Labour record);
 }

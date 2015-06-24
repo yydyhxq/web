@@ -262,4 +262,62 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  
+  <select id="QueryPageList" resultType="com.caocao.core.model.CarType" parameterType="com.caocao.core.model.CarType" >
+    select  _id as id, 
+			_brand as brand, 
+			_mode as mode, 
+			_type as type, 
+			_createtime as createtime, 
+			_updatetime as updatetime, 
+			_author_create as authorCreate, 
+			_version as version
+    from 	tsp_caocao_cartype
+    where 	1=1
+    <if test="name != null and name != ''">and _name = #{name,jdbcType=VARCHAR}</if>
+    <if test="contactPhone != null and contactPhone != ''">and _contact_phone = #{contactPhone,jdbcType=VARCHAR}</if>
+    <if test="cityCode != null and cityCode != ''">and _city_code = #{cityCode,jdbcType=VARCHAR}</if>
+    <!-- <![CDATA[<if test="signDateBegin != null and signDateBegin != ''">and _createtime >= #{signDateBegin,jdbcType=TIMESTAMP}</if>
+ 	<if test="signDateEnd != null and signDateEnd != ''">and _createtime >= #{signDateEnd,jdbcType=TIMESTAMP}</if>]]> -->
+  </select>
+  
+  <select id="QueryOne" resultType="com.caocao.core.model.CarType" parameterType="com.caocao.core.model.CarType" >
+    select  _id as id, 
+			_brand as brand, 
+			_mode as mode, 
+			_type as type, 
+			_createtime as createtime, 
+			_updatetime as updatetime, 
+			_author_create as authorCreate, 
+			_version as version
+    from 	tsp_caocao_cartype
+    where 	1=1
+    <if test="mode != null and mode != ''">and _mode = #{mode,jdbcType=VARCHAR}</if>
+  </select>
+  
+  <select id="QueryById" resultType="com.caocao.core.model.CarType" parameterType="com.caocao.core.model.CarType" >
+    select  _id as id, 
+			_brand as brand, 
+			_mode as mode, 
+			_type as type, 
+			_createtime as createtime, 
+			_updatetime as updatetime, 
+			_author_create as authorCreate, 
+			_version as version
+    from 	tsp_caocao_cartype
+    where 	1=1
+    <if test="id != null and id != ''">and _id = #{id,jdbcType=VARCHAR}</if>
+  </select>
+    
+    <update id="updateByPrimaryKey" parameterType="com.caocao.core.model.CarType" >
+    update tsp_caocao_cartype
+    set _brand = #{record.brand,jdbcType=VARCHAR},
+      _mode = #{record.mode,jdbcType=VARCHAR},
+      _type = #{record.type,jdbcType=INTEGER},
+      _createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      _updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+      _author_create = #{record.authorCreate,jdbcType=VARCHAR},
+      _version = #{record.version,jdbcType=DOUBLE}
+    where _id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

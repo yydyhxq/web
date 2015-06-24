@@ -528,4 +528,68 @@
       _version = #{version,jdbcType=DOUBLE}
     where _id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="QueryPageList" resultType="com.caocao.core.model.VipCompany" parameterType="com.caocao.core.model.VipCompany" >
+    select  _id as id, 
+			_name as name, 
+			_city_code as cityCode, 
+			_company_code as companyCode, 
+			_master_name as masterName, 
+			_master_number as masterNumber, 
+			_contact_phone as contactPhone, 
+			_company_address as companyAddress, 
+			_is_valid as isValid, 
+			_createtime as createtime, 
+			_updatetime as updatetime, 
+			_author_create as authorCreate,
+			_author_update as authorUpdate, 
+			_version as version
+    from 	tsp_caocao_vipcompany
+    where 	1=1
+    <if test="name != null and name != ''">and _name = #{name,jdbcType=VARCHAR}</if>
+    <if test="contactPhone != null and contactPhone != ''">and _contact_phone = #{contactPhone,jdbcType=VARCHAR}</if>
+    <if test="cityCode != null and cityCode != ''">and _city_code = #{cityCode,jdbcType=VARCHAR}</if>
+    <!-- <![CDATA[<if test="signDateBegin != null and signDateBegin != ''">and _createtime >= #{signDateBegin,jdbcType=TIMESTAMP}</if>
+ 	<if test="signDateEnd != null and signDateEnd != ''">and _createtime >= #{signDateEnd,jdbcType=TIMESTAMP}</if>]]> -->
+  </select>
+  
+  <select id="QueryOne" resultType="com.caocao.core.model.VipCompany" parameterType="com.caocao.core.model.VipCompany" >
+    select  _id as id, 
+			_name as name, 
+			_city_code as cityCode, 
+			_company_code as companyCode, 
+			_master_name as masterName, 
+			_master_number as masterNumber, 
+			_contact_phone as contactPhone, 
+			_company_address as companyAddress, 
+			_is_valid as isValid, 
+			_createtime as createtime, 
+			_updatetime as updatetime, 
+			_author_create as authorCreate,
+			_author_update as authorUpdate, 
+			_version as version
+    from 	tsp_caocao_vipcompany
+    where 	1=1
+    		and _company_code = #{companyCode,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="QueryById" resultType="com.caocao.core.model.VipCompany" parameterType="com.caocao.core.model.VipCompany" >
+    select  _id as id, 
+			_name as name, 
+			_city_code as cityCode, 
+			_company_code as companyCode, 
+			_master_name as masterName, 
+			_master_number as masterNumber, 
+			_contact_phone as contactPhone, 
+			_company_address as companyAddress, 
+			_is_valid as isValid, 
+			_createtime as createtime, 
+			_updatetime as updatetime, 
+			_author_create as authorCreate,
+			_author_update as authorUpdate, 
+			_version as version
+    from 	tsp_caocao_vipcompany
+    where 	1=1
+    and _id = #{id,jdbcType=INTEGER}
+  </select>
 </mapper>

@@ -117,4 +117,10 @@ public interface AdminMapper {
      * @mbggenerated Tue Jun 16 10:42:40 CST 2015
      */
     int updateByPrimaryKey(Admin record);
+    
+    List<Admin> QueryPageList(Admin record);
+    
+    Admin QueryOne(Admin record);
+    
+    Admin QueryById(Admin record);
 }

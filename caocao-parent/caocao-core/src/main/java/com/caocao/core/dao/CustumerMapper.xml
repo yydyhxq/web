@@ -723,4 +723,92 @@
       _version = #{version,jdbcType=DOUBLE}
     where _id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="QueryPageList" resultType="com.caocao.core.model.Custumer" parameterType="com.caocao.core.model.Custumer" >
+    select  _id as id, 
+			_email as email, 
+			_phone as phone, 
+			_name as name, 
+			_photo as photo, 
+			_nickName as nickname, 
+			_sex as sex, 
+			_createtime as createtime, 
+			_updatetime as updatetime, 
+			_author_update as authorUpdate, 
+			_last_login_time as lastLoginTime,
+			_type as type, 
+			_company_code as companyCode, 
+			_company_require as companyRequire, 
+			_invite_code as inviteCode, 
+			_citycode as citycode, 
+			_areacode as areacode, 
+			_banlance as banlance, 
+			_push_id as pushId, 
+			_used as used, 
+			_input_invitecode as inputInvitecode, 
+			_version as version
+    from 	tsp_caocao_custumer
+    where 	1=1
+    <if test="companyCode != null and companyCode != ''">and _company_code = #{companyCode,jdbcType=VARCHAR}</if>
+    <if test="phone != null and phone != ''">and _phone = #{phone,jdbcType=VARCHAR}</if>
+ 	<if test="citycode != null and citycode != ''">and _citycode = #{citycode,jdbcType=VARCHAR}</if>
+ 	<!-- <![CDATA[<if test="signDateBegin != null and signDateBegin != ''">and _createtime >= #{signDateBegin,jdbcType=TIMESTAMP}</if>
+ 	<if test="signDateEnd != null and signDateEnd != ''">and _createtime >= #{signDateEnd,jdbcType=TIMESTAMP}</if>]]> -->
+  </select>
+  
+  <select id="QueryOne" resultType="com.caocao.core.model.Custumer" parameterType="com.caocao.core.model.Custumer" >
+    select  _id as id, 
+			_email as email, 
+			_phone as phone, 
+			_name as name, 
+			_photo as photo, 
+			_nickName as nickname, 
+			_sex as sex, 
+			_createtime as createtime, 
+			_updatetime as updatetime, 
+			_author_update as authorUpdate, 
+			_last_login_time as lastLoginTime,
+			_type as type, 
+			_company_code as companyCode, 
+			_company_require as companyRequire, 
+			_invite_code as inviteCode, 
+			_citycode as citycode, 
+			_areacode as areacode, 
+			_banlance as banlance, 
+			_push_id as pushId, 
+			_used as used, 
+			_input_invitecode as inputInvitecode, 
+			_version as version
+    from 	tsp_caocao_custumer
+    where 	1=1
+     <if test="phone != null and phone != ''">and _phone = #{phone,jdbcType=VARCHAR}</if>
+  </select>
+  
+  <select id="QueryById" resultType="com.caocao.core.model.Custumer" parameterType="com.caocao.core.model.Custumer" >
+    select  _id as id, 
+			_email as email, 
+			_phone as phone, 
+			_name as name, 
+			_photo as photo, 
+			_nickName as nickname, 
+			_sex as sex, 
+			_createtime as createtime, 
+			_updatetime as updatetime, 
+			_author_update as authorUpdate, 
+			_last_login_time as lastLoginTime,
+			_type as type, 
+			_company_code as companyCode, 
+			_company_require as companyRequire, 
+			_invite_code as inviteCode, 
+			_citycode as citycode, 
+			_areacode as areacode, 
+			_banlance as banlance, 
+			_push_id as pushId, 
+			_used as used, 
+			_input_invitecode as inputInvitecode, 
+			_version as version
+    from 	tsp_caocao_custumer
+    where 	1=1
+    <if test="id != null">and _id = #{id,jdbcType=INTEGER}</if>
+  </select>
 </mapper>

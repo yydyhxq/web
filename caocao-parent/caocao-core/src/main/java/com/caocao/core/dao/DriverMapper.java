@@ -93,4 +93,6 @@ public interface DriverMapper {
      * @mbggenerated Thu Jun 18 13:20:28 CST 2015
      */
     int updateByPrimaryKey(Driver record);
+    
+    List<Driver> QueryPageList(Driver record);
 }

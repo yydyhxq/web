@@ -527,4 +527,70 @@
       _version = #{version,jdbcType=DOUBLE}
     where _id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="QueryPageList" resultType="com.caocao.core.model.Admin" parameterType="com.caocao.core.model.Admin" >
+    select  _id as id, 
+		    _username as username, 
+		    _phone as phone, 
+		    _psw as psw, 
+		    _post as post, 
+		    _isActive as isActive, 
+		    _isActiveTime as isActiveTime, 
+		    _freezeTime as freezeTime, 
+		    _loginTime as loginTime, 
+		    _company_name as companyName, 
+		    _createtime as createtime, 
+		    _updatetime as updatetime, 
+		    _author_update as authorUpdate, 
+		    _version  as version,
+		    _remark as remark
+    from 	tsp_caocao_admin 
+    where 	1=1
+    <if test="id != null and id != ''">and _id = #{id,jdbcType=INTEGER}</if>
+    <if test="username != null and username != ''">and _username = #{username,jdbcType=VARCHAR}</if>
+    <if test="phone != null and phone != ''">and _phone = #{phone,jdbcType=VARCHAR}</if>
+ 	<!-- <if test="companyName != null and companyName != ''">and _username = #{username,jdbcType=VARCHAR}</if> -->
+  </select>
+  
+  <select id="QueryOne" resultType="com.caocao.core.model.Admin" parameterType="com.caocao.core.model.Admin" >
+    select  _id as id, 
+		    _username as username, 
+		    _phone as phone, 
+		    _psw as psw, 
+		    _post as post, 
+		    _isActive as isActive, 
+		    _isActiveTime as isActiveTime, 
+		    _freezeTime as freezeTime, 
+		    _loginTime as loginTime, 
+		    _company_name as companyName, 
+		    _createtime as createtime, 
+		    _updatetime as updatetime, 
+		    _author_update as authorUpdate, 
+		    _version  as version,
+		    _remark as remark
+    from 	tsp_caocao_admin 
+    where 	1=1
+ 		    and _phone = #{phone,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="QueryById" resultType="com.caocao.core.model.Admin" parameterType="com.caocao.core.model.Admin" >
+    select  _id as id, 
+		    _username as username, 
+		    _phone as phone, 
+		    _psw as psw, 
+		    _post as post, 
+		    _isActive as isActive, 
+		    _isActiveTime as isActiveTime, 
+		    _freezeTime as freezeTime, 
+		    _loginTime as loginTime, 
+		    _company_name as companyName, 
+		    _createtime as createtime, 
+		    _updatetime as updatetime, 
+		    _author_update as authorUpdate, 
+		    _version  as version,
+		    _remark as remark
+    from 	tsp_caocao_admin 
+    where 	1=1
+   			and _id = #{id,jdbcType=INTEGER}
+  </select>
 </mapper>

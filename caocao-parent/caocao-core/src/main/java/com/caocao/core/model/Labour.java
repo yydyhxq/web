@@ -482,4 +482,24 @@ public class Labour {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+    
+    private Date signDateBegin;
+    
+    private Date signDateEnd;
+
+	public Date getSignDateBegin() {
+		return signDateBegin;
+	}
+
+	public void setSignDateBegin(Date signDateBegin) {
+		this.signDateBegin = signDateBegin;
+	}
+
+	public Date getSignDateEnd() {
+		return signDateEnd;
+	}
+
+	public void setSignDateEnd(Date signDateEnd) {
+		this.signDateEnd = signDateEnd;
+	}
 }

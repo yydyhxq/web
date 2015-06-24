@@ -1,5 +1,6 @@
 package com.caocao.core.dao;
 
+import com.caocao.core.model.Labour;
 import com.caocao.core.model.Lease;
 import com.caocao.core.model.LeaseExample;
 import java.util.List;
@@ -117,4 +118,10 @@ public interface LeaseMapper {
      * @mbggenerated Thu Jun 18 13:20:28 CST 2015
      */
     int updateByPrimaryKey(Lease record);
+    
+    List<Lease> QueryPageList(Lease record);
+    
+    Lease QueryOne(Lease record);
+    
+    Lease QueryById(Lease record);
 }

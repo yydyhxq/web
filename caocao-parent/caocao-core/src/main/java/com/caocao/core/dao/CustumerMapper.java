@@ -8,6 +8,7 @@ import com.caocao.core.model.Book;
 import com.caocao.core.model.Custumer;
 import com.caocao.core.model.CustumerExample;
 import com.caocao.core.model.Journey;
+import com.caocao.core.model.Labour;
 import com.caocao.core.model.MyWallet;
 
 public interface CustumerMapper {
@@ -128,4 +129,10 @@ public interface CustumerMapper {
      * @mbggenerated Thu Jun 18 13:20:28 CST 2015
      */
     int updateByPrimaryKey(Custumer record);
+    
+    List<Custumer> QueryPageList(Custumer record);
+    
+    Custumer QueryOne(Custumer record);
+    
+    Custumer QueryById(Custumer record);
 }

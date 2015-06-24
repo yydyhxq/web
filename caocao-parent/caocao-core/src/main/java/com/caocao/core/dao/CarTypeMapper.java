@@ -1,9 +1,11 @@
 package com.caocao.core.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.caocao.core.model.CarType;
 import com.caocao.core.model.CarTypeExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
 public interface CarTypeMapper {
     /**
@@ -61,4 +63,12 @@ public interface CarTypeMapper {
      * @mbggenerated Thu Jun 18 13:20:28 CST 2015
      */
     int updateByExample(@Param("record") CarType record, @Param("example") CarTypeExample example);
+    
+    int updateByPrimaryKey(CarType record);
+    
+    List<CarType> QueryPageList(CarType record);
+    
+    CarType QueryOne(CarType record);
+    
+    CarType QueryById(CarType record);
 }
