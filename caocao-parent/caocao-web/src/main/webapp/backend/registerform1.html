@@ -13,9 +13,33 @@
 <script type="text/javascript" src="js/common.js"></script>
 <!--[if IE]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
 <script>
+	//获取id名
+	var id = getId("customerId");
+	if(id!="") $('#dg').datagrid('reload',{customerId: id});
+
 	$(function(){
+		$.ajax({
+			url:url,
+			dataType:'json',
+			success:function(data){
+				alert(data);
+				$("#name").val(data.name);
+				$("#sex").val(data.sex);
+				$("#birthPlace").val(data.birthPlace);
+				$("#livePlace").val(data.livePlace);
+				$("#email").val(data.email);
+				$("#drivelicenseDate").val(data.drivelicenseDate);
+				$("#educateDegree").val(data.educateDegree);
+				$("#height").val(data.height);
+				$("#weight").val(data.weight);
+				$("input[name='job']").val(data.job);
+				$("#brand").val(data.brand);
+				$("#model").val(data.model);
+			}
+
+		})
+		
 		$("#save").click(function(){
-			
 			var name=$("#name").val();//获取名字
 			var sex=$("#sex").val();//获取性别
 			var birthPlace=$("#birthPlace").val();//获取户籍所在地
@@ -27,12 +51,13 @@
 			var height=$("#height").val();//身高/体重
 			var weight=$("#weight").val();//身高/体重
 			var job = $("input[name='job']").val();//应聘形式
-			var hasCar= $("input[name='hasCar']").val()//名下是否有自驾车
-			var cardNo=$("#cardNo").val();//品牌
+			
+			var brand=$("#brand").val();//品牌
 			var model=$("#model").val();//车型
 			if(name==""||sex==""||phone==""){
 				layer.msg("必填项为空");return false;
 			}
+			
 			var form = $("#form").serialize();
 			url = ""+form;
 			$.ajax({
@@ -40,7 +65,7 @@
 				url:url,
 				dataType:'json',
 				success:function(data){
-					if()
+					
 				},
 				error:function(){
 					layer.msg("网络异常，请稍后再试！")	
@@ -84,11 +109,14 @@
                 <div data-title="性别">
                 	<input type="text" class="inputcls" id="sex" name="sex" />
                 </div>
+                <div data-title="出生年月">
+                	<input type="text" class="inputcls" id="birthday" name="birthday"/>
+                </div>
                 <div data-title="户籍所在地">
-                	<input type="text" class="inputcls"  id="birthPlace" name="birthPlace" />
+                	<input type="text" class="inputcls"  id="" name="" />
                 </div>
                 <div data-title="现居住地址">
-                	<input type="text" class="inputcls"  id="livePlace" name="livePlace"/>
+                	<input type="text" class="inputcls"  id="" name=""/>
                 </div>
                 <div data-title="联系电话">
                 	<input type="text" class="inputcls" id="phone"  name="phone"/>
@@ -101,28 +129,33 @@
                 	<input type="text" class="inputcls" id="cardNo" name="cardNo"/>
                 </div>
                 <div data-title="取得驾照时间">
-                	<input type="text" class="inputcls"  id="drivelicenseDate" name="drivelicenseDate"/>
+                	<input type="text" class="inputcls" />
                 </div>
                 <div data-title="实际驾龄">
                 	<input type="text" class="inputcls" id="driverAge" name="driverAge"/>
                 </div>
                 <div data-title="学历">
-                	<input type="text" class="inputcls"  id="educateDegree" name="educateDegree"/>
+                	<input type="text" class="inputcls"  />
                 </div>
-                <div data-title="身高(CM)">
-                	<input type="text" class="inputcls" id="height" name="height"/>
+                <div data-title="专业">
+                	<input type="text" class="inputcls" />
+                    <i>非必填</i>
                 </div>
-                <div data-title="体重(KG)">
-                	<input type="text" class="inputcls" id="weight" name="weight"/>
+                <div data-title="毕业院校">
+                	<input type="text" class="inputcls"  />
+                    <i>非必填</i>
+                </div>
+                <div data-title="身高(CM)/体重(KG)">
+                	<input type="text" class="inputcls" />
                 </div>
                  <div data-title="应聘形式">
                  	<span class="radio">
-                        <input type="radio" name="isSpecificduty" value="1" checked="checked"/>兼职
-                        <input type="radio" name="isSpecificduty" value="0"  style="margin-left:20px"/>全职
+                        <input type="radio" name="job" value="1" checked="checked"/>兼职
+                        <input type="radio" name="job" value="0"  style="margin-left:20px"/>全职
                     </span>
                 </div>
                  <div data-title="名下是否有自驾车">
-                	<span class="radio" >
+                	<span class="radio">
                         <input type="radio" name="hasCar" value="1" checked="checked"/>是
                         <input type="radio" name="hasCar" value="0"  style="margin-left:35px"/>否
                     </span>
@@ -131,7 +164,7 @@
                 
                 </div>
             	<div data-title="品牌">
-                	<input type="text" class="inputcls" id="type" name="trand"/>
+                	<input type="text" class="inputcls" id="type" name="type"/>
                 </div>
                 <div data-title="车型">
                 	<input type="text" class="inputcls" id="model" name="model"/>
@@ -154,4 +187,27 @@
 
     
 </body>
+<script>
+
+	//获取url参数
+	function getId(key){
+		var id;
+		var urlmap = location.href.split("?");
+		
+		if(urlmap[1]==""||urlmap[1]== undefined){
+			
+			id=""; 
+		}else{
+		var field = urlmap[1].split("&");
+			for(var i=0;i<field.length;i++){
+				var va = filed[i].split("=");
+				if(va[0]==key){
+					id=va[1];
+					
+				}	
+			}
+		}
+		return id;
+	 }
+</script>
 </html>
