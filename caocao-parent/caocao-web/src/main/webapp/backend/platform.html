@@ -13,6 +13,7 @@
 <script type="text/javascript" src="js/select2/select2.js"></script>
 <script type="text/javascript" src="js/layer/layer.js"></script> 
 <script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script> 
 <script type="text/javascript" src="js/jquery.easyui.min.js"></script>
 <!--[if IE]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
 
@@ -22,12 +23,15 @@
 		
 			//查询
 		$("#search").click(function(){
-			var year = $("#year").val(); //获取年
-			var month= $("#month").val(); //获取月
+			var year = $("input[name='year']").val(); //获取年
+			var month= $("input[name='month']").val(); //获取月
+			var month= $("input[name='costProduceBegin']").val();
+			var month= $("input[name='costProduceEnd']").val();
 			$("#dg").datagrid('load',{
 				year:year,
 				month:month,
-				
+				costProduceBegin:costProduceBegin,
+				costProduceEnd:costProduceEnd
 			})
 			$('#dg').datagrid('reload');    // reload the current page data			
 		})
@@ -147,9 +151,9 @@
                                 <option value="2025">2025</option>                      
                 			</select>                         
                         	<label style="margin-left:10px">费用产生日期</label>
-                            <input type="text" class="Wdate inputcls rightcls8"   onclick="WdatePicker()">
+                            <input type="text" class="Wdate inputcls rightcls8"   onclick="WdatePicker()" name="costProduceBegin">
                             <label class="mainConcls2_2">至</label>
-                            <input type="text" class="Wdate inputcls currentTime"  onclick="WdatePicker()">
+                            <input type="text" class="Wdate inputcls currentTime"  onclick="WdatePicker()" name="costProduceEnd">
                        		<input type="button" class="buttoncls" value="查询" id="search" />  
                         </div>
                         
@@ -158,13 +162,12 @@
                     
                     <!--内容 start-->
                     <div class="mainConcls3">
-                   		 <table id="#dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'datagrid_data.json',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
+                   		 <table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'http://localhost:8080/caocao/financemanage/queryplat.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                             <thead>
                                 <tr>
                                     <th data-options="field:'year',width:90">年度</th>
                                     <th data-options="field:'month',width:120">费用产生日期</th>
-                                    <th data-options="field:'costMoney',width:90">合计返利金额</th>
-                
+                                    <th data-options="field:'totalBackMoney',width:90">合计返利金额</th>
                                 </tr>
                              </thead>                   
                          </table>

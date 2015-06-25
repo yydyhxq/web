@@ -1,6 +1,8 @@
 package com.caocao.web.control;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -9,14 +11,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.caocao.core.model.Admin;
 import com.caocao.core.model.ComCustumer;
 import com.caocao.core.model.ComCustumerAccount;
 import com.caocao.core.model.ComCustumerCost;
 import com.caocao.core.service.ComCustumerManageService;
-import com.caocao.core.service.UserManageService;
 
 @Controller
 @RequestMapping("comcustumer")
@@ -27,24 +27,33 @@ public class ComCustumerManageController {
 	@Resource
 	private ComCustumerManageService comCustumerManageService;
 	
-	@RequestMapping(value = "/comCustumer", method = { RequestMethod.GET})
-	public String QueryComCustumer(ComCustumer comCustumer, ModelMap model) {
+	@RequestMapping(value = "/comcustumer")
+	@ResponseBody
+	public Map<String, Object> QueryComCustumer(ComCustumer comCustumer) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		List<ComCustumer> list = comCustumerManageService.SelectComCustumer(comCustumer);
-		model.put("list", list);
-		return ".jsp";
+		map.put("total", list.size());
+		map.put("rows", list);
+		return map;
 	}
 	
-	@RequestMapping(value = "/comCustumerAccount", method = { RequestMethod.GET})
-	public String QueryComCustumerAccount(ComCustumerAccount comCustumerAccount, ModelMap model) {
+	@RequestMapping(value = "/comaccount")
+	@ResponseBody
+	public Map<String, Object> QueryComCustumerAccount(ComCustumerAccount comCustumerAccount) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		List<ComCustumerAccount> list = comCustumerManageService.SelectComCustumerAccount(comCustumerAccount);
-		model.put("list", list);
-		return ".jsp";
+		map.put("total", list.size());
+		map.put("rows", list);
+		return map;
 	}
 	
-	@RequestMapping(value = "/comCustumerCost", method = { RequestMethod.GET})
-	public String QueryComCustumerCost(ComCustumerCost comCustumerCost, ModelMap model) {
+	@RequestMapping(value = "/comcost")
+	@ResponseBody
+	public Map<String, Object> QueryComCustumerCost(ComCustumerCost comCustumerCost) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		List<ComCustumerCost> list = comCustumerManageService.SelectComCustumerCost(comCustumerCost);
-		model.put("list", list);
-		return ".jsp";
+		map.put("total", list.size());
+		map.put("rows", list);
+		return map;
 	}
 }

@@ -2,7 +2,9 @@ package com.caocao.web.control;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -31,11 +33,11 @@ public class CarTypeController {
 	@ResponseBody
 	public int add(@ModelAttribute CarType carType) {
 		int success = 100;
-		List<String> errors = check(carType);
-		if(errors.size()>0){
-			success = 0;
-			return success;
-		}
+//		List<String> errors = check(carType);
+//		if(errors.size()>0){
+//			success = 0;
+//			return success;
+//		}
 		carType.setCreatetime(new Date());
 		CarType modelDO = carTypeService.QueryOne(carType);
 		if(!(modelDO == null)) {
@@ -53,13 +55,14 @@ public class CarTypeController {
 	}
 	
 	@RequestMapping(value = "/update")
+	@ResponseBody
 	public int update(@ModelAttribute CarType carType) {
 		int success = 100;
-		List<String> errors = check(carType);
-		if(errors.size()>0){
-			success = 0;
-			return success;
-		}
+//		List<String> errors = check(carType);
+//		if(errors.size()>0){
+//			success = 0;
+//			return success;
+//		}
 		carType.setUpdatetime(new Date());
 		CarType modelDO = carTypeService.QueryById(carType);
 		if(!(modelDO == null)) {
@@ -76,12 +79,24 @@ public class CarTypeController {
 		}
 	}
 	
-//	@RequestMapping(value = "/query", method = {RequestMethod.POST})
-//	public String QueryUsers(@RequestParam CarType carType, ModelMap model) {
-//		List<CarType> list = carTypeService.QueryCarTypes(carType);
-//		model.put("list", list);
-//		return ".jsp";
-//	}
+	//查询批量用户信息
+	@RequestMapping(value = "/query")
+	@ResponseBody
+	public Map<String, Object> QueryPageList(@ModelAttribute CarType carType) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<CarType> list = carTypeService.QueryPageList(carType);
+		map.put("total", list.size());
+		map.put("rows", list);
+		return map;
+	}
+	
+	//查询单个用户信息
+	@RequestMapping(value = "/queryone")
+	@ResponseBody
+	public CarType QueryOne(@ModelAttribute CarType carType) {
+		CarType modelDO = carTypeService.QueryOne(carType);
+		return modelDO;
+	}
 	
 	private List<String> check(CarType carType) {
 		List<String> errors = new ArrayList<String>();

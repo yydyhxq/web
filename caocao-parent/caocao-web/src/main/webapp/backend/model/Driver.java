@@ -275,6 +275,7 @@ public class Driver {
      *
      * @mbggenerated Thu Jun 18 13:20:28 CST 2015
      */
+    
     public Integer getId() {
         return id;
     }

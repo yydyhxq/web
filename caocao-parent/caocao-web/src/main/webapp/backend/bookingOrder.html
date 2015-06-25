@@ -26,17 +26,21 @@
 		 
 		//查询
 		$("#search").click(function(){
-			var phone = $("#phone").val(); //获取乘客手机号
-			var phone = $("#phone").val(); //获取司机手机号
+			var passengerPhone = $("#passengerPhone").val(); //获取乘客手机号
+			var driverPhone = $("#driverPhone").val(); //获取司机手机号
 			var costCity =$("#costCity").val();//获取所在城市
-			var bookTime =$("#bookTime").val();//获取预约时间
-			var bookNow =$("#bookNow").val();//获取预约出发时间
+			var appointmentBegin =$("#appointmentBegin").val();
+			var appointmentEnd =$("#appointmentEnd").val();
+			var appointStartBegin =$("#appointStartBegin").val();
+			var appointStarrtEnd =$("#appointStarrtEnd").val();
 			$("#dg").datagrid('load',{
-				phone:phone,
-				phone:phone,
+				passengerPhone:passengerPhone,
+				driverPhone:driverPhone,
 				costCity:costCity,
-				bookTime:bookTime,
-				bookNow:bookNow
+				appointmentBegin:appointmentBegin,
+				appointmentEnd:appointmentEnd,
+				appointStartBegin:appointStartBegin,
+				appointStarrtEnd:appointStarrtEnd
 			})
 			$('#dg').datagrid('reload');    // reload the current page data			
 		})
@@ -143,8 +147,8 @@
                		<!--查询条件 start-->
                		<div class="mainConcls1 clearfix">
                     	<div class="mainConcls2 clearfix">
-                       		<label>乘客手机号</label><input type="text" class="inputcls" name="phone" id="phone" />
-                            <label>司机手机号</label><input type="text" class="inputcls" name="phone" id="phone" />
+                       		<label>乘客手机号</label><input type="text" class="inputcls" name="passengerPhone" id="passengerPhone" />
+                            <label>司机手机号</label><input type="text" class="inputcls" name="driverPhone" id="driverPhone" />
                             <label>订单状态</label>
                             <select class="select" name="orderStatus" id="orderStatus">
                                   <option value ="3">已到达上车地</option>
@@ -154,16 +158,16 @@
                         </div>
                         <div class="mainConcls2 mainConcls2_1 clearfix">
                        		<label >预约出发日期</label>
-                            <input type="text" class="Wdate inputcls rightcls8"   onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" name="bookNow" id="bookNow">
+                            <input type="text" class="Wdate inputcls rightcls8"   onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" name="appointmentBegin" id="appointmentBegin">
                             <label class="mainConcls2_2">至</label>
-                            <input type="text" class="Wdate inputcls currentTime"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" name="bookNow" id="bookNow">
+                            <input type="text" class="Wdate inputcls currentTime"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" name="appointmentEnd" id="appointmentEnd">
                        		 <label>消费城市</label> <input type="text"  placeholder="请输入城市名" id="costCity"  name="costCity"/>
                         </div> 	
                         <div class="mainConcls2 mainConcls2_1 clearfix">
                        		<label >预约日期</label>
-                            <input type="text" class="Wdate inputcls rightcls8"  onclick="WdatePicker()" name="bookTime" id="bookTime">
+                            <input type="text" class="Wdate inputcls rightcls8"  onclick="WdatePicker()" name="appointStartBegin" id="appointStartBegin">
                             <label class="mainConcls2_2">至</label>
-                            <input type="text" class="Wdate inputcls"  onclick="WdatePicker()" name="bookTime" id="bookTime">
+                            <input type="text" class="Wdate inputcls"  onclick="WdatePicker()" name="appointStarrtEnd" id="appointStarrtEnd">
                        		<input type="button" class="buttoncls" value="查询" />  
                         </div> 	
                     </div>	
@@ -174,21 +178,21 @@
                     
                    
                     <div class="mainConcls3">
-                    	<table id="#dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'datagrid_data.json',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
+                    	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'http://localhost:8080/caocao/ordermanage/bookorder.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                                 <thead>
                                     <tr>
-                                        <th data-options="field:'id',width:90 ">订单号</th>
-                                        <th data-options="field:'customerId',width:90">乘客姓名</th>
-                                        <th data-options="field:'phone',width:90">乘客手机号</th>
-                                        <th data-options="field:'bookTime',width:90">预约时间</th>
-                                        <th data-options="field:'bookNow',width:90">预约出发时间</th>
-                                        <th data-options="field:'startLocation',width:90">出发点</th>
-                                        <th data-options="field:'endLocation ',width:90">目的地</th>
-                                        <th data-options="field:'driveId',width:90">司机姓名</th>
-                                      	<th data-options="field:'phone',width:90">司机手机号</th>
+                                        <th data-options="field:'orderId',width:90 ">订单号</th>
+                                        <th data-options="field:'passengerName',width:90">乘客姓名</th>
+                                        <th data-options="field:'passengerPhone',width:90">乘客手机号</th>
+                                        <th data-options="field:'appointmentTime',width:90">预约时间</th>
+                                        <th data-options="field:'appointStartTime',width:90">预约出发时间</th>
+                                        <th data-options="field:'startPlace',width:90">出发点</th>
+                                        <th data-options="field:'destination ',width:90">目的地</th>
+                                        <th data-options="field:'driverName',width:90">司机姓名</th>
+                                      	<th data-options="field:'driverPhone',width:90">司机手机号</th>
                                         <th data-options="field:'orderStatus',width:90">订单状态</th>
                                         <th data-options="field:'costCity',width:90">消费城市</th>
-                                        <th data-options="field:'type',width:100">是否大客户</th>
+                                        <th data-options="field:'isBig',width:100">是否大客户</th>
                                     </tr>
                                 </thead>                   
                            </table>

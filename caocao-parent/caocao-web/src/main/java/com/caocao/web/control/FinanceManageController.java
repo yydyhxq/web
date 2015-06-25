@@ -1,16 +1,18 @@
 package com.caocao.web.control;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.caocao.core.model.FinanceManage;
 import com.caocao.core.service.FinanceManageService;
@@ -24,31 +26,43 @@ public class FinanceManageController {
 	@Resource
 	private FinanceManageService financeManageService;
 	
-	@RequestMapping(value = "/queryCustumer", method = {RequestMethod.POST})
-	public String QueryBigCustomerAccountStat(@RequestParam FinanceManage financeManage, ModelMap model) {
+	@RequestMapping(value = "/querycustumer")
+	@ResponseBody
+	public Map<String, Object> QueryBigCustomerAccountStat(@ModelAttribute FinanceManage financeManage) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		List<FinanceManage> list = financeManageService.SelectBigCustomerAccountStat(financeManage);
-		model.put("list", list);
-		return ".jsp";
+		map.put("total", list.size());
+		map.put("rows", list);
+		return map;
 	}
 	
-	@RequestMapping(value = "/queryBusiness", method = {RequestMethod.POST})
-	public String QueryBusinesTotalIncomeStat(@RequestParam FinanceManage financeManage, ModelMap model) {
+	@RequestMapping(value = "/querybusiness")
+	@ResponseBody
+	public Map<String, Object> QueryBusinesTotalIncomeStat(@ModelAttribute FinanceManage financeManage) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		List<FinanceManage> list = financeManageService.SelectBusinesTotalIncomeStat(financeManage);
-		model.put("list", list);
-		return ".jsp";
+		map.put("total", list.size());
+		map.put("rows", list);
+		return map;
 	}
 	
-	@RequestMapping(value = "/queryPlat", method = {RequestMethod.POST})
-	public String QueryPlatRewardStat(@RequestParam FinanceManage financeManage, ModelMap model) {
+	@RequestMapping(value = "/queryplat")
+	@ResponseBody
+	public Map<String, Object> QueryPlatRewardStat(@ModelAttribute FinanceManage financeManage) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		List<FinanceManage> list = financeManageService.SelectPlatRewardStat(financeManage);
-		model.put("list", list);
-		return ".jsp";
+		map.put("total", list.size());
+		map.put("rows", list);
+		return map;
 	}
 	
-	@RequestMapping(value = "/queryDriver", method = {RequestMethod.POST})
-	public String QueryDriverIncome(@RequestParam FinanceManage financeManage, ModelMap model) {
+	@RequestMapping(value = "/querydriver")
+	@ResponseBody
+	public Map<String, Object> QueryDriverIncome(@ModelAttribute FinanceManage financeManage) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		List<FinanceManage> list = financeManageService.SelectDriverIncome(financeManage);
-		model.put("list", list);
-		return ".jsp";
+		map.put("total", list.size());
+		map.put("rows", list);
+		return map;
 	}
 }

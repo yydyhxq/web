@@ -19,7 +19,6 @@
 
 <script>
 	$(function(){
-		
 	//查询
 		$("#search").click(function(){
 			var username = $("#username").val(); //获取用户名称
@@ -32,7 +31,9 @@
 				companyName:companyName
 			})
 			$('#dg').datagrid('reload');    // reload the current page data			
-		})
+		});
+	
+	
 	})
 </script>
 <title>大客户信息查询</title>
@@ -144,14 +145,15 @@
                     <!--查询条件end-->
                    	  <div class="mainConcls4 clearfix">
                     	
-                        <a href="vipDetail.html" class="btn1" >查看详情</a>
+                        <a  class="btn1" onclick="detailuser()" >查看详情</a>
                     </div>
                     <!--内容 start-->
                    
                     <div class="mainConcls3">
-                    	<table id="#dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'datagrid_data.json',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
+                    	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'http://localhost:8080/caocao/bigcustumermanage/queryaccount.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                                 <thead>
                                     <tr>
+                                    	<th data-options="field:'id',width:90,hidden:'true'">姓名</th>
                                         <th data-options="field:'name',width:90 ">姓名</th>
                                         <th data-options="field:'sex',width:90">性别</th>
                                         <th data-options="field:'phone',width:90">手机号</th>
@@ -175,4 +177,14 @@
     
   
 </body>
+<script>
+function detailuser(){
+	 var row = $("#dg").datagrid("getSelected");
+	 if(row){
+		window.location.href= "vipDetail.html?custumerId="+ row.id ;
+	 }else{
+		 layer.alert("未选中任何对象");
+	 }
+}
+</script>
 </html>

@@ -21,7 +21,23 @@
 	$(function(){
 		//所在城市
 		 var test=new Vcity.CitySelector({input:'costCity'});
-
+		//查询
+			$("#search").click(function(){
+				var passengerPhone = $("#passengerPhone").val(); //获取乘客手机号
+				var driverPhone = $("#driverPhone").val(); //获取司机手机号
+				var costCity =$("#costCity").val();//获取所在城市
+				var appointmentBegin =$("#appointmentBegin").val();//获取订单产生时间
+				var appointmentEnd =$("#appointmentEnd").val();//获取订单产生时间
+				
+				$("#dg").datagrid('load',{
+					passengerPhone:passengerPhone,
+					driverPhone:driverPhone,
+					costCity:costCity,
+					appointmentBegin:appointmentBegin,
+					appointmentEnd:appointmentEnd
+				})
+				$('#dg').datagrid('reload');    // reload the current page data			
+			})
 	})
 </script>
 <title>历史订单</title>
@@ -123,100 +139,45 @@
                		<!--查询条件 start-->
                		<div class="mainConcls1 clearfix">
                     	<div class="mainConcls2 clearfix">
-                       		<label>乘客手机号</label><input type="text" class="inputcls"  />
-                            <label>司机手机号</label><input type="text" class="inputcls"  />
+                       		<label>乘客手机号</label><input type="text" class="inputcls" id="passengerPhone" />
+                            <label>司机手机号</label><input type="text" class="inputcls" id="driverPhone" />
                            	<label>消费城市</label> <input type="text"  placeholder="请输入城市名" id="costCity" />    
                         </div>
                         <div class="mainConcls2 mainConcls2_1 clearfix">
                        		<label >预约出发日期</label>
-                            <input type="text" class="Wdate inputcls rightcls8"   onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})">
+                            <input type="text" class="Wdate inputcls rightcls8"   onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" id="appointmentBegin">
                             <label class="mainConcls2_2">至</label>
-                            <input type="text" class="Wdate inputcls currentTime"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})">
+                            <input type="text" class="Wdate inputcls currentTime"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" id="appointmentEnd">
                        		 
-                       		<input type="button" class="buttoncls" value="查询" />  
+                       		<input type="button" class="buttoncls" value="查询"  id="search"/>  
                         </div> 	
                     </div>
                     <!--查询条件end-->
                    	
                     
                     <!--内容 start-->
-                   
+                   	  <div class="mainConcls4 clearfix">
+                    	
+                        <a  class="btn1" onclick="detailuser()" >查看详情</a>
+                    </div>
                     <div class="mainConcls3">
-                     	<!--<table id="#dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'datagrid_data.json',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
+                     	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'http://localhost:8080/caocao/ordermanage/historyorder.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                                 <thead>
                                     <tr>
-                                        <th data-options="field:'id',width:90 ">订单号</th>
-                                        <th data-options="field:'orderCreatetime',width:90">订单产生时间</th>
-                                        <th data-options="field:'startLocation',width:120">起点</th>
-                                        <th data-options="field:'name',width:90">乘客姓名</th>
-                                        <th data-options="field:'phone',width:90">乘客手机号</th>
-                                        <th data-options="field:'name',width:90">司机姓名</th>
-                                        <th data-options="field:'phone',width:90">司机手机号</th>
+                                        <th data-options="field:'orderId',width:90 ">订单号</th>
+                                        <th data-options="field:'orderProduceTime',width:90">订单产生时间</th>
+                                        <th data-options="field:'startPlace',width:120">起点</th>
+                                        <th data-options="field:'passengerName',width:90">乘客姓名</th>
+                                        <th data-options="field:'passengerPhone',width:90">乘客手机号</th>
+                                        <th data-options="field:'driverName',width:90">司机姓名</th>
+                                        <th data-options="field:'driverPhone',width:90">司机手机号</th>
                                       	<th data-options="field:'costMoney',width:90">消费金额</th>
                                         <th data-options="field:'costCity',width:90">消费城市</th>
-                                        <th data-options="field:'type',width:90">是否大客户</th>
+                                        <th data-options="field:'isBig',width:90">是否大客户</th>
                                     </tr>
                                 </thead>                   
-                           </table>-->
-                    	<table>
-                        	<thead>
-                            	<tr>
-                                	<th width="80" >订单号</th>
-                                    <th width="100">订单产生时间</th>
-                                    <th width="100">起点</th>
-                                    <th>乘客姓名</th>
-                                    <th width="100">乘客手机号</th>
-                                    <th>司机姓名</th>
-                                    <th width="100">司机手机号</th>
-                                    <th>消费金额</th>
-                                    <th>消费城市</th>
-                                    <th>是否大客户</th>
-                                    <th>操作</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            	<tr>
-                                	<td>订单号</td>
-                                    <td>2015/7/7 12:40</td>
-                                    <td>萧山恒隆广场</td>
-                                    <td>欧阳峰</td>
-                                    <td>12222222222</td>
-                                    <td>黄药师</td>
-                                    <td>13333333333</td>
-                                    <td>333</td>
-                                    <td>杭州</td>
-                                    <td>桃花岛</td>
-                                    <td><a href="orderDetail.html">查看详情</a></td>                          
-                                </tr>
-                             <tr>
-                                	<td>订单号</td>
-                                    <td>2015/7/7 12:40</td>
-                                    <td>萧山恒隆广场</td>
-                                    <td>欧阳峰</td>
-                                    <td>12222222222</td>
-                                    <td>黄药师</td>
-                                    <td>13333333333</td>
-                                    <td>333</td>
-                                    <td>杭州</td>
-                                    <td>桃花岛</td>
-                                    <td><a href="orderDetail.html">查看详情</a></td>                          
-                                </tr>
-                            <tr>
-                                	<td>订单号</td>
-                                    <td>2015/7/7 12:40</td>
-                                    <td>萧山恒隆广场</td>
-                                    <td>欧阳峰</td>
-                                    <td>12222222222</td>
-                                    <td>黄药师</td>
-                                    <td>13333333333</td>
-                                    <td>333</td>
-                                    <td>杭州</td>
-                                    <td>桃花岛</td>
-                                    <td><a href="orderDetail.html">查看详情</a></td>                          
-                                </tr>
-                             
-                            </tbody>
-                        </table>
+                           </table>
+                    	
                     </div>	
                     
                     <!--内容 end--> 
@@ -228,7 +189,16 @@
       </div>
     </div>
     
-    
-  
+
 </body>
+<script>
+function detailuser(){
+	 var row = $("#dg").datagrid("getSelected");
+	 if(row){
+		window.location.href= "http://localhost:8080/caocao/ordermanage/historyorder.do?orderId="+ row.id ;
+	 }else{
+		 layer.alert("未选中任何对象");
+	 }
+}
+</script>
 </html>

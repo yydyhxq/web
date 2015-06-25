@@ -13,11 +13,31 @@
 <script type="text/javascript" src="js/select2/select2.js"></script>
 <script type="text/javascript" src="js/layer/layer.js"></script> 
 <script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script> 
 <script type="text/javascript" src="js/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="js/city.js"></script>
 <!--[if IE]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
 <script>
-
+	$(function(){
+		$(".select").select2();
+		
+		 
+		//查询
+		$("#search").click(function(){
+			var name = $("input[name='name']").val(); //获取乘客手机号
+			var phone = $("input[name='phone']").val();
+			var registerDateBegin = $("input[name='registerDateBegin']").val();
+			var registerDateEnd = $("input[name='registerDateEnd']").val();
+			$("#dg").datagrid('load',{
+				name:name,
+				phone:phone,
+				registerDateBegin:registerDateBegin,
+				registerDateEnd:registerDateEnd
+			})
+			$('#dg').datagrid('reload');    // reload the current page data			
+		})
+		
+	})
 </script>
 <title>司机信息查看</title>
 </head>
@@ -120,30 +140,31 @@
                		<!--查询条件 start-->
                		<div class="mainConcls1  clearfix">
                     	<div class="mainConcls2 clearfix">
-                       		<label>姓名</label><input type="text" class="inputcls"  />
-                            <label>手机号</label><input type="text" class="inputcls"  />
-                            <label>车牌号</label><input type="text" class="inputcls"  />
+                       		<label>姓名</label><input type="text" class="inputcls"  name="name" />
+                            <label>手机号</label><input type="text" class="inputcls"  name="phone"/>
+                            <label>车牌号</label><input type="text" class="inputcls" />
                         </div>
                        
                         <div class="mainConcls2 mainConcls2_1 clearfix">
                        		<label >注册日期</label>
-                            <input type="text" class="Wdate inputcls rightcls8"  onclick="WdatePicker()">
+                            <input type="text" class="Wdate inputcls rightcls8"  onclick="WdatePicker()" name="registerDateBegin">
                             <label class="mainConcls2_2">至</label>
-                            <input type="text" class="Wdate inputcls"  onclick="WdatePicker()">
-                       		<input type="button" class="buttoncls" value="查询" />   
+                            <input type="text" class="Wdate inputcls"  onclick="WdatePicker()" name="registerDateEnd">
+                       		<input type="button" class="buttoncls" value="查询" id="search" />   
                         </div> 	
                     </div>
                     <!--查询条件end-->
                     <!--内容 start-->                       
                     <div class="mainConcls3">
-                        <table id="#dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'datagrid_data.json',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
+                        <table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'http://localhost:8080/caocao/drivermanage/query.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                                 <thead>
                                     <tr>
+                                    	<th data-options="field:'id',width:90 ,hidden:'true' ">id</th>
                                         <th data-options="field:'name',width:90 ">姓名</th>
                                         <th data-options="field:'sex',width:90">性别</th>
                                         <th data-options="field:'phone',width:90">手机号</th>
-                                        <th data-options="field:'cardNo',width:90">身份证</th>
-                                        <th data-options="field:'cityCode',width:90">注册时间</th>
+                                        <th data-options="field:'cardno',width:90">身份证</th>
+                                        <th data-options="field:'registerTime',width:90">注册时间</th>
                                         <th data-options="field:'online',width:90">在线状态</th>
                                         <th data-options="field:'labId',width:90">所属租赁公司</th>
                                       	<th data-options="field:'qualifiedDate',width:90">培训合格日期</th>

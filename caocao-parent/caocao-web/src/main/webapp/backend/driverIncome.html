@@ -20,11 +20,11 @@
 	$(function(){
 		
 		$("#search").click(function(){
-			var year = $("#year").val(); //获取年
-			var month= $("#month").val(); //获取月
+			var costArriveBegin = $("#costArriveBegin").val(); //获取年
+			var costArriveEnd= $("#costArriveEnd").val(); //获取月
 			$("#dg").datagrid('load',{
-				year:year,
-				month:month,
+				costArriveBegin:costArriveBegin,
+				costArriveEnd:costArriveEnd,
 			})
 			$('#dg').datagrid('reload');    // reload the current page data			
 		})	
@@ -131,9 +131,9 @@
                     	<div class="mainConcls2 clearfix">
                        		<label>年度</label><input type="text" class="inputcls"  />                          
                             <label style="margin-left:10px;">费用到账日期</label>
-                             <input type="text" class="Wdate inputcls currentTime"  onclick="WdatePicker()">
+                             <input type="text" class="Wdate inputcls currentTime"  onclick="WdatePicker()" id="costArriveBegin" name="costArriveBegin">
                             <label class="mainConcls2_2">至</label>
-                            <input type="text" class="Wdate inputcls currentTime"  onclick="WdatePicker()">
+                            <input type="text" class="Wdate inputcls currentTime"  onclick="WdatePicker()" id="costArriveEnd" name="costArriveEnd">
                            	<input type="button" class="buttoncls" value="查询"  id="search"/>  
                         </div>
                       
@@ -144,15 +144,15 @@
                     <!--内容 start-->
                   
                     <div class="mainConcls3">
-                    	<table id="#dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'datagrid_data.json',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
+                    	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'http://localhost:8080/caocao/financemanage/querydriver.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                             <thead>
                                 <tr>
                                 	<th data-options="field:'id',width:220" hidden="true">id</th>
                                     <th data-options="field:'year',width:220">年度</th>
-                                    <th data-options="field:'month',width:200">费用到账日期</th>
-                                    <th data-options="field:'baseTotalIncome',width:200">基本收入金额</th>
-                 					<th data-options="field:'returnIncome',width:200">服务奖励收入</th>
-                                    <th data-options="field:'inviteIncome',width:200">其他奖励收入</th>
+                                    <th data-options="field:'costArriveDate',width:200">费用到账日期</th>
+                                    <th data-options="field:'BaseIncomeMoney',width:200">基本收入金额</th>
+                 					<th data-options="field:'awardMoney',width:200">服务奖励收入</th>
+                                    <th data-options="field:'awardMoney',width:200">其他奖励收入</th>
                                     <th data-options="field:'inviteIncome1',width:200">平台服务费</th>
                                     <th data-options="field:'inviteIncome2',width:200">合计收入</th>
                                 </tr>

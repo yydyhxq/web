@@ -1,15 +1,16 @@
 package com.caocao.web.control;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.caocao.core.model.BookOrder;
 import com.caocao.core.service.OrderManageService;
@@ -23,24 +24,33 @@ public class OrderManageController {
 	@Resource
 	private OrderManageService orderManageService;
 	
-	@RequestMapping(value = "/bookOrder", method = { RequestMethod.POST})
-	public String QueryBookOrder(BookOrder bookOrder, ModelMap model) {
-		List<BookOrder> bookList = orderManageService.SelectBookOrder(bookOrder);
-		model.put("bookList", bookList);
-		return ".jsp";
+	@RequestMapping(value = "/bookorder")
+	@ResponseBody
+	public Map<String, Object> QueryBookOrder(BookOrder bookOrder) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<BookOrder> list = orderManageService.SelectBookOrder(bookOrder);
+		map.put("total", list.size());
+		map.put("rows", list);
+		return map;
 	}
 	
-	@RequestMapping(value = "/soonOrder", method = { RequestMethod.POST})
-	public String QuerySoonOrder(BookOrder bookOrder, ModelMap model) {
-		List<BookOrder> bookList = orderManageService.SelectSoonOrder(bookOrder);
-		model.put("bookList", bookList);
-		return ".jsp";
+	@RequestMapping(value = "/soonorder")
+	@ResponseBody
+	public Map<String, Object> QuerySoonOrder(BookOrder bookOrder) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<BookOrder> list = orderManageService.SelectSoonOrder(bookOrder);
+		map.put("total", list.size());
+		map.put("rows", list);
+		return map;
 	}
 	
-	@RequestMapping(value = "/historyOrder", method = { RequestMethod.POST})
-	public String QueryHistoryOrder(BookOrder bookOrder, ModelMap model) {
-		List<BookOrder> historyList = orderManageService.SelectHistoryOrder(bookOrder);
-		model.put("historyList", historyList);
-		return ".jsp";
+	@RequestMapping(value = "/historyorder")
+	@ResponseBody
+	public Map<String, Object> QueryHistoryOrder(BookOrder bookOrder) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<BookOrder> list = orderManageService.SelectHistoryOrder(bookOrder);
+		map.put("total", list.size());
+		map.put("rows", list);
+		return map;
 	}
 }

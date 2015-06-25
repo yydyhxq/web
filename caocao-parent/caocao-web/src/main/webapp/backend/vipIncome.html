@@ -164,7 +164,8 @@
                                 <option value="12">12</option>                       
                 			</select>
                             <label>公司名称</label>
-                             <select class="select" id="company" name="company">
+                             <select class="select" id="companyName" name="companyName">
+                             	<option value="">--请选择公司--</option>
                 				<option value="杭州优行科技有限公司">杭州优行科技有限公司</option>              
                 			</select>
                             <input type="button" class="buttoncls" value="查询" />  
@@ -174,15 +175,15 @@
                     <!--查询条件end-->
                     <!--内容 start-->
                     <div class="mainConcls3">
-                    	<table id="#dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'datagrid_data.json',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
+                    	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'http://localhost:8080/caocao/financemanage/querycustumer.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                             <thead>
                                 <tr>
-                                    <th data-options="field:'company',width:90 ">公司名称</th>
+                                    <th data-options="field:'companyName',width:90 ">公司名称</th>
                                     <th data-options="field:'year',width:90">年度</th>
                                     <th data-options="field:'month',width:120">月份</th>
-                                    <th data-options="field:'costMoney',width:90">合计金额</th>
-                                    <th data-options="field:'discountMoney',width:90">优惠总金额</th>
-                                    <th data-options="field:'costRealMoney',width:90">应收总金额</th>
+                                    <th data-options="field:'totalMoney',width:90">合计金额</th>
+                                    <th data-options="field:'disTotalMoney',width:90">优惠总金额</th>
+                                    <th data-options="field:'incomeTotal',width:90">应收总金额</th>
                                 </tr>
                              </thead>                   
                          </table>

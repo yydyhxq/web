@@ -2,18 +2,19 @@ package com.caocao.web.control;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.caocao.core.model.Driver;
 import com.caocao.core.service.DriverManageService;
@@ -27,60 +28,86 @@ public class DriverManageController {
 	@Resource
 	private DriverManageService driverManageService;
 	
-	@RequestMapping(value = "/add", method = {RequestMethod.POST})
-	public String add(@RequestParam Driver driver, ModelMap map) {
+	//0：必填写项不能为空！；1:该公司已存在！；2:数据新增失败；3：数据新增成功！；
+	@RequestMapping(value = "/add")
+	@ResponseBody
+	public int add(@ModelAttribute Driver driver) {
+		int success = 100;
 		List<String> errors = check(driver);
 		if(errors.size()>0){
-			map.put("errors", errors);
-			return ".jsp";
+			success = 0;
+			return success;
 		}
 		driver.setCreatetime(new Date());
 		Driver modelDO = driverManageService.QueryOne(driver);
-		if (!StringUtils.isEmpty(modelDO.toString())) {
-			map.put("result", "司机已存在！");
-			return ".jsp";
+		if(!(modelDO == null)) {
+			success = 1;
+			return success;
 		} else {
 			int result = driverManageService.insert(driver);
 			if(result > 0) {
-				map.put("result", "数据新增成功！");
+				success = 3;
 			} else {
-				map.put("result", "数据新增失败！");
+				success = 2;
 			}
-			return ".jsp";
+			return success;
 		}
 	}
 	
-	@RequestMapping(value = "/update", method = {RequestMethod.POST})
-	public String update(@RequestParam Driver driver, ModelMap map) {
+	//0：必填写项不能为空！；1:后台数据已发生变化，请重新提取数据；2：数据修改失败；3：数据修改成功；4:系统异常请联系管理员；
+	@RequestMapping(value = "/update")
+	@ResponseBody
+	public int update(@ModelAttribute Driver driver) {
+		int success = 100;
 		List<String> errors = check(driver);
 		if(errors.size()>0){
-			map.put("errors", errors);
-			return ".jsp";
+			success = 0;
+			return success;
 		}
 		driver.setUpdatetime(new Date());
-		Driver modelDO = driverManageService.QueryOne(driver);
-		if(!StringUtils.isEmpty(modelDO.toString())) {
-		if((driver.getVersion()).equals(modelDO.getVersion())) {
-			int result = driverManageService.update(driver);
-			if(result > 0) {
-				map.put("result", "数据修改成功！");
-			} else {
-				map.put("result", "数据修改失败！");
-			}
-			return ".jsp";
+		Driver modelDO = driverManageService.QueryById(driver);
+		if(!(modelDO == null)) {
+				int result = driverManageService.update(driver);
+				if(result > 0) {
+					success = 3;
+				} else {
+					success = 2;
+				}
+				return success;
 		} else {
-			map.put("result", "版本号已发生变化，不允许更改！");
-			return ".jsp";
+			success = 4;
+			return success;
 		}
-	} else {
-		map.put("result", "数据库中无此条记录!");
-		return ".jsp";
-	}
 	}
 	
-	@RequestMapping(value = "/query", method = {RequestMethod.POST})
-	public void QueryDrivers(@RequestParam Driver driver) {
+	//查询批量用户信息
+	@RequestMapping(value = "/query")
+	@ResponseBody
+	public Map<String, Object> QueryPageList(@ModelAttribute Driver driver) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		List<Driver> list = driverManageService.QueryPageList(driver);
+		map.put("total", list.size());
+		map.put("rows", list);
+		return map;
+	}
+	
+	//查询批量用户信息
+		@RequestMapping(value = "/queryqualified")
+		@ResponseBody
+		public Map<String, Object> QueryQualifiedList(@ModelAttribute Driver driver) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			List<Driver> list = driverManageService.QueryQualifiedList(driver);
+			map.put("total", list.size());
+			map.put("rows", list);
+			return map;
+		}
+	
+	//查询单个用户信息
+	@RequestMapping(value = "/queryone")
+	@ResponseBody
+	public Driver QueryOne(@ModelAttribute Driver driver) {
+		Driver modelDO = driverManageService.QueryOne(driver);
+		return modelDO;
 	}
 	
 	private List<String> check(Driver driver) {

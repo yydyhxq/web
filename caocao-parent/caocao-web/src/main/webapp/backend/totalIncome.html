@@ -134,7 +134,7 @@
                		<div class="mainConcls1 clearfix">
                     	<div class="mainConcls2 clearfix">
                        		<label>年度</label>
-                            <select class="select">
+                            <select class="select" name="year" id="year">
                 				<option value="2015">2015</option>
                                 <option value="2016">2016</option>
                                 <option value="2017">2017</option>
@@ -148,7 +148,7 @@
                                 <option value="2025">2025</option>                      
                 			</select>
                             <label>月份</label>
-                             <select class="select">
+                             <select class="select" name="month" id="month">
                 				<option value="1">01</option>
                                 <option value="2">02</option>
                                 <option value="3">03</option>
@@ -171,14 +171,14 @@
                     <!--内容 start-->
                   
                     <div class="mainConcls3">
-                    	<table id="#dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'datagrid_data.json',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
+                    	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'http://localhost:8080/caocao/financemanage/querybusiness.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                             <thead>
                                 <tr>
                                     <th data-options="field:'year',width:90">年度</th>
                                     <th data-options="field:'month',width:120">月份</th>
-                                    <th data-options="field:'costMoney',width:90">合计金额</th>
-                                    <th data-options="field:'discountMoney',width:90">优惠总金额</th>
-                                    <th data-options="field:'costRealMoney',width:90">应收总金额</th>
+                                    <th data-options="field:'totalMoney',width:90">合计金额</th>
+                                    <th data-options="field:'disTotalMoney',width:90">优惠总金额</th>
+                                    <th data-options="field:'incomeTotal',width:90">应收总金额</th>
                                 </tr>
                              </thead>                   
                          </table>

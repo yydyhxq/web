@@ -29,17 +29,18 @@
 		
 		//查询
 		$("#search").click(function(){
-			var phone = $("#phone").val(); //获取乘客手机号
-			var phone = $("#phone").val(); //获取司机手机号
+			var passengerPhone = $("#passengerPhone").val(); //获取乘客手机号
+			var driverPhone = $("#driverPhone").val(); //获取司机手机号
 			var costCity =$("#costCity").val();//获取所在城市
-			var bookTime =$("#bookTime").val();//获取订单产生时间
+			var orderCreateBegin =$("#orderCreateBegin").val();//获取订单产生时间
+			var orderCreateEnd =$("#orderCreateEnd").val();//获取订单产生时间
 			
 			$("#dg").datagrid('load',{
-				phone:phone,
-				phone:phone,
+				passengerPhone:passengerPhone,
+				driverPhone:driverPhone,
 				costCity:costCity,
-				orderCreatetime:orderCreatetime,
-				
+				orderCreateBegin:orderCreateBegin,
+				orderCreateEnd:orderCreateEnd
 			})
 			$('#dg').datagrid('reload');    // reload the current page data			
 		})
@@ -144,15 +145,15 @@
                		<!--查询条件 start-->
                		<div class="mainConcls1 clearfix">
                     	<div class="mainConcls2 clearfix">
-                       		<label>乘客手机号</label><input type="text" class="inputcls"  name="phone" id="phone"/>
-                            <label>司机手机号</label><input type="text" class="inputcls"  name="phone" id="phone"/>
+                       		<label>乘客手机号</label><input type="text" class="inputcls"  name="passengerPhone" id="passengerPhone"/>
+                            <label>司机手机号</label><input type="text" class="inputcls"  name="driverPhone" id="driverPhone"/>
                            	<label>消费城市</label> <input type="text"  placeholder="请输入城市名" id="costCity"  name="costCity"/>    
                         </div>
                         <div class="mainConcls2 mainConcls2_1 clearfix">
                        		<label >订单产生时间</label>
-                            <input type="text" class="Wdate inputcls rightcls8"   onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" id="orderCreatetime">
+                            <input type="text" class="Wdate inputcls rightcls8"   onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" id="orderCreateBegin">
                             <label class="mainConcls2_2">至</label>
-                            <input type="text" class="Wdate inputcls currentTime"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" id="orderCreatetime">
+                            <input type="text" class="Wdate inputcls currentTime"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" id="orderCreateEnd">
                        		 
                        		<input type="button" class="buttoncls" value="查询" />  
                         </div> 	
@@ -163,19 +164,19 @@
                     <!--内容 start-->
                     
                     <div class="mainConcls3">
-                  		  <table id="#dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'datagrid_data.json',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
+                  		  <table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'http://localhost:8080/caocao/ordermanage/soonorder.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                                 <thead>
                                     <tr>
-                                        <th data-options="field:'id',width:90 ">订单号</th>
-                                        <th data-options="field:'customerId',width:90">乘客姓名</th>
-                                        <th data-options="field:'phone',width:120">乘客手机号</th>
-                                        <th data-options="field:'orderCreatetime',width:90">订单产生时间</th>
-                                        <th data-options="field:'startLocation',width:90">起点</th>
-                                        <th data-options="field:'customerGetIn',width:90">上车时间</th>
-                                        <th data-options="field:'name',width:90">司机姓名</th>
-                                      	<th data-options="field:'phone',width:90">司机手机号</th>
+                                        <th data-options="field:'orderId',width:90 ">订单号</th>
+                                        <th data-options="field:'passengerName',width:90">乘客姓名</th>
+                                        <th data-options="field:'passengerPhone',width:120">乘客手机号</th>
+                                        <th data-options="field:'orderProduceTime',width:90">订单产生时间</th>
+                                        <th data-options="field:'startPlace',width:90">起点</th>
+                                        <th data-options="field:'onCarTime',width:90">上车时间</th>
+                                        <th data-options="field:'driverName',width:90">司机姓名</th>
+                                      	<th data-options="field:'driverPhone',width:90">司机手机号</th>
                                         <th data-options="field:'costCity',width:90">消费城市</th>
-                                        <th data-options="field:'type',width:90">是否大客户</th>
+                                        <th data-options="field:'isBig',width:90">是否大客户</th>
                                     </tr>
                                 </thead>                   
                            </table>

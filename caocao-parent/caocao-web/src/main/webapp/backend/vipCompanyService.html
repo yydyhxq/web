@@ -51,11 +51,15 @@
 			var name = $("input[name='name']").val(); //获取用户名称
 			var contactPhone =$("input[name='contactPhone']").val(); //获取用户手机号
 			var cityCode =$("input[name='cityCode']").val();//获取公司名称
+			var signDateBegin =$("input[name='signDateBegin']").val();//获取签约开始日期
+			var signDateEnd =$("input[name='signDateEnd']").val();//获取签约结束日期
 			
 			$("#dg").datagrid('load',{
 				name:name,
 				contactPhone:contactPhone,
-				cityCode:cityCode
+				cityCode:cityCode,
+				signDateBegin:signDateBegin,
+				signDateEnd:signDateEnd
 			})
 			$('#dg').datagrid('reload');    // reload the current page data			
 		})
@@ -170,9 +174,9 @@
                         </div>                       
                         <div class="mainConcls2 mainConcls2_1 clearfix">
                        		<label >签约日期</label>
-                            <input type="text" class="Wdate inputcls rightcls8"  onclick="WdatePicker()"  >
+                            <input type="text" class="Wdate inputcls rightcls8"  onclick="WdatePicker()"  name="signDateBegin" >
                             <label class="mainConcls2_2">至</label>
-                            <input type="text" class="Wdate inputcls"  onclick="WdatePicker()">
+                            <input type="text" class="Wdate inputcls"  onclick="WdatePicker()" name="signDateEnd">
                        		<input type="button" class="buttoncls" value="查询" id="search" />   
                         </div> 	
                     </div>
@@ -194,7 +198,7 @@
                                     <th data-options="field:'masterNumber',width:80">法人身份证号</th>
                                     <th data-options="field:'contactPhone',width:80">联系电话</th>
                                     <th data-options="field:'companyAddress',width:80">公司地址</th>
-                                    <th data-options="field:'signData',width:80">签约日期</th>
+                                    <th data-options="field:'signDate',width:80">签约日期</th>
                                     <th data-options="field:'remark',width:80">备注</th>
                                    
                                 </tr>
@@ -243,7 +247,7 @@
                     <label>联系电话</label>
                     <input type="text" class="inputcls required" name="contactPhone" id="contactPhone"/>
                     <label>签约日期</label>
-                    <input type="text" class="Wdate inputcls rightcls8 required"  onclick="WdatePicker()"  name="signData" id="signData">
+                    <input type="text" class="Wdate inputcls rightcls8 required"  onclick="WdatePicker()"  name="signDate" id="signDate">
                 </div>
                  <div class="toastcls1 clearfix">
                     <label>备注</label>
@@ -296,7 +300,8 @@
 			var masterName = $("#masterName").val(); //获取法人
 			var masterNumber = $("#masterNumber").val(); //获取法人身份证
 			var contactPhone = $("#contactPhone").val(); //获取备联系电话
-			var signData = $("#signData").val(); //获取签约日期
+			var signDate = $("#signDate").val(); //获取签约日期
+			
 			var remark = $("#remark").val(); //获取备注名称
 			if(name==""){layer.msg("请输入公司名称");return false;}
 			if(companyAddress==""){layer.msg("请输入公司地址");return false;}
@@ -305,7 +310,7 @@
 			if(masterName==""){layer.msg("法人不能为空");return false;}
 			if(masterNumber==""){layer.msg("请输入法人身份证");return false;}
 			if(contactPhone==""){layer.msg("请输联系电话");return false;}
-			if(signData==""){layer.msg("请输入签约日期");return false;}
+			if(signDate==""){layer.msg("请输入签约日期");return false;}
 			
 			var form = $("#fm").serialize();
 		    $('#fm').form('submit',{  
@@ -336,7 +341,7 @@
 			var masterName = $("#masterName").val(); //获取法人
 			var masterNumber = $("#masterNumber").val(); //获取法人身份证
 			var contactPhone = $("#contactPhone").val(); //获取备联系电话
-			var signData = $("#signData").val(); //获取签约日期
+			var signDate = $("#signDate").val(); //获取签约日期
 			var remark = $("#remark").val(); //获取备注名称
 			if(name==""){layer.msg("请输入公司名称");return false;}
 			if(companyAddress==""){layer.msg("请输入公司地址");return false;}
@@ -345,7 +350,7 @@
 			if(masterName==""){layer.msg("法人不能为空");return false;}
 			if(masterNumber==""){layer.msg("请输入法人身份证");return false;}
 			if(contactPhone==""){layer.msg("请输联系电话");return false;}
-			if(signData==""){layer.msg("请输入签约日期");return false;}
+			if(signDate==""){layer.msg("请输入签约日期");return false;}
 			
 			var form = $("#fm").serialize();
 		    $('#fm').form('submit',{  

@@ -11,14 +11,12 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.caocao.core.model.BigCustumerAccount;
+import com.caocao.core.model.BigCustumerBase;
 import com.caocao.core.model.BigCustumerCost;
 import com.caocao.core.model.Custumer;
 import com.caocao.core.service.BigCustumerManageService;
@@ -104,18 +102,34 @@ public class BigCustumerManageController {
 		return modelDO;
 	}
 	
-	@RequestMapping(value = "/queryDetail", method = {RequestMethod.POST})
-	public String QueryBigCustumersDetail(ModelMap model) {
-		List<BigCustumerAccount> list = bigCustumerManageService.QueryBigCustumersDetail();
-		model.put("list", list);
-		return ".jsp";
+	@RequestMapping(value = "/queryaccount")
+	@ResponseBody
+	public Map<String, Object> QueryBigCustumerAccount(@ModelAttribute BigCustumerAccount bigCustumerAccount) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<BigCustumerAccount> list = bigCustumerManageService.QueryBigCustumerAccount(bigCustumerAccount);
+		map.put("total", list.size());
+		map.put("rows", list);
+		return map;
 	}
 	
-	@RequestMapping(value = "/queryCost", method = {RequestMethod.POST})
-	public String QueryBigCustumerCost(@RequestParam BigCustumerCost bigCustumerCost, ModelMap model) {
+	@RequestMapping(value = "/querycost")
+	@ResponseBody
+	public Map<String, Object> QueryBigCustumerCost(@ModelAttribute BigCustumerCost bigCustumerCost) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		List<BigCustumerCost> list = bigCustumerManageService.QueryBigCustumerCost(bigCustumerCost);
-		model.put("list", list);
-		return ".jsp";
+		map.put("total", list.size());
+		map.put("rows", list);
+		return map;
+	}
+	
+	@RequestMapping(value = "/querybase")
+	@ResponseBody
+	public Map<String, Object> QueryBigCustumerBase(@ModelAttribute BigCustumerBase bigCustumerBase) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<BigCustumerBase> list = bigCustumerManageService.QueryBigCustumerBase(bigCustumerBase);
+		map.put("total", list.size());
+		map.put("rows", list);
+		return map;
 	}
 	
 	private List<String> check(Custumer custumer) {

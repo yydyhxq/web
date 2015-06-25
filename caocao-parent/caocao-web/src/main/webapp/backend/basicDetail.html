@@ -19,28 +19,28 @@
 <!--[if IE]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
 <script>
 	$(function(){
-		 
-		 //查询
+		//获取id名
+		var id = getId("custumerId");
+		
+		if(id!="") { $('#dg').datagrid('reload',{custumerId:id})};
+		
+		//查询
 		$("#search").click(function(){
-			var name = $("input[name='name']").val().val(); //获取用户名称
-			
+			var costDateBegin = $("input[name='costDateBegin']").val(); //获取年
+			var costDateEnd=$("input[name='costDateEnd']").val(); //获取月
 			
 			$("#dg").datagrid('load',{
-				name:name,
-				phone:phone,
-				cityCode:cityCode
+				costDateBegin:costDateBegin,
+				costDateEnd:costDateEnd
 			})
 			$('#dg').datagrid('reload');    // reload the current page data			
-		})	
+		})
 		
 	})
 </script>
 <title>普通客户详细信息</title>
 </head>
-
 <body>
-	
-
 	<!--header start-->
     <div class="fn-title">
         <div class="navbar navBg">
@@ -62,28 +62,26 @@
             <h3>普通客户详细信息 </h3>
              <div class="mainConcls2 mainConcls2_1 clearfix">
                 <label >消费日期</label>
-                <input type="text" class="Wdate inputcls rightcls8" readonly onclick="WdatePicker()">
+                <input type="text" class="Wdate inputcls rightcls8" readonly onclick="WdatePicker()" name="costDateBegin">
                 <label class="mainConcls2_2">至</label>
-                <input type="text" class="Wdate inputcls" readonly onclick="WdatePicker()">
+                <input type="text" class="Wdate inputcls" readonly onclick="WdatePicker()" name="costDateEnd">
                 <input type="button" class="buttoncls" value="查询" id="search" />   
             </div> 	
            	<div class="mainConcls3">
-            	<table id="#dg" class="easyui-datagrid" style="width:920px;height:450px"  data-options="url:'datagrid_data.json',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
+            	<table id="dg" class="easyui-datagrid" style="width:920px;height:450px"  data-options="url:'http://localhost:8080/caocao/comcustumer/comcost.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                     <thead>
                         <tr>
                             <th  data-options="field:'id',width:80" hidden="true">id</th>
-                            <th  data-options="field:'createTime',width:80">消费日期</th>
+                            <th  data-options="field:'costDate',width:80">消费日期</th>
                             <th  data-options="field:'distance',width:80">行驶里程（公里）</th>
-                            <th  data-options="field:'driverMinute',width:80">行驶时间（分钟）</th>
+                            <th  data-options="field:'driverMinutes',width:80">行驶时间（分钟）</th>
                             <th  data-options="field:'costMoney',width:80">费用小计</th>
                             <th  data-options="field:'discountMoney',width:80">优惠金额</th>
-                            <th  data-options="field:'costRealMoney',width:80">已付金额</th>
+                            <th  data-options="field:'realMoney',width:80">已付金额</th>
                             <th  data-options="field:'privilegeCode',width:80">优惠码</th>
-                            <th  data-options="field:'type',width:80">搭乘车型</th>
+                            <th  data-options="field:'carType',width:80">搭乘车型</th>
                             <th  data-options="field:'costCity',width:80">消费城市</th>
-                            <th  data-options="field:'startLocation ',width:80">起点</th>
-                            <th  data-options="field:'endLocation',width:80">终点</th>
-                            <!--<th  data-options="field:'registerTime',width:200">起止点</th>-->
+                            <th  data-options="field:'startAndEnd',width:200">起止点</th>
                         </tr>
                     </thead>
                 <table>
@@ -91,7 +89,24 @@
         </div>
    </div>
     
-
-    
 </body>
+<script>
+	//获取url参数
+	function getId(key){
+		var id;
+		var urlmap = location.href.split("?");
+		if(urlmap[1]==""||urlmap[1]== undefined){
+			id=""; 
+		}else{
+		var field = urlmap[1].split("&");
+			for(var i=0;i<field.length;i++){
+				var va = filed[i].split("=");
+				if(va[0]==key){
+					id=va[1];
+				}	
+			}
+		}
+		return id;
+	 }
+</script>
 </html>

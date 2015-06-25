@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.caocao.core.dao.FinanceManageMapper" >  
+  <select id="SelectBigCustomerAccountStat" resultType="com.caocao.core.model.FinanceManage" parameterType="com.caocao.core.model.FinanceManage" >
+	select 
+		  d._name as companyName,
+		  date_format(a._createtime,'%Y') as year,
+		  date_format(a._createtime,'%m') as month,
+		  sum(a._cost_money) as totalMoney,
+		  sum(a._cost_money) -sum(_cost_real_money)  as disTotalMoney,
+	   	  sum(_cost_real_money) as incomeTotal
+ 	from 
+ 		  tsp_caocao_customer_bill_info a,
+		  tsp_caocao_custumer b ,
+		  tsp_caocao_order  c , 
+		  tsp_caocao_vipcompany d  
+	where b._type=2 
+		  and c._owner=2  
+		  and d._company_code=b._company_code
+		  <if test="companyName != null and companyName != ''">and d._name like '%#{companyName,jdbcType=VARCHAR}%'</if>
+		  <if test="year != null and year != ''"><![CDATA[and DATE_FORMAT(a._createtime,'%Y') = DATE_FORMAT(#{year,jdbcType=TIMESTAMP}, '%Y')]]></if>
+ 		  <if test="month != null and month != ''"><![CDATA[and DATE_FORMAT(a._createtime, '%m') <= DATE_FORMAT(#{month,jdbcType=TIMESTAMP}, '%m')]]></if>
+	group by d._name,date_format(a._createtime,'%Y'),date_format(a._createtime,'%m')
+  </select>
+  
+  <select id="SelectBusinesTotalIncomeStat" resultType="com.caocao.core.model.FinanceManage" parameterType="com.caocao.core.model.FinanceManage" >
+    select 
+    		date_format(a._createtime,'%Y') as year,
+    		date_format(a._createtime,'%m') as month,
+		    sum(a._cost_money) as totalMoney,
+		    sum(a._cost_money) -sum(_cost_real_money) as disTotalMoney,
+			sum(_cost_real_money) as incomeTotal
+ 	from 
+ 			tsp_caocao_customer_bill_info a,
+			tsp_caocao_custumer b ,
+			tsp_caocao_order  c 
+			<if test="year != null and year != ''"><![CDATA[and DATE_FORMAT(a._createtime,'%Y') = DATE_FORMAT(#{year,jdbcType=TIMESTAMP}, '%Y')]]></if>
+ 		    <if test="month != null and month != ''"><![CDATA[and DATE_FORMAT(a._createtime, '%m') <= DATE_FORMAT(#{month,jdbcType=TIMESTAMP}, '%m')]]></if>
+	group by date_format(a._createtime,'%Y'),date_format(a._createtime,'%m')
+  </select>
+  
+  <select id="SelectPlatRewardStat" resultType="com.caocao.core.model.FinanceManage" parameterType="com.caocao.core.model.FinanceManage" >
+    select 	date_format(a._createtime,'%Y') as year,
+    		date_format(a._createtime,'%Y-%m-%d')as costProduceDate ,
+			sum(a._cost_money -a._cost_real_money)  as totalBackMoney
+ 	from 
+ 			tsp_caocao_driver_bill_info a 
+ 	where
+ 			<if test="year != null and year != ''"><![CDATA[and DATE_FORMAT(a._createtime,'%Y') = DATE_FORMAT(#{year,jdbcType=TIMESTAMP}, '%Y')]]></if>
+ 			<if test="costProduceBegin != null and costProduceBegin != ''"><![CDATA[and DATE_FORMAT(a._createtime, '%Y-%m-%d') >= DATE_FORMAT(#{costProduceBegin,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
+ 			<if test="costProduceEnd != null and costProduceEnd != ''"><![CDATA[and DATE_FORMAT(a._createtime, '%Y-%m-%d') <= DATE_FORMAT(#{costProduceEnd,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
+ 			group by DATE_FORMAT(a._createtime,'%Y-%m-%d')
+  </select>
+</mapper>
