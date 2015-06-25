@@ -12,7 +12,19 @@ public class BookOrder {
 	
 	private Date appointmentTime;
 	
+	private Date appointmentBegin;
+	
+	private Date appointmentEnd;
+	
 	private Date appointStartTime;
+	
+	private Date appointStartBegin;
+	
+	private Date appointStarrtEnd;
+	
+	private Date orderCreateBegin;
+	
+	private Date orderCreateEnd;
 	
 	private String startPlace;
 	
@@ -66,12 +78,60 @@ public class BookOrder {
 		this.appointmentTime = appointmentTime;
 	}
 
+	public Date getAppointmentBegin() {
+		return appointmentBegin;
+	}
+
+	public void setAppointmentBegin(Date appointmentBegin) {
+		this.appointmentBegin = appointmentBegin;
+	}
+
+	public Date getAppointmentEnd() {
+		return appointmentEnd;
+	}
+
+	public void setAppointmentEnd(Date appointmentEnd) {
+		this.appointmentEnd = appointmentEnd;
+	}
+
 	public Date getAppointStartTime() {
 		return appointStartTime;
 	}
 
 	public void setAppointStartTime(Date appointStartTime) {
 		this.appointStartTime = appointStartTime;
+	}
+
+	public Date getAppointStartBegin() {
+		return appointStartBegin;
+	}
+
+	public void setAppointStartBegin(Date appointStartBegin) {
+		this.appointStartBegin = appointStartBegin;
+	}
+
+	public Date getAppointStarrtEnd() {
+		return appointStarrtEnd;
+	}
+
+	public void setAppointStarrtEnd(Date appointStarrtEnd) {
+		this.appointStarrtEnd = appointStarrtEnd;
+	}
+
+	public Date getOrderCreateBegin() {
+		return orderCreateBegin;
+	}
+
+	public void setOrderCreateBegin(Date orderCreateBegin) {
+		this.orderCreateBegin = orderCreateBegin;
+	}
+
+	public Date getOrderCreateEnd() {
+		return orderCreateEnd;
+	}
+
+	public void setOrderCreateEnd(Date orderCreateEnd) {
+		this.orderCreateEnd = orderCreateEnd;
 	}
 
 	public String getStartPlace() {

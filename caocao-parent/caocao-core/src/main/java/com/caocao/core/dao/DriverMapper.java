@@ -95,4 +95,12 @@ public interface DriverMapper {
     int updateByPrimaryKey(Driver record);
     
     List<Driver> QueryPageList(Driver record);
+    
+    List<Driver> QueryQualifiedList(Driver record);
+    
+    Driver QueryOne(Driver record);
+    
+    Driver QueryById(Driver record);
+    
+    
 }

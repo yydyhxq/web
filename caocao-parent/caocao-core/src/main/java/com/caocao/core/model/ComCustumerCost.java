@@ -3,8 +3,14 @@ package com.caocao.core.model;
 import java.util.Date;
 
 public class ComCustumerCost {
+	
+	private Integer id;
 
 	private Date costDate;
+	
+	private Date costDateBegin;
+	
+	private Date costDateEnd;
 	
 	private Double startPrice;
 	
@@ -29,6 +35,30 @@ public class ComCustumerCost {
 	private String endLocation;
 	
 	private String startAndEnd;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Date getCostDateBegin() {
+		return costDateBegin;
+	}
+
+	public void setCostDateBegin(Date costDateBegin) {
+		this.costDateBegin = costDateBegin;
+	}
+
+	public Date getCostDateEnd() {
+		return costDateEnd;
+	}
+
+	public void setCostDateEnd(Date costDateEnd) {
+		this.costDateEnd = costDateEnd;
+	}
 
 	public Date getCostDate() {
 		return costDate;

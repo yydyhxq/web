@@ -187,7 +187,7 @@
       _invite_code, _sex, _total_service, 
       _birth_place, _live_place, _email, 
       _drivelicense_date, _educate_degree, _height, 
-      _weight, _is_specificduty, _version
+      _weight, _is_specificduty, _version, _city
       )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
       #{registerTime,jdbcType=DATE}, #{online,jdbcType=INTEGER}, #{cardno,jdbcType=VARCHAR}, 
@@ -199,7 +199,7 @@
       #{inviteCode,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{totalService,jdbcType=INTEGER}, 
       #{birthPlace,jdbcType=VARCHAR}, #{livePlace,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
       #{drivelicenseDate,jdbcType=TIMESTAMP}, #{educateDegree,jdbcType=VARCHAR}, #{height,jdbcType=DOUBLE}, 
-      #{weight,jdbcType=DOUBLE}, #{isSpecificduty,jdbcType=INTEGER}, #{version,jdbcType=DOUBLE}
+      #{weight,jdbcType=DOUBLE}, #{isSpecificduty,jdbcType=INTEGER}, #{version,jdbcType=DOUBLE}, #{city,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.caocao.core.model.Driver" useGeneratedKeys="true" keyProperty="id">
@@ -725,7 +725,7 @@
     where _id = #{id,jdbcType=INTEGER}
   </update>
   
-  <select id="QueryPageList" resultType="com.caocao.core.model.Admin" parameterType="com.caocao.core.model.Admin" >
+  <select id="QueryPageList" resultType="com.caocao.core.model.Driver" parameterType="com.caocao.core.model.Driver" >
     select  _id as id, 
 			_name as name,
 			_phone as phone, 
@@ -761,8 +761,133 @@
 			_version as version
     from 	tsp_caocao_driver
     where 	1=1
-    <if test="username != null and username != ''">and _username = #{username,jdbcType=VARCHAR}</if>
+    <if test="name != null and name != ''">and _name = #{name,jdbcType=VARCHAR}</if>
     <if test="phone != null and phone != ''">and _phone = #{phone,jdbcType=VARCHAR}</if>
- 	<!-- <if test="companyName != null and companyName != ''">and _username = #{username,jdbcType=VARCHAR}</if> -->
+ 	<if test="city != null and city != ''">and _city = #{city,jdbcType=VARCHAR}</if>
+ 	<if test="registerDateBegin != null and registerDateBegin != ''"><![CDATA[and DATE_FORMAT(_register_time , '%Y-%m-%d') >= DATE_FORMAT(#{qualifiedDateBegin,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
+ 	<if test="registerDateEnd != null and registerDateEnd != ''"><![CDATA[and DATE_FORMAT(_register_time, '%Y-%m-%d') <= DATE_FORMAT(#{registerDateEnd,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
+  </select>
+  
+  <select id="QueryQualifiedList" resultType="com.caocao.core.model.Driver" parameterType="com.caocao.core.model.Driver" >
+    select  _id as id, 
+			_name as name,
+			_phone as phone, 
+			_register_time as registerTime, 
+			_online as online, 
+			_cardno as cardno, 
+			_licence_no as licenceNo, 
+			_driver_age as driverAge, 
+			_photo as photo, 
+			_createtime as createtime, 
+			_updatetime as updatetime, 
+			_author_create as authorCreate, 
+			lab__id as labId, 
+			_author_update as authorUpdate, 
+			_is_qualified as isQualified, 
+			_contract_number as contractNumber,
+			_qualified_date as qualifiedDate, 
+			_total_income as totalIncome, 
+			_balance as balance, 
+			_return_income as returnIncome,
+			_base_total_income as baseTotalIncome, 
+			_invite_code as inviteCode,
+			_sex as sex, 
+			_total_service as totalService, 
+			_birth_place as birthPlace, 
+			_live_place as livePlace, 
+			_email as email, 
+			_drivelicense_date as drivelicenseDate, 
+			_educate_degree as educateDegree, 
+			_height as height, 
+			_weight as weight, 
+			_is_specificduty as isSpecificduty, 
+			_version as version,
+			_city as city
+    from 	tsp_caocao_driver
+    where 	1=1
+    		and _is_qualified = 1
+    <if test="name != null and name != ''">and _name = #{name,jdbcType=VARCHAR}</if>
+    <if test="phone != null and phone != ''">and _phone = #{phone,jdbcType=VARCHAR}</if>
+ 	<if test="city != null and city != ''">and _city = #{city,jdbcType=VARCHAR}</if>
+ 	<if test="qualifiedDateBegin != null and qualifiedDateBegin != ''"><![CDATA[and DATE_FORMAT(_qualified_date , '%Y-%m-%d') >= DATE_FORMAT(#{qualifiedDateBegin,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
+ 	<if test="qualifiedDateEnd != null and qualifiedDateEnd != ''"><![CDATA[and DATE_FORMAT(_qualified_date, '%Y-%m-%d') <= DATE_FORMAT(#{qualifiedDateEnd,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
+  </select>
+  
+  <select id="QueryOne" resultType="com.caocao.core.model.Driver" parameterType="com.caocao.core.model.Driver" >
+    select  _id as id, 
+			_name as name,
+			_phone as phone, 
+			_register_time as registerTime, 
+			_online as online, 
+			_cardno as cardno, 
+			_licence_no as licenceNo, 
+			_driver_age as driverAge, 
+			_photo as photo, 
+			_createtime as createtime, 
+			_updatetime as updatetime, 
+			_author_create as authorCreate, 
+			lab__id as labId, 
+			_author_update as authorUpdate, 
+			_is_qualified as isQualified, 
+			_contract_number as contractNumber,
+			_qualified_date as qualifiedDate, 
+			_total_income as totalIncome, 
+			_balance as balance, 
+			_return_income as returnIncome,
+			_base_total_income as baseTotalIncome, 
+			_invite_code as inviteCode,
+			_sex as sex, 
+			_total_service as totalService, 
+			_birth_place as birthPlace, 
+			_live_place as livePlace, 
+			_email as email, 
+			_drivelicense_date as drivelicenseDate, 
+			_educate_degree as educateDegree, 
+			_height as height, 
+			_weight as weight, 
+			_is_specificduty as isSpecificduty, 
+			_version as version
+    from 	tsp_caocao_driver
+    where 	1=1
+    and _cardno = #{cardno,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="QueryById" resultType="com.caocao.core.model.Driver" parameterType="com.caocao.core.model.Driver" >
+    select  _id as id, 
+			_name as name,
+			_phone as phone, 
+			_register_time as registerTime, 
+			_online as online, 
+			_cardno as cardno, 
+			_licence_no as licenceNo, 
+			_driver_age as driverAge, 
+			_photo as photo, 
+			_createtime as createtime, 
+			_updatetime as updatetime, 
+			_author_create as authorCreate, 
+			lab__id as labId, 
+			_author_update as authorUpdate, 
+			_is_qualified as isQualified, 
+			_contract_number as contractNumber,
+			_qualified_date as qualifiedDate, 
+			_total_income as totalIncome, 
+			_balance as balance, 
+			_return_income as returnIncome,
+			_base_total_income as baseTotalIncome, 
+			_invite_code as inviteCode,
+			_sex as sex, 
+			_total_service as totalService, 
+			_birth_place as birthPlace, 
+			_live_place as livePlace, 
+			_email as email, 
+			_drivelicense_date as drivelicenseDate, 
+			_educate_degree as educateDegree, 
+			_height as height, 
+			_weight as weight, 
+			_is_specificduty as isSpecificduty, 
+			_version as version
+    from 	tsp_caocao_driver
+    where 	1=1
+   and _id = #{id,jdbcType=INTEGER}
   </select>
 </mapper>

@@ -131,6 +131,13 @@ public class VipCompany {
      *
      * @mbggenerated Thu Jun 18 13:20:28 CST 2015
      */
+    
+    private Date signDate;
+    
+    private Date signDateBegin;
+    
+    private Date signDateEnd;
+    
     public Integer getId() {
         return id;
     }
@@ -482,4 +489,28 @@ public class VipCompany {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
+	public Date getSignDate() {
+		return signDate;
+	}
+
+	public void setSignDate(Date signDate) {
+		this.signDate = signDate;
+	}
+
+	public Date getSignDateBegin() {
+		return signDateBegin;
+	}
+
+	public void setSignDateBegin(Date signDateBegin) {
+		this.signDateBegin = signDateBegin;
+	}
+
+	public Date getSignDateEnd() {
+		return signDateEnd;
+	}
+
+	public void setSignDateEnd(Date signDateEnd) {
+		this.signDateEnd = signDateEnd;
+	}
 }

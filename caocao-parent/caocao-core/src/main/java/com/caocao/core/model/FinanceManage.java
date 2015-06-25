@@ -6,9 +6,9 @@ public class FinanceManage {
 
 	private String companyName;
 	
-	private String year;
+	private Date year;
 	
-	private String month;
+	private Date month;
 	
 	private Double totalMoney;
 	
@@ -18,7 +18,15 @@ public class FinanceManage {
 	
 	private Date costProduceDate;
 	
+	private Date costProduceBegin;
+	
+	private Date costProduceEnd;
+	
 	private Date costArriveDate;
+	
+	private Date costArriveBegin;
+	
+	private Date costArriveEnd;
 	
 	private Double totalBackMoney;
 	
@@ -36,19 +44,19 @@ public class FinanceManage {
 		this.companyName = companyName;
 	}
 
-	public String getYear() {
+	public Date getYear() {
 		return year;
 	}
 
-	public void setYear(String year) {
+	public void setYear(Date year) {
 		this.year = year;
 	}
 
-	public String getMonth() {
+	public Date getMonth() {
 		return month;
 	}
 
-	public void setMonth(String month) {
+	public void setMonth(Date month) {
 		this.month = month;
 	}
 
@@ -84,12 +92,44 @@ public class FinanceManage {
 		this.costProduceDate = costProduceDate;
 	}
 
+	public Date getCostProduceBegin() {
+		return costProduceBegin;
+	}
+
+	public void setCostProduceBegin(Date costProduceBegin) {
+		this.costProduceBegin = costProduceBegin;
+	}
+
+	public Date getCostProduceEnd() {
+		return costProduceEnd;
+	}
+
+	public void setCostProduceEnd(Date costProduceEnd) {
+		this.costProduceEnd = costProduceEnd;
+	}
+
 	public Date getCostArriveDate() {
 		return costArriveDate;
 	}
 
 	public void setCostArriveDate(Date costArriveDate) {
 		this.costArriveDate = costArriveDate;
+	}
+
+	public Date getCostArriveBegin() {
+		return costArriveBegin;
+	}
+
+	public void setCostArriveBegin(Date costArriveBegin) {
+		this.costArriveBegin = costArriveBegin;
+	}
+
+	public Date getCostArriveEnd() {
+		return costArriveEnd;
+	}
+
+	public void setCostArriveEnd(Date costArriveEnd) {
+		this.costArriveEnd = costArriveEnd;
 	}
 
 	public Double getTotalBackMoney() {

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.caocao.core.dao.BigCustumerManageMapper" >
-  <select id="SelectAll" resultType="com.caocao.core.model.BigCustumerAccount" parameterType="com.caocao.core.model.BigCustumerAccount" >
+  <select id="SelectBigCustumerAccount" resultType="com.caocao.core.model.BigCustumerAccount" parameterType="com.caocao.core.model.BigCustumerAccount" >
     select aa._name as name,
     	   aa._sex as sex, 
     	   aa._phone as phone, 
     	   aa._id as custumerId, 
-    	   (select d._name from tsp_caocao_vipcompany d where d._id=aa._company_code) as companyName,
+    	   aa._company_code as companyCode,
     	   sum(ownermoney) as totalownermoney,
     	   sum(businessmoney) as totalbusinessmoney 
     	   from tsp_caocao_custumer aa,
@@ -17,7 +17,10 @@
 			                                                                      where a._owner=1
 																						and a._id = b._order_id
 																						and b._customer_id = c._id
-                                                                                		and c._type = 1
+                                                                                		and c._type = 2
+                                                                                		<if test="name != null"> and c._name = #{name,jdbcType=VARCHAR} </if>
+																					    <if test="phone != null"> and c._phone = #{phone,jdbcType=VARCHAR} </if>
+																						<if test="companyCode != null"> c._company_code = #{companyCode,jdbcType=VARCHAR} </if>
 			                                                                      group by a._customer_id
 			union 
 			
@@ -28,9 +31,13 @@
 			                                                                      where a._owner=2
 																						and a._id = b._order_id
 																						and b._customer_id = c._id
-                                                                                        and c._type = 1
+                                                                                        and c._type = 2
+                                                                                        <if test="name != null"> and c._name = #{name,jdbcType=VARCHAR} </if>
+																					    <if test="phone != null"> and c._phone = #{phone,jdbcType=VARCHAR} </if>
+																						<if test="companyCode != null"> c._company_code = #{companyCode,jdbcType=INTEGER} </if>
 			                                                                      group by a._customer_id ) bb
-			where aa._id=bb._customer_id   group by aa._name, aa._sex, aa._phone, aa._id
+			where aa._id=bb._customer_id
+		    group by aa._name, aa._sex, aa._phone, aa._id
   </select>
   
    <select id="SelectBigCustumerCost" resultType="com.caocao.core.model.BigCustumerCost" parameterType="com.caocao.core.model.BigCustumerCost" >
@@ -50,10 +57,43 @@
 			tsp_caocao_car c
        where a._id = b._order_id
              and a._car_id = c._id
-             <if test="custumerId != ''">
+             <if test="custumerId != null and custumerId != ''">
 				and a._customer_id = #{custumerId} 
 			</if>
+			<if test="costDateBegin != null and costDateBegin != ''"><![CDATA[and DATE_FORMAT(b._createtime, '%Y-%m-%d') >= DATE_FORMAT(#{costDateBegin,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
+ 			<if test="costDateEnd != null and costDateEnd != ''"><![CDATA[and DATE_FORMAT(b._createtime, '%Y-%m-%d') <= DATE_FORMAT(#{costDateEnd,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
        order by costDate desc
+  </select>
+  
+  <select id="SelectBigCustumerBase" resultType="com.caocao.core.model.BigCustumerBase" parameterType="com.caocao.core.model.BigCustumerBase" >
+    select 	a._id as id, 
+			a._name as name, 
+			a._sex as sex, 
+			a._phone as phone, 
+			a._invite_code as inviteCode,
+			a._company_code as companyCode,
+			a._remark as remark,
+			a._company_require as carType,
+			a._register_time as registerDate,
+			bb.costTimes,
+			bb.costMoney
+	from    tsp_caocao_custumer as a 
+			left join 
+			(select 
+					b._customer_id as custumerId,
+          			count(b._customer_id) as costTimes,
+			 		sum(c._cost_real_money) as costMoney
+			 from 
+					tsp_caocao_order b,
+					tsp_caocao_customer_bill_info c
+			 where  b._id = c._order_id) bb
+			    	on a._id = bb.custumerId
+	where 	a._type = 2
+			<if test="name != null and name != ''"> and a._name = #{name,jdbcType=VARCHAR} </if>
+			<if test="phone != null and phone != ''"> and a._phone = #{phone,jdbcType=VARCHAR} </if>
+			<if test="cityCode != null and cityCode != ''"> and a._citycode = #{cityCode,jdbcType=VARCHAR} </if>
+			<if test="registerDateBegin != null and registerDateBegin != ''"><![CDATA[and DATE_FORMAT(a._register_time , '%Y-%m-%d') >= DATE_FORMAT(#{qualifiedDateBegin,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
+ 			<if test="registerDateEnd != null and registerDateEnd != ''"><![CDATA[and DATE_FORMAT(a._register_time, '%Y-%m-%d') <= DATE_FORMAT(#{registerDateEnd,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
   </select>
 
 </mapper>

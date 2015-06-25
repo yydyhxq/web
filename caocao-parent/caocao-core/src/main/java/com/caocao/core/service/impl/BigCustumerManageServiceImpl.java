@@ -9,10 +9,9 @@ import org.springframework.stereotype.Service;
 import com.caocao.core.dao.BigCustumerManageMapper;
 import com.caocao.core.dao.CustumerMapper;
 import com.caocao.core.model.BigCustumerAccount;
+import com.caocao.core.model.BigCustumerBase;
 import com.caocao.core.model.BigCustumerCost;
 import com.caocao.core.model.Custumer;
-import com.caocao.core.model.CustumerExample;
-import com.caocao.core.model.Labour;
 import com.caocao.core.service.BigCustumerManageService;
 
 @Service("bigCustumerManageService")
@@ -37,13 +36,18 @@ public class BigCustumerManageServiceImpl implements BigCustumerManageService {
 		return list;
 	}
 	
-	public List<BigCustumerAccount> QueryBigCustumersDetail() {
-		List<BigCustumerAccount> list = bigCustumerManageMapper.SelectAll();
+	public List<BigCustumerAccount> QueryBigCustumerAccount(BigCustumerAccount bigCustumerAccount) {
+		List<BigCustumerAccount> list = bigCustumerManageMapper.SelectBigCustumerAccount(bigCustumerAccount);
 		return list;
 	}
 	
 	public List<BigCustumerCost> QueryBigCustumerCost(BigCustumerCost bigCustumerCost) {
 		List<BigCustumerCost> list = bigCustumerManageMapper.SelectBigCustumerCost(bigCustumerCost);
+		return list;
+	}
+	
+	public List<BigCustumerBase> QueryBigCustumerBase(BigCustumerBase bigCustumerBase) {
+		List<BigCustumerBase> list = bigCustumerManageMapper.SelectBigCustumerBase(bigCustumerBase);
 		return list;
 	}
 	

@@ -3,6 +3,8 @@ package com.caocao.core.model;
 import java.util.Date;
 
 public class ComCustumer {
+	
+	private Integer custumerId;
 
 	private String name;
 	
@@ -22,9 +24,21 @@ public class ComCustumer {
 	
 	private String carType;
 	
-	private Date registerDate;
-	
 	private String costCity;
+	
+	private Date registerTime;
+	
+	private Date registerDateBegin;
+	
+	private Date registerDateEnd;
+
+	public Integer getCustumerId() {
+		return custumerId;
+	}
+
+	public void setCustumerId(Integer custumerId) {
+		this.custumerId = custumerId;
+	}
 
 	public String getName() {
 		return name;
@@ -98,20 +112,36 @@ public class ComCustumer {
 		this.carType = carType;
 	}
 
-	public Date getRegisterDate() {
-		return registerDate;
-	}
-
-	public void setRegisterDate(Date registerDate) {
-		this.registerDate = registerDate;
-	}
-
 	public String getCostCity() {
 		return costCity;
 	}
 
 	public void setCostCity(String costCity) {
 		this.costCity = costCity;
+	}
+
+	public Date getRegisterTime() {
+		return registerTime;
+	}
+
+	public void setRegisterTime(Date registerTime) {
+		this.registerTime = registerTime;
+	}
+
+	public Date getRegisterDateBegin() {
+		return registerDateBegin;
+	}
+
+	public void setRegisterDateBegin(Date registerDateBegin) {
+		this.registerDateBegin = registerDateBegin;
+	}
+
+	public Date getRegisterDateEnd() {
+		return registerDateEnd;
+	}
+
+	public void setRegisterDateEnd(Date registerDateEnd) {
+		this.registerDateEnd = registerDateEnd;
 	}
 	
 }

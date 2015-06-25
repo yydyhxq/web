@@ -274,11 +274,9 @@
 			_version as version
     from 	tsp_caocao_cartype
     where 	1=1
-    <if test="name != null and name != ''">and _name = #{name,jdbcType=VARCHAR}</if>
-    <if test="contactPhone != null and contactPhone != ''">and _contact_phone = #{contactPhone,jdbcType=VARCHAR}</if>
-    <if test="cityCode != null and cityCode != ''">and _city_code = #{cityCode,jdbcType=VARCHAR}</if>
-    <!-- <![CDATA[<if test="signDateBegin != null and signDateBegin != ''">and _createtime >= #{signDateBegin,jdbcType=TIMESTAMP}</if>
- 	<if test="signDateEnd != null and signDateEnd != ''">and _createtime >= #{signDateEnd,jdbcType=TIMESTAMP}</if>]]> -->
+    <if test="brand != null and brand != ''">and _brand like '%#{brand,jdbcType=VARCHAR}%'</if>
+    <if test="mode != null and mode != ''">and _mode like '%#{mode,jdbcType=VARCHAR}%'</if>
+    <if test="type != null and type != ''">and _type = #{type,jdbcType=INTEGER}</if>
   </select>
   
   <select id="QueryOne" resultType="com.caocao.core.model.CarType" parameterType="com.caocao.core.model.CarType" >
@@ -306,18 +304,18 @@
 			_version as version
     from 	tsp_caocao_cartype
     where 	1=1
-    <if test="id != null and id != ''">and _id = #{id,jdbcType=VARCHAR}</if>
+    <if test="id != null and id != ''">and _id = #{id,jdbcType=INTEGER}</if>
   </select>
     
     <update id="updateByPrimaryKey" parameterType="com.caocao.core.model.CarType" >
     update tsp_caocao_cartype
-    set _brand = #{record.brand,jdbcType=VARCHAR},
-      _mode = #{record.mode,jdbcType=VARCHAR},
-      _type = #{record.type,jdbcType=INTEGER},
-      _createtime = #{record.createtime,jdbcType=TIMESTAMP},
-      _updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
-      _author_create = #{record.authorCreate,jdbcType=VARCHAR},
-      _version = #{record.version,jdbcType=DOUBLE}
+    set _brand = #{brand,jdbcType=VARCHAR},
+      _mode = #{mode,jdbcType=VARCHAR},
+      _type = #{type,jdbcType=INTEGER},
+      _createtime = #{createtime,jdbcType=TIMESTAMP},
+      _updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      _author_create = #{authorCreate,jdbcType=VARCHAR},
+      _version = #{version,jdbcType=DOUBLE}
     where _id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

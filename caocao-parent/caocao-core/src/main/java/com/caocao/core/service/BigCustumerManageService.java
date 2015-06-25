@@ -3,9 +3,9 @@ package com.caocao.core.service;
 import java.util.List;
 
 import com.caocao.core.model.BigCustumerAccount;
+import com.caocao.core.model.BigCustumerBase;
 import com.caocao.core.model.BigCustumerCost;
 import com.caocao.core.model.Custumer;
-import com.caocao.core.model.Labour;
 
 public interface BigCustumerManageService {
 
@@ -15,9 +15,11 @@ public interface BigCustumerManageService {
 	
 	List<Custumer> QueryPageList(Custumer custumer);
 	
-	List<BigCustumerAccount> QueryBigCustumersDetail();
+	List<BigCustumerAccount> QueryBigCustumerAccount(BigCustumerAccount bigCustumerAccount);
 	
 	List<BigCustumerCost> QueryBigCustumerCost(BigCustumerCost bigCustumerCost);
+	
+	List<BigCustumerBase> QueryBigCustumerBase(BigCustumerBase bigCustumerBase);
 	
 	int insert(Custumer custumer);
 	

@@ -131,6 +131,13 @@ public class Labour {
      *
      * @mbggenerated Thu Jun 18 13:20:28 CST 2015
      */
+    
+    private Date signDate;
+    
+    private Date signDateBegin;
+    
+    private Date signDateEnd;
+    
     public Integer getId() {
         return id;
     }
@@ -482,10 +489,14 @@ public class Labour {
     public void setRemark(String remark) {
         this.remark = remark;
     }
-    
-    private Date signDateBegin;
-    
-    private Date signDateEnd;
+
+	public Date getSignDate() {
+		return signDate;
+	}
+
+	public void setSignDate(Date signDate) {
+		this.signDate = signDate;
+	}
 
 	public Date getSignDateBegin() {
 		return signDateBegin;

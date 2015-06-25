@@ -22,7 +22,7 @@
     <result column="_company_code" property="companyCode" jdbcType="INTEGER" />
     <result column="_company_require" property="companyRequire" jdbcType="INTEGER" />
     <result column="_invite_code" property="inviteCode" jdbcType="VARCHAR" />
-    <result column="_citycode" property="citycode" jdbcType="INTEGER" />
+    <result column="_citycode" property="citycode" jdbcType="VARCHAR" />
     <result column="_areacode" property="areacode" jdbcType="INTEGER" />
     <result column="_banlance" property="banlance" jdbcType="DOUBLE" />
     <result column="_push_id" property="pushId" jdbcType="VARCHAR" />
@@ -268,7 +268,7 @@
       _company_code, _company_require, _invite_code, 
       _citycode, _areacode, _banlance, 
       _push_id, _used, _input_invitecode, 
-      _version, _remark)
+      _version, _remark, _register_time)
     values (#{id,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
       #{name,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
       #{sex,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
@@ -276,7 +276,7 @@
       #{companyCode,jdbcType=INTEGER}, #{companyRequire,jdbcType=INTEGER}, #{inviteCode,jdbcType=VARCHAR}, 
       #{citycode,jdbcType=INTEGER}, #{areacode,jdbcType=INTEGER}, #{banlance,jdbcType=DOUBLE}, 
       #{pushId,jdbcType=VARCHAR}, #{used,jdbcType=INTEGER}, #{inputInvitecode,jdbcType=VARCHAR}, 
-      #{version,jdbcType=DOUBLE}, #{remark,jdbcType=LONGVARCHAR})
+      #{version,jdbcType=DOUBLE}, #{remark,jdbcType=LONGVARCHAR}, #{registerTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.caocao.core.model.Custumer" useGeneratedKeys="true" keyProperty="id">
     <!--
@@ -749,11 +749,11 @@
 			_version as version
     from 	tsp_caocao_custumer
     where 	1=1
-    <if test="companyCode != null and companyCode != ''">and _company_code = #{companyCode,jdbcType=VARCHAR}</if>
+    <if test="name != null and name != ''">and _name = #{name,jdbcType=VARCHAR}</if>
     <if test="phone != null and phone != ''">and _phone = #{phone,jdbcType=VARCHAR}</if>
  	<if test="citycode != null and citycode != ''">and _citycode = #{citycode,jdbcType=VARCHAR}</if>
- 	<!-- <![CDATA[<if test="signDateBegin != null and signDateBegin != ''">and _createtime >= #{signDateBegin,jdbcType=TIMESTAMP}</if>
- 	<if test="signDateEnd != null and signDateEnd != ''">and _createtime >= #{signDateEnd,jdbcType=TIMESTAMP}</if>]]> -->
+ 	<if test="registerDateBegin != null and registerDateBegin != ''"><![CDATA[and DATE_FORMAT(_register_time , '%Y-%m-%d') >= DATE_FORMAT(#{qualifiedDateBegin,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
+ 	<if test="registerDateEnd != null and registerDateEnd != ''"><![CDATA[and DATE_FORMAT(_register_time, '%Y-%m-%d') <= DATE_FORMAT(#{registerDateEnd,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
   </select>
   
   <select id="QueryOne" resultType="com.caocao.core.model.Custumer" parameterType="com.caocao.core.model.Custumer" >

@@ -275,6 +275,17 @@ public class Driver {
      *
      * @mbggenerated Thu Jun 18 13:20:28 CST 2015
      */
+    
+    private String city;
+    
+    private Date qualifiedDateBegin;
+    
+    private Date qualifiedDateEnd;
+    
+    private Date registerDateBegin;
+    
+    private Date registerDateEnd;
+    
     public Integer getId() {
         return id;
     }
@@ -1058,4 +1069,44 @@ public class Driver {
     public void setVersion(Double version) {
         this.version = version;
     }
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public Date getQualifiedDateBegin() {
+		return qualifiedDateBegin;
+	}
+
+	public void setQualifiedDateBegin(Date qualifiedDateBegin) {
+		this.qualifiedDateBegin = qualifiedDateBegin;
+	}
+
+	public Date getQualifiedDateEnd() {
+		return qualifiedDateEnd;
+	}
+
+	public void setQualifiedDateEnd(Date qualifiedDateEnd) {
+		this.qualifiedDateEnd = qualifiedDateEnd;
+	}
+
+	public Date getRegisterDateBegin() {
+		return registerDateBegin;
+	}
+
+	public void setRegisterDateBegin(Date registerDateBegin) {
+		this.registerDateBegin = registerDateBegin;
+	}
+
+	public Date getRegisterDateEnd() {
+		return registerDateEnd;
+	}
+
+	public void setRegisterDateEnd(Date registerDateEnd) {
+		this.registerDateEnd = registerDateEnd;
+	}
 }

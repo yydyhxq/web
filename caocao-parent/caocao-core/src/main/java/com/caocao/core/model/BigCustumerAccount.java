@@ -18,7 +18,7 @@ public class BigCustumerAccount {
 	
 	private String companyName;
 	
-	private Integer companyCode;
+	private String companyCode;
 
 	public String getCustumerId() {
 		return custumerId;
@@ -84,11 +84,11 @@ public class BigCustumerAccount {
 		this.companyName = companyName;
 	}
 
-	public Integer getCompanyCode() {
+	public String getCompanyCode() {
 		return companyCode;
 	}
 
-	public void setCompanyCode(Integer companyCode) {
+	public void setCompanyCode(String companyCode) {
 		this.companyCode = companyCode;
 	}
 	

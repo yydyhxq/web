@@ -22,7 +22,7 @@ public class CarTypeServiceImpl implements CarTypeService {
 	}
 	
 	public CarType QueryById(CarType carType) {
-		CarType modelDO = carTypeMapper.QueryOne(carType);
+		CarType modelDO = carTypeMapper.QueryById(carType);
 		 return modelDO;
 	}
 	

@@ -22,6 +22,14 @@
 			a._customer_id = b._id
 			and a._driver_id = c._id
 			and and a._order_type = 1
+			<if test="passengerPhone != null and passengerPhone != ''">and b._phone = #{passengerPhone,jdbcType=VARCHAR}</if>
+			<if test="driverPhone != null and driverPhone != ''">and c._phone = #{driverPhone,jdbcType=VARCHAR}</if>
+			<if test="orderStatus != null">and a._order_status = #{orderStatus,jdbcType=INTEGER}</if>
+			<if test="costCity != null and costCity != ''">and a._cost_city = #{costCity,jdbcType=VARCHAR}</if>
+			<if test="appointmentBegin != null and appointmentBegin != ''"><![CDATA[and DATE_FORMAT(a._book_time, '%Y-%m-%d') >= DATE_FORMAT(#{appointmentBegin,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
+		 	<if test="appointmentEnd != null and appointmentEnd != ''"><![CDATA[and DATE_FORMAT(a._book_time, '%Y-%m-%d') <= DATE_FORMAT(#{appointmentEnd,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
+		 	<if test="appointStartBegin != null and appointStartBegin != ''"><![CDATA[and DATE_FORMAT(a._book_now, '%Y-%m-%d') >= DATE_FORMAT(#{appointStartBegin,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
+		 	<if test="appointStartEnd != null and appointStartEnd != ''"><![CDATA[and DATE_FORMAT(a._book_now, '%Y-%m-%d') <= DATE_FORMAT(#{appointStartEnd,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
  </select>
  
  <select id="SelectSoonOrder" resultType="com.caocao.core.model.BookOrder" parameterType="com.caocao.core.model.BookOrder" >
@@ -43,6 +51,11 @@
 			a._customer_id = b._id
 			and a._driver_id = c._id
 			and a._order_type = 0
+			<if test="passengerPhone != null and passengerPhone != ''">and b._phone = #{passengerPhone,jdbcType=VARCHAR}</if>
+			<if test="driverPhone != null and driverPhone != ''">and c._phone = #{driverPhone,jdbcType=VARCHAR}</if>
+			<if test="costCity != null and costCity != ''">and a._cost_city = #{costCity,jdbcType=VARCHAR}</if>
+			<if test="orderCreateBegin != null and orderCreateBegin != ''"><![CDATA[and DATE_FORMAT(a._order_createtime, '%Y-%m-%d') >= DATE_FORMAT(#{orderCreateBegin,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
+		 	<if test="orderCreateEnd != null and orderCreateEnd != ''"><![CDATA[and DATE_FORMAT(a._order_createtime, '%Y-%m-%d') <= DATE_FORMAT(#{orderCreateEnd,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
  </select>
  
  <select id="SelectHistoryOrder" resultType="com.caocao.core.model.BookOrder" parameterType="com.caocao.core.model.BookOrder" >
@@ -65,6 +78,9 @@
 				a._customer_id = b._id
 				and a._driver_id = c._id
 				and a._id = d._order_id
+				<if test="passengerPhone != null and passengerPhone != ''">and b._phone = #{passengerPhone,jdbcType=VARCHAR}</if>
+				<if test="driverPhone != null and driverPhone != ''">and c._phone = #{driverPhone,jdbcType=VARCHAR}</if>
+				<if test="costCity != null and costCity != ''">and a._cost_city = #{costCity,jdbcType=VARCHAR}</if>
  </select>
  
  <select id="SelectOrderDetail" resultType="com.caocao.core.model.OrderDetail" parameterType="com.caocao.core.model.OrderDetail" >
@@ -84,8 +100,8 @@
 			tsp_caocao_car c
 	where
 			a._car_id = c._id
-			<if test="custumerId != ''">
-				and a._customer_id = #{custumerId} 
-			</if>
+			<if test="orderId != null and orderId != ''">and a._id = #{orderId,jdbcType=VARCHAR}</if>
+			<if test="appointmentBegin != null and appointmentBegin != ''"><![CDATA[and DATE_FORMAT(a._book_time, '%Y-%m-%d') >= DATE_FORMAT(#{appointmentBegin,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
+		 	<if test="appointmentEnd != null and appointmentEnd != ''"><![CDATA[and DATE_FORMAT(a._book_time, '%Y-%m-%d') <= DATE_FORMAT(#{appointmentEnd,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
  </select>
 </mapper>

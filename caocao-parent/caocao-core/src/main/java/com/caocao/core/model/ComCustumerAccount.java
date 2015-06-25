@@ -11,6 +11,8 @@ public class ComCustumerAccount {
 	private String phone;
 	
 	private Double totalCost;
+	
+	private String cityCode;
 
 	public Integer getId() {
 		return id;
@@ -50,5 +52,13 @@ public class ComCustumerAccount {
 
 	public void setTotalCost(Double totalCost) {
 		this.totalCost = totalCost;
+	}
+
+	public String getCityCode() {
+		return cityCode;
+	}
+
+	public void setCityCode(String cityCode) {
+		this.cityCode = cityCode;
 	}
 }

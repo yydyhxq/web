@@ -199,13 +199,13 @@
       _company_code, _master_name, _master_number, 
       _contact_phone, _company_address, _createtime, 
       _updatetime, _author_create, _author_update, 
-      _is_valid, _version, _remark
+      _is_valid, _version, _remark,_sign_date
       )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, 
       #{companyCode,jdbcType=VARCHAR}, #{masterName,jdbcType=VARCHAR}, #{masterNumber,jdbcType=VARCHAR}, 
       #{contactPhone,jdbcType=VARCHAR}, #{companyAddress,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
       #{updatetime,jdbcType=TIMESTAMP}, #{authorCreate,jdbcType=VARCHAR}, #{authorUpdate,jdbcType=VARCHAR}, 
-      #{isValid,jdbcType=INTEGER}, #{version,jdbcType=DOUBLE}, #{remark,jdbcType=LONGVARCHAR}
+      #{isValid,jdbcType=INTEGER}, #{version,jdbcType=DOUBLE}, #{remark,jdbcType=LONGVARCHAR}, #{signDate,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.caocao.core.model.Labour" >
@@ -546,11 +546,11 @@
     		_version as version
     from 	tsp_caocao_labour 
     where 	1=1
-    <if test="name != null and name != ''">and _name = #{name,jdbcType=VARCHAR}</if>
+    <if test="name != null and name != ''">and _name like '%#{name,jdbcType=VARCHAR}%'</if>
     <if test="contactPhone != null and contactPhone != ''">and _contact_phone = #{contactPhone,jdbcType=VARCHAR}</if>
     <if test="cityCode != null and cityCode != ''">and _city_code = #{cityCode,jdbcType=VARCHAR}</if>
-    <!-- <![CDATA[<if test="signDateBegin != null and signDateBegin != ''">and _createtime >= #{signDateBegin,jdbcType=TIMESTAMP}</if>
- 	<if test="signDateEnd != null and signDateEnd != ''">and _createtime >= #{signDateEnd,jdbcType=TIMESTAMP}</if>]]> -->
+    <if test="signDateBegin != null and signDateBegin != ''"><![CDATA[and DATE_FORMAT(_sign_date, '%Y-%m-%d') >= DATE_FORMAT(#{signDateBegin,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
+ 	<if test="signDateEnd != null and signDateEnd != ''"><![CDATA[and DATE_FORMAT(_sign_date, '%Y-%m-%d') <= DATE_FORMAT(#{signDateEnd,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
   </select>
   
   <select id="QueryOne" resultType="com.caocao.core.model.Labour" parameterType="com.caocao.core.model.Labour" >

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.caocao.core.dao.DriverMapper;
 import com.caocao.core.model.Driver;
-import com.caocao.core.model.DriverExample;
 import com.caocao.core.service.DriverManageService;
 
 @Service("driverManageService")
@@ -17,16 +16,22 @@ public class DriverManageServiceImpl implements DriverManageService {
 	private DriverMapper driverMapper;
 	
 	public Driver QueryOne(Driver driver) {
-		Driver modelDO = null;
-		List<Driver> list = driverMapper.QueryPageList(driver);
-		if(list.size()>0) {
-			modelDO = list.get(0);
-		}
-		return modelDO;
+		Driver modelDO = driverMapper.QueryOne(driver);
+	    return modelDO;
+	}
+	
+	public Driver QueryById(Driver driver) {
+		Driver modelDO = driverMapper.QueryById(driver);
+	    return modelDO;
 	}
 	
 	public List<Driver> QueryPageList(Driver driver) {
 		List<Driver> list = driverMapper.QueryPageList(driver);
+		return list;
+	}
+	
+	public List<Driver> QueryQualifiedList(Driver driver) {
+		List<Driver> list = driverMapper.QueryQualifiedList(driver);
 		return list;
 	}
 	

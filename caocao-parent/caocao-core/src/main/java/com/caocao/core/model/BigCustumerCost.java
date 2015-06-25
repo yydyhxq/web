@@ -8,6 +8,10 @@ public class BigCustumerCost {
 
 	private Date costDate;
 	
+	private Date costDateBegin;
+	
+	private Date costDateEnd;
+	
 	private Double costMoney;
 	
 	private Double discountMoney;
@@ -27,6 +31,22 @@ public class BigCustumerCost {
 	private String startAndEnd;
 	
 	private Integer owner;
+
+	public Date getCostDateBegin() {
+		return costDateBegin;
+	}
+
+	public void setCostDateBegin(Date costDateBegin) {
+		this.costDateBegin = costDateBegin;
+	}
+
+	public Date getCostDateEnd() {
+		return costDateEnd;
+	}
+
+	public void setCostDateEnd(Date costDateEnd) {
+		this.costDateEnd = costDateEnd;
+	}
 
 	public Integer getCustumerId() {
 		return custumerId;

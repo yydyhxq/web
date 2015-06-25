@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.caocao.core.model.BigCustumerBase;
 import com.caocao.core.model.Book;
 import com.caocao.core.model.Custumer;
 import com.caocao.core.model.CustumerExample;
 import com.caocao.core.model.Journey;
-import com.caocao.core.model.Labour;
 import com.caocao.core.model.MyWallet;
 
 public interface CustumerMapper {
