@@ -24,6 +24,7 @@
 		
 		//所在城市
 		 var test=new Vcity.CitySelector({input:'cityCode'});
+		 var test=new Vcity.CitySelector({input:'cityCode1'});
 
 		//查询
 		$("#search").click(function(){
@@ -166,12 +167,13 @@
                         <a href="#" class="btn1" >批量导入</a>
                     </div>
                     <div class="mainConcls3">
-                    	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'http://localhost:8080/caocao/bigcustumermanage/querybase.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
+                    	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'/caocao/bigcustumermanage/querybase.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                                 <thead>
                                     <tr>
                                     	<th data-options="field:'id',width:80" hidden="true">id</th>
+                                    	
                                         <th data-options="field:'name',width:90 ">姓名</th>
-                                        <th data-options="field:'sex',width:90">性别</th>
+                                        <th data-options="field:'sexStr',width:90">性别</th>
                                         <th data-options="field:'phone',width:90">手机号</th>
                                         <th data-options="field:'costTimes',width:90">消费次数</th>
                                         <th data-options="field:'costMoney',width:90">消费金额</th>
@@ -179,7 +181,7 @@
                                         <th data-options="field:'rank',width:90">等级</th>
                                       	<th data-options="field:'inviteCode',width:90">邀请码</th>
                                         <th data-options="field:'companyCode',width:90">公司名称</th>
-                                        <th data-options="field:'registerDate',width:90">注册时间</th>
+                                        <th data-options="field:'registerTimeStr',width:90">注册时间</th>
                                         <th data-options="field:'remark',width:100">备注</th>
                                     </tr>
                                 </thead>                   
@@ -217,30 +219,25 @@
                     </select>
                 </div>
                 <div class="toastcls1 clearfix">
-                    <label>公司名称</label>
-                    <select class="select" id="companyCode" name="companyCode">
+                     <label>联系电话</label>
+                     <input type="text" class="inputcls required" id="phone" name="phone" />
+                     <label>公司名称</label>
+                     <select class="select" id="companyCode" name="companyCode">
                         <option value="请选择公司">--请选择公司--</option>   
                         <option value="10000">杭州优行科技有限公司</option>                   
-                    </select>
-                   <label>注册时间</label>
-                    <input type="text" class="Wdate inputcls rightcls8 required"  onclick="WdatePicker()"  id="createtime">
-                    <!-- <label>公司地址</label>
-                    <input type="text" class="inputcls required"  id="companyAddress" name="companyAddress" /> -->
+                     </select>
                 </div>
                 <div class="toastcls1 clearfix">
                     <label>所在城市</label>
                     <input type="text"  placeholder="请输入城市名" id="cityCode1"  class="inputcls required" />
-                    <label>联系电话</label>
-                    <input type="text" class="inputcls required" id="phone" name="phone" />
+                     <label>注册时间</label>
+                    <input type="text" class="Wdate inputcls rightcls8 required"  onclick="WdatePicker()" name="registerTime" id="registerTime">
                 </div>
-               <!--  <div class="toastcls1 clearfix">
-                    <label>注册时间</label>
-                    <input type="text" class="Wdate inputcls rightcls8 required"  onclick="WdatePicker()" name="createtime" id="createtime">
-                </div> -->
                 <div class="toastcls1 clearfix">
                     <label>备注</label>
                     <textarea class="textareacls" name="remark" id="remark" ></textarea>
                 </div>
+              
            </div>
        </form> 
    </div>
@@ -258,18 +255,23 @@
         var type;
         function newuser() {
         	$("#save").show().siblings("#save1").hide();
+        	$("#registerTime").attr("name","registerTime");
             $("#dlg").dialog("open").dialog('setTitle', 'New User'); ;
             $("#fm").form("clear");
-            url = "http://localhost:8080/caocao/bigcustumermanage/add.do?";
+            url = "/caocao/bigcustumermanage/add.do?";
             
         }
         function edituser() {
+        	$("#registerTime").attr("name","registerTimeStr");
+        	
         	$("#save1").show().siblings("#save").hide();
             var row = $("#dg").datagrid("getSelected");
             if (row) {
                 $("#dlg").dialog("open").dialog('setTitle', 'Edit User');
                 $("#fm").form("load", row);
-                url = "http://localhost:8080/caocao/bigcustumermanage/update.do?id=" + row.id;
+                url = "/caocao/bigcustumermanage/update.do?id=" + row.id;
+            }else{
+            	layer.msg("未选中任何对象")
             }
         }
 		
@@ -281,13 +283,14 @@
 		}
 		
 		function saveuser(){  
+			
 			var name = $("#name").val(); //获取公司名称
 		    /* var companyAddress = $("#companyAddress").val(); //获取公司地址  */
 			var sex = $("#sex").val(); //获取所在城市
 			var companyCode =$("#companyCode").val();//获取企业代码
 			var phone = $("#phone").val(); //获取联系电话
 			var cityCode = $("#cityCode1").val(); //获取所在城市
-		    var createtime = $("#createtime").val(); //获取签约日期 
+		    var registerTime = $("registerTime").val(); //获取签约日期 
 			var remark = $("#remark").val(); //获取备注名称
 			if(name==""){layer.msg("请输入公司名称");return false;}
 			if(sex==""){layer.msg("请选择性别");return false;} 
@@ -295,7 +298,7 @@
 			if(cityCode.indexOf("所在城市")!=-1){layer.msg("请选择所在城市");return false;}
 			if(companyCode==""){layer.msg("请输入企业代码");return false;}
 			if(phone==""){layer.msg("请输联系电话");return false;}
-			if(createtime==""){layer.msg("请输入签约日期");return false;}
+			if(registerTime==""){layer.msg("请选择注册时间");return false;}
 			
 			var form = $("#fm").serialize();
 		    $('#fm').form('submit',{  
@@ -318,14 +321,17 @@
 		}  
 		
 		
-		function saveuser1(){  
+		function saveuser1(){ 
+			
+			$("#registerTime").attr("name","registerTime");
+			
 			var name = $("#name").val(); //获取公司名称
 		    /* var companyAddress = $("#companyAddress").val(); //获取公司地址  */
 			var sex = $("#sex").val(); //获取所在城市	
 			var companyCode =$("#companyCode").val();//获取企业代码
 			var phone = $("#phone").val(); //获取联系电话
 			var cityCode = $("#cityCode1").val(); //获取所在城市
-		    var createtime = $("#createtime").val(); //获取签约日期 
+		    var registerTime = $("#createtime").val(); //获取签约日期 
 			var remark = $("#remark").val(); //获取备注名称
 			if(name==""){layer.msg("请输入公司名称");return false;}
 			if(sex==""){layer.msg("请选择性别");return false;} 
@@ -333,7 +339,7 @@
 			if(cityCode.indexOf("所在城市")!=-1){layer.msg("请选择所在城市");return false;}
 			if(companyCode.indexOf("选择公司")!=-1){layer.msg("请输入企业代码");return false;}
 			if(phone==""){layer.msg("请输联系电话");return false;}
-			if(createtime==""){layer.msg("请输入签约日期");return false;}
+			if(registerTime==""){layer.msg("请输入注册日期");return false;}
 			
 			var form = $("#fm").serialize();
 		    $('#fm').form('submit',{  

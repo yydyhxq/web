@@ -11,18 +11,14 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.caocao.core.model.Admin;
 import com.caocao.core.model.Labour;
 import com.caocao.core.service.LabourManageService;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
+import com.caocao.web.constant.DateAndStr;
 
 @Controller
 @RequestMapping("labourmanage")
@@ -37,11 +33,11 @@ public class LabourManageController {
 	@ResponseBody
 	public int add(@ModelAttribute Labour labour) {
 		int success = 100;
-		List<String> errors = check(labour);
-		if(errors.size()>0){
-			success = 0;
-			return success;
-		}
+//		List<String> errors = check(labour);
+//		if(errors.size()>0){
+//			success = 0;
+//			return success;
+//		}
 		labour.setCreatetime(new Date());
 		Labour modelDO = labourManageService.QueryOne(labour);
 		if(!(modelDO == null)) {
@@ -63,11 +59,11 @@ public class LabourManageController {
 	@ResponseBody
 	public int update(@ModelAttribute Labour labour) {
 		int success = 100;
-		List<String> errors = check(labour);
-		if(errors.size()>0){
-			success = 0;
-			return success;
-		}
+//		List<String> errors = check(labour);
+//		if(errors.size()>0){
+//			success = 0;
+//			return success;
+//		}
 		labour.setUpdatetime(new Date());
 		Labour modelDO = labourManageService.QueryById(labour);
 		if(!(modelDO == null)) {
@@ -90,6 +86,11 @@ public class LabourManageController {
 		public Map<String, Object> QueryPageList(@ModelAttribute Labour labour) {
 			Map<String, Object> map = new HashMap<String, Object>();
 			List<Labour> list = labourManageService.QueryPageList(labour);
+			for(int i=0; i<list.size(); i++) {
+				if(list.get(i).getSignDate() != null) {
+					list.get(i).setSignDateStr(DateAndStr.DateToStr(list.get(i).getSignDate()));
+				}
+			}
 			map.put("total", list.size());
 			map.put("rows", list);
 			return map;

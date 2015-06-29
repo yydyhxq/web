@@ -56,7 +56,7 @@ $(document).ready(function(){
 		error.html("验证码已发送");
 		$.ajax({
 			type: 'get',
-			url: 'http://localhost:8080/caocao/login/acquireCode.do?mobile='+phone ,
+			url: '/caocao/login/acquireCode.do?mobile='+phone ,
 			dataType: 'json',
 			success: function(data){
 				error.html("验证码已发送")
@@ -76,13 +76,13 @@ $(document).ready(function(){
 			error.html("验证码不能为空");
 			return false;	
 		}
-		var url = 'http://localhost:8080/caocao/login/userLogin.do?mobile='+phone+'&pin='+code;
+		var url = '/caocao/login/userLogin.do?mobile='+phone+'&pin='+code;
 		$.ajax({
 			type: 'get',
 			url: url,
 			dataType: 'json',
 			success: function(data){
-				alert(data)
+			
 				if(data=="0"){
 					error.html("用户不存在");
 					return false;	
@@ -96,11 +96,12 @@ $(document).ready(function(){
 					error.html("账号已过期，请联系管理员");
 					return false;	
 				}else if(data=="4") {
-					window.location.href="http://localhost:8080/caocao/backend/index.html";
+					
+					window.location.href="/caocao/backend/index.html";
 				}
 			} ,
 			 error : function() {       
-				alert("异常！");    
+				layer.msg("网络异常，请稍后再试！");    
 			}    	
 		});
 	});

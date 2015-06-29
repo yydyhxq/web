@@ -30,11 +30,41 @@ public class FinanceManage {
 	
 	private Double totalBackMoney;
 	
-	private Double BaseIncomeMoney;
+	private Double baseIncomeMoney;
 	
 	private Double awardMoney;
 	
 	private Double inviteMoney;
+	
+	private Double serviceAward;
+	
+	private Double otherAward;
+	
+	private Double platServiceCost;
+
+	public Double getServiceAward() {
+		return serviceAward;
+	}
+
+	public void setServiceAward(Double serviceAward) {
+		this.serviceAward = serviceAward;
+	}
+
+	public Double getOtherAward() {
+		return otherAward;
+	}
+
+	public void setOtherAward(Double otherAward) {
+		this.otherAward = otherAward;
+	}
+
+	public Double getPlatServiceCost() {
+		return platServiceCost;
+	}
+
+	public void setPlatServiceCost(Double platServiceCost) {
+		this.platServiceCost = platServiceCost;
+	}
 
 	public String getCompanyName() {
 		return companyName;
@@ -141,11 +171,11 @@ public class FinanceManage {
 	}
 
 	public Double getBaseIncomeMoney() {
-		return BaseIncomeMoney;
+		return baseIncomeMoney;
 	}
 
 	public void setBaseIncomeMoney(Double baseIncomeMoney) {
-		BaseIncomeMoney = baseIncomeMoney;
+		this.baseIncomeMoney = baseIncomeMoney;
 	}
 
 	public Double getAwardMoney() {

@@ -75,6 +75,9 @@ public class CarType {
      *
      * @mbggenerated Thu Jun 18 13:20:28 CST 2015
      */
+    
+    private String typeStr;
+    
     public Integer getId() {
         return id;
     }
@@ -258,4 +261,12 @@ public class CarType {
     public void setVersion(Double version) {
         this.version = version;
     }
+
+	public String getTypeStr() {
+		return typeStr;
+	}
+
+	public void setTypeStr(String typeStr) {
+		this.typeStr = typeStr;
+	}
 }

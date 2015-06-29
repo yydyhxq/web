@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.caocao.core.model.Labour;
 import com.caocao.core.model.VipCompany;
 import com.caocao.core.service.BigCompanyService;
+import com.caocao.web.constant.DateAndStr;
 
 @Controller
 @RequestMapping("bigcompany")
@@ -34,11 +34,11 @@ public class BigCompanyController {
 	@ResponseBody
 	public int add(@ModelAttribute VipCompany vipCompany) {
 		int success = 100;
-		List<String> errors = check(vipCompany);
-		if(errors.size()>0){
-			success = 0;
-			return success;
-		}
+//		List<String> errors = check(vipCompany);
+//		if(errors.size()>0){
+//			success = 0;
+//			return success;
+//		}
 		vipCompany.setCreatetime(new Date());
 		VipCompany modelDO = bigCompanyService.QueryOne(vipCompany);
 		if(!(modelDO == null)) {
@@ -59,11 +59,11 @@ public class BigCompanyController {
 	@ResponseBody
 	public int update(@ModelAttribute VipCompany vipCompany) {
 		int success = 100;
-		List<String> errors = check(vipCompany);
-		if(errors.size()>0){
-			success = 0;
-			return success;
-		}
+//		List<String> errors = check(vipCompany);
+//		if(errors.size()>0){
+//			success = 0;
+//			return success;
+//		}
 		vipCompany.setUpdatetime(new Date());
 		VipCompany modelDO = bigCompanyService.QueryById(vipCompany);
 		if(!(modelDO == null)) {
@@ -86,6 +86,11 @@ public class BigCompanyController {
 	public Map<String, Object> QueryPageList(@ModelAttribute VipCompany vipCompany) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<VipCompany> list = bigCompanyService.QueryPageList(vipCompany);
+		for(int i=0; i<list.size(); i++) {
+			if(list.get(i).getSignDate() != null) {
+				list.get(i).setSignDateStr(DateAndStr.DateToStr(list.get(i).getSignDate()));
+			}
+		}
 		map.put("total", list.size());
 		map.put("rows", list);
 		return map;

@@ -1,5 +1,6 @@
 package com.caocao.web.control;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -20,6 +21,8 @@ import com.caocao.core.model.BigCustumerBase;
 import com.caocao.core.model.BigCustumerCost;
 import com.caocao.core.model.Custumer;
 import com.caocao.core.service.BigCustumerManageService;
+import com.caocao.web.constant.DateAndStr;
+import com.caocao.web.constant.SexCst;
 
 @Controller
 @RequestMapping("bigcustumermanage")
@@ -35,11 +38,11 @@ public class BigCustumerManageController {
 	@ResponseBody
 	public int add(@ModelAttribute Custumer custumer) {
 		int success = 100;
-		List<String> errors = check(custumer);
-		if(errors.size()>0){
-			success = 0;
-			return success;
-		}
+//		List<String> errors = check(custumer);
+//		if(errors.size()>0){
+//			success = 0;
+//			return success;
+//		}
 		custumer.setType(2);
 		custumer.setCreatetime(new Date());
 		Custumer modelDO = bigCustumerManageService.QueryOne(custumer);
@@ -62,11 +65,12 @@ public class BigCustumerManageController {
 	@ResponseBody
 	public int update(@ModelAttribute Custumer custumer) {
 		int success = 100;
-		List<String> errors = check(custumer);
-		if(errors.size()>0){
-			success = 0;
-			return success;
-		}
+//		List<String> errors = check(custumer);
+//		if(errors.size()>0){
+//			success = 0;
+//			return success;
+//		}
+		custumer.setType(2);
 		custumer.setUpdatetime(new Date());
 		Custumer modelDO = bigCustumerManageService.QueryById(custumer);
 		if(!(modelDO == null)) {
@@ -107,6 +111,15 @@ public class BigCustumerManageController {
 	public Map<String, Object> QueryBigCustumerAccount(@ModelAttribute BigCustumerAccount bigCustumerAccount) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<BigCustumerAccount> list = bigCustumerManageService.QueryBigCustumerAccount(bigCustumerAccount);
+		for(int i=0; i<list.size(); i++) {
+			if(null != list.get(i).getSex()) {
+				if(0 == list.get(i).getSex()) {
+					list.get(i).setSexStr(SexCst.Sex.MAN);
+				} else if (1 == list.get(i).getSex()) {
+					list.get(i).setSexStr(SexCst.Sex.WOMAN);
+				}
+			}
+		}
 		map.put("total", list.size());
 		map.put("rows", list);
 		return map;
@@ -127,6 +140,20 @@ public class BigCustumerManageController {
 	public Map<String, Object> QueryBigCustumerBase(@ModelAttribute BigCustumerBase bigCustumerBase) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<BigCustumerBase> list = bigCustumerManageService.QueryBigCustumerBase(bigCustumerBase);
+		for(int i=0; i<list.size(); i++) {
+			if(list.get(i).getRegisterTime() != null) {
+				list.get(i).setRegisterTimeStr(DateAndStr.DateToStr(list.get(i).getRegisterTime()));
+			}
+		for(int j=0; j<list.size(); j++) {
+			if(null != list.get(j).getSex()) {
+				if(0 == list.get(j).getSex()) {
+					list.get(j).setSexStr(SexCst.Sex.MAN);
+				} else if (1 == list.get(j).getSex()) {
+					list.get(j).setSexStr(SexCst.Sex.WOMAN);
+				}
+			}
+		}
+	}
 		map.put("total", list.size());
 		map.put("rows", list);
 		return map;

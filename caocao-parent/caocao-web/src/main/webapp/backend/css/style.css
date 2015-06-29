@@ -78,6 +78,7 @@ label{display:block;float:left;width:85px;line-height:30px;text-align:right;marg
 .formcls2 p{font-size:14px;line-height:30px;text-indent:15px;}
 .formcls2 span{padding-left:610px;}
 .spancls1{display:block;float:left;width:285px;height:30px;line-height:30px;font-size:12px;color:#666666;text-indent:30px;}
+.spancls1 i{font-style:normal;}
 .textareacls1{width:655px;height:110px;}
 .labelcls3{text-align:left;text-indent:50px;width:100px;}
 

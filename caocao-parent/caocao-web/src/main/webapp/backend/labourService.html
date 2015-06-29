@@ -182,7 +182,7 @@
                         <a href="#" class="btn1" onclick="edituser()" >编辑</a> 
                     </div>
                     <div class="mainConcls3">
-                    	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'http://localhost:8080/caocao/labourmanage/query.do',singleSelect:true,fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
+                    	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'/caocao/labourmanage/query.do',singleSelect:true,fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                         	<thead>
                             	<tr>
                                 	<th data-options="field:'id',width:80 " hidden="true">id</th>
@@ -193,7 +193,7 @@
                                     <th data-options="field:'masterNumber',width:80">法人身份证号</th>
                                     <th data-options="field:'contactPhone',width:80">联系电话</th>
                                     <th data-options="field:'companyAddress',width:80">公司地址</th>
-                                    <th data-options="field:'signData',width:80">签约日期</th>
+                                    <th data-options="field:'signDateStr',width:80">签约日期</th>
                                     <th data-options="field:'remark',width:80">备注</th>
                                    
                                 </tr>
@@ -242,7 +242,7 @@
                     <label>联系电话</label>
                     <input type="text" class="inputcls required" name="contactPhone" id="contactPhone"/>
                     <label>签约日期</label>
-                    <input type="text" class="Wdate inputcls rightcls8 required"  onclick="WdatePicker()"  name="signData" id="signData">
+                    <input type="text" class="Wdate inputcls rightcls8 required"  onclick="WdatePicker()"  name="signDate" id="signDate">
                 </div>
                  <div class="toastcls1 clearfix">
                     <label>备注</label>
@@ -264,20 +264,22 @@
         var url;
         var type;
         function newuser() {
+        	$("#signDate").attr('name','signDate');
         	$("#save").show().siblings("#save1").hide();
             $("#dlg").dialog("open").dialog('setTitle', 'New User'); ;
             $("#fm").form("clear");
-            url = "http://localhost:8080/caocao/labourmanage/add.do?";
+            url = "/caocao/labourmanage/add.do?";
             
         }
         function edituser() {
+        	$("#signDate").attr('name','signDateStr');
         	$("#save1").show().siblings("#save").hide();
             var row = $("#dg").datagrid("getSelected");
           
             if (row) {
                 $("#dlg").dialog("open").dialog('setTitle', 'Edit User');
                 $("#fm").form("load", row);
-                url = "http://localhost:8080/caocao/labourmanage/update.do?id=" + row.id;
+                url = "/caocao/labourmanage/update.do?id=" + row.id;
             }
         }
 		
@@ -329,6 +331,7 @@
 		
 		
 		function saveuser1(){  
+			$("#signDate").attr('name','signDate')
 			var name = $("#name").val(); //获取公司名称
 			var companyAddress = $("#companyAddress").val(); //获取公司地址
 			var cityCode = $("#cityCode").val(); //获取所在城市

@@ -161,7 +161,7 @@
                         <a  class="btn1" onclick="detailuser()" >查看详情</a>
                     </div>
                     <div class="mainConcls3">
-                     	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'http://localhost:8080/caocao/ordermanage/historyorder.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
+                     	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'/caocao/ordermanage/historyorder.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                                 <thead>
                                     <tr>
                                         <th data-options="field:'orderId',width:90 ">订单号</th>
@@ -195,7 +195,7 @@
 function detailuser(){
 	 var row = $("#dg").datagrid("getSelected");
 	 if(row){
-		window.location.href= "http://localhost:8080/caocao/ordermanage/historyorder.do?orderId="+ row.id ;
+		window.location.href= "/caocao/ordermanage/historyorder.do?orderId="+ row.id ;
 	 }else{
 		 layer.alert("未选中任何对象");
 	 }

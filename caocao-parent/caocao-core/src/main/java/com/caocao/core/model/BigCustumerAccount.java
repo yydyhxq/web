@@ -19,6 +19,8 @@ public class BigCustumerAccount {
 	private String companyName;
 	
 	private String companyCode;
+	
+	private String sexStr;
 
 	public String getCustumerId() {
 		return custumerId;
@@ -90,6 +92,14 @@ public class BigCustumerAccount {
 
 	public void setCompanyCode(String companyCode) {
 		this.companyCode = companyCode;
+	}
+
+	public String getSexStr() {
+		return sexStr;
+	}
+
+	public void setSexStr(String sexStr) {
+		this.sexStr = sexStr;
 	}
 	
 }

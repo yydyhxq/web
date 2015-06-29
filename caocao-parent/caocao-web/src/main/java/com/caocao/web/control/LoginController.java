@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -49,7 +48,7 @@ public class LoginController {
 			throws Exception {
 		String code = MobileCode.createRandom(true, 6);
 		// 发送短信
-		boolean result = messageFactory.sendSMS(SmsTemplate.driverNotify(code),
+		boolean result = messageFactory.sendSMS(SmsTemplate.userLoginNotify(code),
 				mobile, null);
 		MobileHttpDto dto = new MobileHttpDto();
 		if (result == true) {
@@ -64,21 +63,27 @@ public class LoginController {
 	
 		}
 	//返回的result中  0：用户不存在；1：验证码不正确；2：账号为启用；3：账号已过期；4：登录成功
-	@RequestMapping(value = "/userLogin", method = {RequestMethod.GET})
+	@RequestMapping(value = "/userLogin")
 	@ResponseBody
 	public int UserLogin(@RequestParam String mobile, @RequestParam String pin, HttpSession session) {
 		Admin admin = new Admin();
 		admin.setPhone(mobile);
 		int result = 100;
 		String mobileCode = String.valueOf(session.getAttribute(mobile));
-		if(!pin.equalsIgnoreCase(mobileCode)) {
+		if(mobileCode==null || mobileCode == "null") {
+			mobileCode = "";
+		}
+		if(!pin.equals(mobileCode)) {
 			result = 1;
 			return result;
 		}
 		Admin modelDO = loginService.QueryOne(admin);
-		if(StringUtils.isEmpty(modelDO.getPhone())) {
+		if(modelDO == null) {
 			result = 0;
 			return result;
+		}
+		if(modelDO.getIsactive() == null) {
+			modelDO.setIsactive(0);
 		}
 		if(!StringUtils.isEmpty(modelDO.getPhone()) && 0 == modelDO.getIsactive()) {
 			result = 2;
@@ -86,5 +91,6 @@ public class LoginController {
 		}
 		result = 4;
 		return result;
+		
 	}
 }

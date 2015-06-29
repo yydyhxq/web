@@ -13,6 +13,8 @@ public class ComCustumerAccount {
 	private Double totalCost;
 	
 	private String cityCode;
+	
+	private String sexStr;
 
 	public Integer getId() {
 		return id;
@@ -60,5 +62,13 @@ public class ComCustumerAccount {
 
 	public void setCityCode(String cityCode) {
 		this.cityCode = cityCode;
+	}
+
+	public String getSexStr() {
+		return sexStr;
+	}
+
+	public void setSexStr(String sexStr) {
+		this.sexStr = sexStr;
 	}
 }

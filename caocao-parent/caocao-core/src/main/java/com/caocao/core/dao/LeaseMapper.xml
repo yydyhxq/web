@@ -525,7 +525,8 @@
       _author_create = #{authorCreate,jdbcType=VARCHAR},
       _author_update = #{authorUpdate,jdbcType=VARCHAR},
       _is_valid = #{isValid,jdbcType=INTEGER},
-      _version = #{version,jdbcType=DOUBLE}
+      _version = #{version,jdbcType=DOUBLE},
+      _sign_date = #{signDate,jdbcType=TIMESTAMP}
     where _id = #{id,jdbcType=INTEGER}
   </update>
   
@@ -543,7 +544,8 @@
 			_author_create as authorCreate, 
 			_author_update as authorUpdate, 
 			_is_valid as isValid, 
-			_version as version
+			_version as version,
+			_sign_date as signDate
     from 	tsp_caocao_lease
     where 	1=1
     <if test="name != null and name != ''">and _name like '%#{name,jdbcType=VARCHAR}%'</if>
@@ -567,7 +569,8 @@
 			_author_create as authorCreate, 
 			_author_update as authorUpdate, 
 			_is_valid as isValid, 
-			_version as version
+			_version as version,
+			_sign_date as signDate
     from 	tsp_caocao_lease
     where 	1=1
     		and _company_code = #{companyCode,jdbcType=VARCHAR}
@@ -587,7 +590,8 @@
 			_author_create as authorCreate, 
 			_author_update as authorUpdate, 
 			_is_valid as isValid, 
-			_version as version
+			_version as version,
+			_sign_date as signDate
     from 	tsp_caocao_lease
     where 	1=1
     <if test="id != null and id != ''">and _id = #{id,jdbcType=INTEGER}</if>

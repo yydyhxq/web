@@ -525,7 +525,8 @@
       _updatetime = #{updatetime,jdbcType=TIMESTAMP},
       _author_create = #{authorCreate,jdbcType=VARCHAR},
       _author_update = #{authorUpdate,jdbcType=VARCHAR},
-      _version = #{version,jdbcType=DOUBLE}
+      _version = #{version,jdbcType=DOUBLE},
+      _sign_date = #{signDate,jdbcType=TIMESTAMP}
     where _id = #{id,jdbcType=INTEGER}
   </update>
   

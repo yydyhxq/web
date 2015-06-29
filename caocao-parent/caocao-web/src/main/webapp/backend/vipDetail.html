@@ -84,7 +84,7 @@
                 <input type="button" class="buttoncls" value="查询" id="search" />   
             </div> 	
            	<div class="mainConcls3">
-            		<table id="dg" class="easyui-datagrid" style="width:922px;height:450px"  data-options="url:'http://localhost:8080/caocao/bigcustumermanage/querycost.do?custumerId=1',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
+            		<table id="dg" class="easyui-datagrid" style="width:922px;height:450px"  data-options="url:'/caocao/bigcustumermanage/querycost.do?custumerId=1',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                         	<thead>
                             	<tr>
                                 	<th  data-options="field:'id',width:80" hidden="true">id</th>
@@ -117,7 +117,7 @@
 		}else{
 		var field = urlmap[1].split("&");
 			for(var i=0;i<field.length;i++){
-				var va = filed[i].split("=");
+				var va = field[i].split("=");
 				if(va[0]==key){
 					id=va[1];
 				}	

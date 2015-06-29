@@ -24,27 +24,7 @@
 		  var test=new Vcity.CitySelector({input:'cityCode'});
 		  var test=new Vcity.CitySelector({input:'cityCode1'});
 
-		//新增
-		$("#add").click(function(){
-			layer.open({
-				type: 2, 
-				content: 'addVipCompany.html',
-				title : '新增',
-				border : [0],
-				area : ['620px' , '425px'],
-			});
-		})
-		
-		//编辑
-		$("#edit").click(function(){
-			layer.open({
-				type:2, 
-				content:'editVipCompany.html',
-				title : '编辑',
-				border : [0],
-				area : ['620px' , '425px'],
-			});
-		})
+
 	
 		 //查询
 		$("#search").click(function(){
@@ -183,7 +163,7 @@
                         <a href="#" class="btn1" onclick="edituser()" >编辑</a> 
                     </div>
                     <div class="mainConcls3">
-                    	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'http://localhost:8080/caocao/leasemanage/query.do',singleSelect:true,fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
+                    	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'/caocao/leasemanage/query.do',singleSelect:true,fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                         	<thead>
                             	<tr>
                                 	<th data-options="field:'id',width:80 " hidden="true">id</th>
@@ -194,7 +174,7 @@
                                     <th data-options="field:'masterNumber',width:80">法人身份证号</th>
                                     <th data-options="field:'contactPhone',width:80">联系电话</th>
                                     <th data-options="field:'companyAddress',width:80">公司地址</th>
-                                    <th data-options="field:'signData',width:80">签约日期</th>
+                                    <th data-options="field:'signDateStr',width:80">签约日期</th>
                                     <th data-options="field:'remark',width:80">备注</th>
                                    
                                 </tr>
@@ -243,7 +223,7 @@
                     <label>联系电话</label>
                     <input type="text" class="inputcls required" name="contactPhone" id="contactPhone"/>
                     <label>签约日期</label>
-                    <input type="text" class="Wdate inputcls rightcls8 required"  onclick="WdatePicker()"  name="signData" id="signData">
+                    <input type="text" class="Wdate inputcls rightcls8 required"  onclick="WdatePicker()"  name="signDate" id="signDate">
                 </div>
                  <div class="toastcls1 clearfix">
                     <label>备注</label>
@@ -265,20 +245,22 @@
         var url;
         var type;
         function newuser() {
+        	$("#signDate").attr('name','signDate')
         	$("#save").show().siblings("#save1").hide();
             $("#dlg").dialog("open").dialog('setTitle', 'New User'); ;
             $("#fm").form("clear");
-            url = "http://localhost:8080/caocao/leasemanage/add.do?";
+            url = "/caocao/leasemanage/add.do?";
             
         }
         function edituser() {
+        	$("#signDate").attr('name','signDateStr')
         	$("#save1").show().siblings("#save").hide();
             var row = $("#dg").datagrid("getSelected");
           
             if (row) {
                 $("#dlg").dialog("open").dialog('setTitle', 'Edit User');
                 $("#fm").form("load", row);
-                url = "http://localhost:8080/caocao/leasemanage/update.do?id=" + row.id;
+                url = "/caocao/leasemanage/update.do?id=" + row.id;
             }
         }
 		
@@ -297,7 +279,7 @@
 			var masterName = $("#masterName").val(); //获取法人
 			var masterNumber = $("#masterNumber").val(); //获取法人身份证
 			var phone = $("#phone").val(); //获取备联系电话
-			var signData = $("#signData").val(); //获取签约日期
+			var signDate = $("#signDate").val(); //获取签约日期
 			var remark = $("#remark").val(); //获取备注名称
 			if(name==""){layer.msg("请输入公司名称");return false;}
 			if(companyAddress==""){layer.msg("请输入公司地址");return false;}
@@ -306,7 +288,7 @@
 			if(masterName==""){layer.msg("法人不能为空");return false;}
 			if(masterNumber==""){layer.msg("请输入法人身份证");return false;}
 			if(phone==""){layer.msg("请输联系电话");return false;}
-			if(signData==""){layer.msg("请输入签约日期");return false;}
+			if(signDate=""){layer.msg("请输入签约日期");return false;}
 			
 			var form = $("#fm").serialize();
 		    $('#fm').form('submit',{  
@@ -330,6 +312,7 @@
 		
 		
 		function saveuser1(){  
+			$("#signDate").attr("name","signDate");
 			var name = $("#name").val(); //获取公司名称
 			var companyAddress = $("#companyAddress").val(); //获取公司地址
 			var cityCode = $("#cityCode").val(); //获取所在城市
@@ -337,7 +320,7 @@
 			var masterName = $("#masterName").val(); //获取法人
 			var masterNumber = $("#masterNumber").val(); //获取法人身份证
 			var phone = $("#phone").val(); //获取备联系电话
-			var signData = $("#signData").val(); //获取签约日期
+			var signDate = $("#signDate").val(); //获取签约日期
 			var remark = $("#remark").val(); //获取备注名称
 			if(name==""){layer.msg("请输入公司名称");return false;}
 			if(companyAddress==""){layer.msg("请输入公司地址");return false;}
@@ -346,7 +329,7 @@
 			if(masterName==""){layer.msg("法人不能为空");return false;}
 			if(masterNumber==""){layer.msg("请输入法人身份证");return false;}
 			if(phone==""){layer.msg("请输联系电话");return false;}
-			if(signData==""){layer.msg("请输入签约日期");return false;}
+			if(signDate==""){layer.msg("请输入签约日期");return false;}
 			
 			var form = $("#fm").serialize();
 		    $('#fm').form('submit',{  

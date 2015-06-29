@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.caocao.core.model.Admin;
 import com.caocao.core.service.UserManageService;
+import com.caocao.web.constant.ActiveCst;
 
 @Controller
 @RequestMapping("usermanage")
@@ -35,11 +36,11 @@ public class UserManageController {
 	@ResponseBody
 	public int add(@ModelAttribute Admin admin) {
 		int success = 100;
-		List<String> errors = check(admin);
-		if(errors.size()>0){
-			success = 0;
-			return success;
-		}
+//		List<String> errors = check(admin);
+//		if(errors.size()>0){
+//			success = 0;
+//			return success;
+//		}
 		admin.setCreatetime(new Date());
 		Admin modelDO = userManageService.QueryOne(admin);
 		if(!(modelDO == null)) {
@@ -61,11 +62,11 @@ public class UserManageController {
 	@ResponseBody
 	public int update(@ModelAttribute Admin admin) {
 		int success = 100;
-		List<String> errors = check(admin);
-		if(errors.size()>0){
-			success = 0;
-			return success;
-		}
+//		List<String> errors = check(admin);
+//		if(errors.size()>0){
+//			success = 0;
+//			return success;
+//		}
 		admin.setUpdatetime(new Date());
 		Admin modelDO = userManageService.QueryById(admin);
 		if(!(modelDO == null)) {
@@ -88,6 +89,15 @@ public class UserManageController {
 	public Map<String, Object> QueryPageList(@ModelAttribute Admin admin) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<Admin> list = userManageService.QueryPageList(admin);
+		for(int i=0; i<list.size(); i++) {
+			if(null != list.get(i).getIsactive()) {
+				if(0 == list.get(i).getIsactive()) {
+					list.get(i).setIsactiveStr(ActiveCst.IsActive.NO);
+				} else if(1 == list.get(i).getIsactive()) {
+					list.get(i).setIsactiveStr(ActiveCst.IsActive.YES);
+				}
+			}
+		}
 		map.put("total", list.size());
 		map.put("rows", list);
 		return map;

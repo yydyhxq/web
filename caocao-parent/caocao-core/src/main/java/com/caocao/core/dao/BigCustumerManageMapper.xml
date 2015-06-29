@@ -74,7 +74,7 @@
 			a._company_code as companyCode,
 			a._remark as remark,
 			a._company_require as carType,
-			a._register_time as registerDate,
+			a._register_time as registerTime,
 			bb.costTimes,
 			bb.costMoney
 	from    tsp_caocao_custumer as a 

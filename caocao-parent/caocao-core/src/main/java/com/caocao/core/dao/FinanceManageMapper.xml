@@ -51,4 +51,22 @@
  			<if test="costProduceEnd != null and costProduceEnd != ''"><![CDATA[and DATE_FORMAT(a._createtime, '%Y-%m-%d') <= DATE_FORMAT(#{costProduceEnd,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
  			group by DATE_FORMAT(a._createtime,'%Y-%m-%d')
   </select>
+  
+  <select id="SelectDriverIncome" resultType="com.caocao.core.model.FinanceManage" parameterType="com.caocao.core.model.FinanceManage" >
+    select 
+		    date_format(a._createtime,'%Y') as year,
+		    DATE_FORMAT(a._createtime,'%Y-%m-%d') as costArriveDate,
+			sum(a._cost_money) as baseIncomeMoney,
+			0 as servicereward,
+			0 as flatreward, 
+			sum(a._cost_money) as incomeTotal
+ 	from 
+ 			tsp_caocao_driver_bill_info a 
+ 	where
+ 			<if test="year != null and year != ''"><![CDATA[and DATE_FORMAT(a._createtime,'%Y') = DATE_FORMAT(#{year,jdbcType=TIMESTAMP}, '%Y')]]></if>
+ 			<if test="costArriveBegin != null and costArriveBegin != ''"><![CDATA[and DATE_FORMAT(a._createtime, '%Y-%m-%d') >= DATE_FORMAT(#{costArriveBegin,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
+ 			<if test="costArriveEnd != null and costArriveEnd != ''"><![CDATA[and DATE_FORMAT(a._createtime, '%Y-%m-%d') <= DATE_FORMAT(#{costArriveEnd,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
+ 			group by DATE_FORMAT(a._createtime,'%Y-%m-%d')
+
+  </select>
 </mapper>

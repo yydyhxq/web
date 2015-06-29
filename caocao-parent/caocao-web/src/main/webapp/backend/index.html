@@ -61,7 +61,7 @@
 			
 			$.ajax({
 				type : 'GET',
-			 	url:'http://localhost:8080/caocao/usermanage/query.do?pageIndex=1&pageSize=2&username=&phone=&companyName=',
+			 	url:'/caocao/usermanage/query.do?pageIndex=1&pageSize=2&username=&phone=&companyName=',
 				async : false,
 				dataType : 'json',
 				beforeSend : function(jqXHR) {
@@ -100,7 +100,7 @@
 		$('#dg').datagrid({ 
 		    width:'1077px',
 			height:'450px',
-			url:'http://localhost:8080/caocao/usermanage/query.do', 
+			url:"/caocao/usermanage/query.do", 
 			fitColumns:true,
 			pagination:true,
 			rownumbers:true,
@@ -300,7 +300,7 @@
         function newuser() {
             $("#dlg").dialog("open").dialog('setTitle', 'New User'); ;
             $("#fm").form("clear");
-            url = "http://localhost:8080/caocao/usermanage/add.do";
+            url = "/caocao/usermanage/add.do";
         }
         function edituser() {
             var row = $("#dg").datagrid("getSelected");
@@ -308,7 +308,7 @@
             if (row) {
                 $("#dlg").dialog("open").dialog('setTitle', 'Edit User');
                 $("#fm").form("load", row);
-                url = "http://localhost:8080/caocao/usermanage/update.do?id=" + row.id;
+                url = "/caocao/usermanage/update.do?id=" + row.id;
             }
         }
 		

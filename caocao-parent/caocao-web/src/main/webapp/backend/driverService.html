@@ -165,7 +165,7 @@
                         <a href="#" class="btn1" >批量导入</a>
                     </div>
                     <div class="mainConcls3">
-                    	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'http://localhost:8080/caocao/drivermanage/queryqualified.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
+                    	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'/caocao/drivermanage/queryqualified.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                         	<thead>
                             	<tr>
                                 	<th data-options="field:'name',width:80 ">姓名</th>
@@ -173,7 +173,7 @@
                                     <th data-options="field:'phone',width:80">手机号</th>
                                     <th data-options="field:'cardno',width:80">身份证</th>
                                     <th data-options="field:'city',width:80">所在城市</th>
-                                    <th data-options="field:'qualifiedDate',width:80">培训合格日期</th>
+                                    <th data-options="field:'qualifiedDateStr',width:80">培训合格日期</th>
                                     <th data-options="field:'remark',width:80">备注</th>
                                 </tr>
                             </thead>                   
@@ -193,10 +193,7 @@
 </body>
 <script>
 	function addUser(){
-		
             window.location.href = "registerform.html";
-       
-		
 	}
 	
 	function editUser(){
@@ -206,7 +203,6 @@
         }else{
        	   layer.alert("未选中任何对象");
         }
-		
 	}
 	
 	function detailUser(){

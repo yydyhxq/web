@@ -32,6 +32,8 @@ public class ComCustumer {
 	
 	private Date registerDateEnd;
 
+	private String sexStr;
+	
 	public Integer getCustumerId() {
 		return custumerId;
 	}
@@ -142,6 +144,14 @@ public class ComCustumer {
 
 	public void setRegisterDateEnd(Date registerDateEnd) {
 		this.registerDateEnd = registerDateEnd;
+	}
+
+	public String getSexStr() {
+		return sexStr;
+	}
+
+	public void setSexStr(String sexStr) {
+		this.sexStr = sexStr;
 	}
 	
 }

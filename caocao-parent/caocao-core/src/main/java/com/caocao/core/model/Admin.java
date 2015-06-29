@@ -131,6 +131,9 @@ public class Admin {
      *
      * @mbggenerated Tue Jun 16 10:42:40 CST 2015
      */
+    
+    private String isactiveStr;
+    
     public Integer getId() {
         return id;
     }
@@ -482,4 +485,12 @@ public class Admin {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
+	public String getIsactiveStr() {
+		return isactiveStr;
+	}
+
+	public void setIsactiveStr(String isactiveStr) {
+		this.isactiveStr = isactiveStr;
+	}
 }

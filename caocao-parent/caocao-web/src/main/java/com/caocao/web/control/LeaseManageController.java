@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.caocao.core.model.Lease;
 import com.caocao.core.service.LeaseManageService;
+import com.caocao.web.constant.DateAndStr;
 
 @Controller
 @RequestMapping("leasemanage")
@@ -36,11 +37,11 @@ public class LeaseManageController {
 	@ResponseBody
 	public int add(@ModelAttribute Lease lease){
 		int success = 100;
-		List<String> errors = check(lease);
-		if(errors.size()>0){
-			success = 0;
-			return success;
-		}
+//		List<String> errors = check(lease);
+//		if(errors.size()>0){
+//			success = 0;
+//			return success;
+//		}
 		lease.setCreatetime(new Date());
 		Lease modelDO = leaseManageService.QueryOne(lease);
 		if(!(modelDO == null)) {
@@ -61,11 +62,11 @@ public class LeaseManageController {
 	@ResponseBody
 	public int update(@ModelAttribute Lease lease) {
 		int success = 100;
-		List<String> errors = check(lease);
-		if(errors.size()>0){
-			success = 0;
-			return success;
-		}
+//		List<String> errors = check(lease);
+//		if(errors.size()>0){
+//			success = 0;
+//			return success;
+//		}
 		lease.setUpdatetime(new Date());
 		Lease modelDO = leaseManageService.QueryById(lease);
 		if(!(modelDO == null)) {
@@ -88,6 +89,11 @@ public class LeaseManageController {
 	public Map<String, Object> QueryPageList(@ModelAttribute Lease lease) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<Lease> list = leaseManageService.QueryPageList(lease);
+		for(int i=0; i<list.size(); i++) {
+			if(list.get(i).getSignDate() != null) {
+				list.get(i).setSignDateStr(DateAndStr.DateToStr(list.get(i).getSignDate()));
+			}
+		}
 		map.put("total", list.size());
 		map.put("rows", list);
 		return map;

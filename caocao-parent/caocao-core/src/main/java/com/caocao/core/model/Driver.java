@@ -286,6 +286,12 @@ public class Driver {
     
     private Date registerDateEnd;
     
+    private String registerTimeStr;
+    
+    private String qualifiedDateStr;
+    
+    private String sexStr;
+    
     public Integer getId() {
         return id;
     }
@@ -1108,5 +1114,29 @@ public class Driver {
 
 	public void setRegisterDateEnd(Date registerDateEnd) {
 		this.registerDateEnd = registerDateEnd;
+	}
+
+	public String getRegisterTimeStr() {
+		return registerTimeStr;
+	}
+
+	public void setRegisterTimeStr(String registerTimeStr) {
+		this.registerTimeStr = registerTimeStr;
+	}
+
+	public String getQualifiedDateStr() {
+		return qualifiedDateStr;
+	}
+
+	public void setQualifiedDateStr(String qualifiedDateStr) {
+		this.qualifiedDateStr = qualifiedDateStr;
+	}
+
+	public String getSexStr() {
+		return sexStr;
+	}
+
+	public void setSexStr(String sexStr) {
+		this.sexStr = sexStr;
 	}
 }

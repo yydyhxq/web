@@ -47,8 +47,8 @@
 		$("#search").click(function(){
 			var brand = $("input[name='brand']").val(); //获取品牌名称
 			var mode = $("input[name='mode']").val(); //获取车型名称
-			var type = $("input[name='type']").val();//获取服务类型
-			
+			var type = $("select[name='type']").val();//获取服务类型
+		
 			$("#dg").datagrid('load',{
 				brand:brand,
 				mode:mode,
@@ -184,12 +184,13 @@
                         <a href="#" class="btn1" onclick="edituser()">编辑</a>  
                     </div>
                     <div class="mainConcls3">
-                        	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'http://localhost:8080/caocao/cartype/query.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
+                        	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'/caocao/cartype/query.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                         	<thead>
                             	<tr>
                                 	<th data-options="field:'brand',width:80">品牌名称</th>
                                     <th data-options="field:'mode',width:80">车型名称</th>
-                                    <th data-options="field:'type',width:80">服务类型</th>
+                                    <th data-options="field:'typeStr',width:80">服务类型</th>
+                                  
                                 </tr>
                             </thead>	
                         </table>
@@ -203,7 +204,7 @@
     </div>
     
     
-<div id="dlg" class="easyui-dialog" style="width: 700px; height: 265px; padding: 10px 20px;"
+<div id="dlg" class="easyui-dialog" style="width: 700px; height: 365px; padding: 10px 20px;"
        closed="true" buttons="#dlg-buttons"> 
       
        <div class="ftitle"> 
@@ -244,18 +245,20 @@
         var type;
         function newuser() {
         	$("#save").show().siblings("#save1").hide();
+        	$("#type").attr("name","type");
             $("#dlg").dialog("open").dialog('setTitle', 'New User'); ;
             $("#fm").form("clear");
-            url = "http://localhost:8080/caocao/cartype/add.do?";
+            url = "/caocao/cartype/add.do?";
             
         }
         function edituser() {
         	$("#save1").show().siblings("#save").hide();
+        	$("#type").attr("name","typeStr");
             var row = $("#dg").datagrid("getSelected");
             if (row) {
                 $("#dlg").dialog("open").dialog('setTitle', 'Edit User');
                 $("#fm").form("load", row);
-                url = "http://localhost:8080/caocao/cartype/update.do?id=" + row.id;
+                url = "/caocao/cartype/update.do?id=" + row.id;
             }
         }
 		
@@ -283,7 +286,7 @@
 		        },  
 		        success: function(result){  
 		        	if(result=="0"){layer.alert("必填写项不能为空！")}
-			        if(result=="1"){layer.alert("该公司已存在")}
+			        if(result=="1"){layer.alert("该车型已存在")}
 			        if(result=="2"){layer.alert("数据新增失败")}
 		            if(result=="3"){  
 		        		layer.alert("保存成功")
@@ -296,6 +299,7 @@
 		
 		
 		function saveuser1(){  
+			$("#type").attr("name","type");
 			var brand = $("#brand").val(); //获取公司名称
 		    var mode = $("#mode").val(); //获取签约日期 
 			var type = $("#type").val(); //获取备注名称

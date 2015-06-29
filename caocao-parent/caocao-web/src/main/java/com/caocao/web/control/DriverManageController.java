@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.caocao.core.model.Driver;
 import com.caocao.core.service.DriverManageService;
+import com.caocao.web.constant.DateAndStr;
+import com.caocao.web.constant.SexCst;
+import com.caocao.web.constant.SexCst.Sex;
 
 @Controller
 @RequestMapping("drivermanage")
@@ -33,11 +36,11 @@ public class DriverManageController {
 	@ResponseBody
 	public int add(@ModelAttribute Driver driver) {
 		int success = 100;
-		List<String> errors = check(driver);
-		if(errors.size()>0){
-			success = 0;
-			return success;
-		}
+//		List<String> errors = check(driver);
+//		if(errors.size()>0){
+//			success = 0;
+//			return success;
+//		}
 		driver.setCreatetime(new Date());
 		Driver modelDO = driverManageService.QueryOne(driver);
 		if(!(modelDO == null)) {
@@ -59,11 +62,11 @@ public class DriverManageController {
 	@ResponseBody
 	public int update(@ModelAttribute Driver driver) {
 		int success = 100;
-		List<String> errors = check(driver);
-		if(errors.size()>0){
-			success = 0;
-			return success;
-		}
+//		List<String> errors = check(driver);
+//		if(errors.size()>0){
+//			success = 0;
+//			return success;
+//		}
 		driver.setUpdatetime(new Date());
 		Driver modelDO = driverManageService.QueryById(driver);
 		if(!(modelDO == null)) {
@@ -86,6 +89,21 @@ public class DriverManageController {
 	public Map<String, Object> QueryPageList(@ModelAttribute Driver driver) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<Driver> list = driverManageService.QueryPageList(driver);
+		for(int i=0; i<list.size(); i++) {
+			if(list.get(i).getRegisterTime() != null) {
+				list.get(i).setRegisterTimeStr(DateAndStr.DateToStr(list.get(i).getRegisterTime()));
+			}
+			if(list.get(i).getQualifiedDate() != null) {
+				list.get(i).setQualifiedDateStr(DateAndStr.DateToStr(list.get(i).getQualifiedDate()));
+			}
+			if(null != list.get(i).getSex()) {
+				if(0 == list.get(i).getSex()) {
+					list.get(i).setSexStr(SexCst.Sex.MAN);
+				} else if (1 == list.get(i).getSex()) {
+					list.get(i).setSexStr(SexCst.Sex.WOMAN);
+				}
+			}
+		}
 		map.put("total", list.size());
 		map.put("rows", list);
 		return map;
@@ -97,6 +115,18 @@ public class DriverManageController {
 		public Map<String, Object> QueryQualifiedList(@ModelAttribute Driver driver) {
 			Map<String, Object> map = new HashMap<String, Object>();
 			List<Driver> list = driverManageService.QueryQualifiedList(driver);
+			for(int i=0; i<list.size(); i++) {
+				if(null != list.get(i).getQualifiedDate()) {
+					list.get(i).setQualifiedDateStr(DateAndStr.DateToStr(list.get(i).getQualifiedDate()));
+				}
+				if(null != list.get(i).getSex()) {
+					if(0 == list.get(i).getSex()) {
+						list.get(i).setSexStr(SexCst.Sex.MAN);
+					} else if (1 == list.get(i).getSex()) {
+						list.get(i).setSexStr(SexCst.Sex.WOMAN);
+					}
+				}
+			}
 			map.put("total", list.size());
 			map.put("rows", list);
 			return map;
@@ -109,6 +139,14 @@ public class DriverManageController {
 		Driver modelDO = driverManageService.QueryOne(driver);
 		return modelDO;
 	}
+	
+	//查询单个用户信息
+		@RequestMapping(value = "/queryid")
+		@ResponseBody
+		public Driver QueryByID(@ModelAttribute Driver driver) {
+			Driver modelDO = driverManageService.QueryById(driver);
+			return modelDO;
+		}
 	
 	private List<String> check(Driver driver) {
 		List<String> errors = new ArrayList<String>();

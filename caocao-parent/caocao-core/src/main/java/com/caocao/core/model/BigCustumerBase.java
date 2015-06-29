@@ -26,13 +26,17 @@ public class BigCustumerBase {
 	
 	private String cityCode;
 	
-	private Date registerDate;
+	private Date registerTime;
 	
 	private Date registerDateBegin;
 	
 	private Date registerDateEnd;
 	
 	private String remark;
+	
+	private String registerTimeStr;
+	
+	private String sexStr;
 
 	public Integer getId() {
 		return id;
@@ -114,20 +118,20 @@ public class BigCustumerBase {
 		this.companyCode = companyCode;
 	}
 
-	public Date getRegisterDate() {
-		return registerDate;
+	public String getCityCode() {
+		return cityCode;
 	}
 
-	public void setRegisterDate(Date registerDate) {
-		this.registerDate = registerDate;
+	public void setCityCode(String cityCode) {
+		this.cityCode = cityCode;
 	}
 
-	public String getRemark() {
-		return remark;
+	public Date getRegisterTime() {
+		return registerTime;
 	}
 
-	public void setRemark(String remark) {
-		this.remark = remark;
+	public void setRegisterTime(Date registerTime) {
+		this.registerTime = registerTime;
 	}
 
 	public Date getRegisterDateBegin() {
@@ -146,11 +150,27 @@ public class BigCustumerBase {
 		this.registerDateEnd = registerDateEnd;
 	}
 
-	public String getCityCode() {
-		return cityCode;
+	public String getRemark() {
+		return remark;
 	}
 
-	public void setCityCode(String cityCode) {
-		this.cityCode = cityCode;
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	public String getRegisterTimeStr() {
+		return registerTimeStr;
+	}
+
+	public void setRegisterTimeStr(String registerTimeStr) {
+		this.registerTimeStr = registerTimeStr;
+	}
+
+	public String getSexStr() {
+		return sexStr;
+	}
+
+	public void setSexStr(String sexStr) {
+		this.sexStr = sexStr;
 	}
 }

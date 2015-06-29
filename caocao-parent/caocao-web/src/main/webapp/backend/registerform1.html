@@ -16,17 +16,22 @@
 	$(function(){
 		//获取id名
 		var id = getId("id");
-		var url="http://localhost:8080/caocao/drivermanage/queryqualified.do?id="+id;
+		var url="/caocao/drivermanage/queryid.do?id="+id;
 		$.ajax({
 			url:url,
 			dataType:'json',
 			success:function(data){				
 				$("#name").val(data.name);
-				$("#sex").val(data.sex);
+				if(data.sex=="0"){
+					$("#sex1").attr("checked","checked").siblings().removeAttr("checked");
+				}else{
+					$("sex2").attr("checked","checked").siblings().removeAttr("checked");
+				}
 				$("#birthPlace").val(data.birthPlace);
 				$("#livePlace").val(data.livePlace);
 				$("#email").val(data.email);
-				$("#drivelicenseDate").val(data.drivelicenseDate);
+				$("#cardno").val(data.cardno);
+				$("#qualifiedDate").val(data.qualifiedDate);
 				$("#educateDegree").val(data.educateDegree);
 				$("#height").val(data.height);
 				$("#weight").val(data.weight);
@@ -35,9 +40,8 @@
 				}else{
 					$("#radio2").attr("checked","checked").siblings().removeAttr("checked");
 				}
-			
 				$("#brand").val(data.brand);
-				$("#model").val(data.model);
+				$("#mode").val(data.mode);
 			}
 
 		});
@@ -45,17 +49,15 @@
 		$("#save").click(function(){
 			var id = getId("id");
 			var name=$("#name").val();//获取名字
-			var sex=$("#sex").val();//获取性别
+			var sex = $("input[name='sex']").val();//获取性别
 			var birthPlace=$("#birthPlace").val();//获取户籍所在地
 			var livePlace=$("#livePlace").val();//获取现居住地址
 			var phone=$("#phone").val();//联系电话
 			var email=$("#email").val();//电子邮箱
-			var drivelicenseDate=$("#drivelicenseDate").val();//取得驾照时间E
 			var educateDegree=$("#educateDegree").val();//学历
 			var height=$("#height").val();//身高/体重
 			var weight=$("#weight").val();//身高/体重
-			var job = $("input[name='job']").val();//应聘形式
-			
+			var isSpecificduty = $("input[name='isSpecificduty']").val();//应聘形式			
 			var brand=$("#brand").val();//品牌
 			var model=$("#model").val();//车型
 			if(name==""||sex==""||phone==""){
@@ -63,7 +65,7 @@
 			}
 			
 			var form = $("#form").serialize();
-			var url = 'http://localhost:8080/caocao/drivermanage/update.do?id='+id;
+			var url = '/caocao/drivermanage/update.do?id='+id;
 			$.ajax({
 				type:"post",
 				url:url,
@@ -117,7 +119,10 @@
                 	<input type="text" class="inputcls" id="name" name="name"/>
                 </div>
                 <div data-title="性别">
-                	<input type="text" class="inputcls" id="sex" name="sex" />
+                	<span class="radio">
+                        <input type="radio" name="sex" value="0"  id="sex1" checked="checked"/>男
+                        <input type="radio" name="sex" value="1"  id="sex2" style="margin-left:20px"/>女
+                    </span>
                 </div>
                 <div data-title="户籍所在地">
                 	<input type="text" class="inputcls"  id="birthPlace" name="birthPlace" />
@@ -136,7 +141,10 @@
                 	<input type="text" class="inputcls" id="cardno" name="cardno"/>
                 </div>
                 <div data-title="取得驾照时间">
-                	<input type="text" class="inputcls"  id="drivelicenseDate" name="drivelicenseDate"/>
+                	<input type="text" class="inputcls" onclick="WdatePicker({position:{left:200,top:0}})"  id="drivelicenseDate" name="drivelicenseDate"/>
+                </div>
+                <div data-title="培训合格日期">
+                	<input type="text" class="Wdate inputcls "  onclick="WdatePicker({position:{left:200,top:0}})"  id="qualifiedDate" name="qualifiedDate"/>
                 </div>
                 <div data-title="实际驾龄">
                 	<input type="text" class="inputcls" id="driverAge" name="driverAge"/>
@@ -166,10 +174,10 @@
                 
                 </div>
             	<div data-title="品牌">
-                	<input type="text" class="inputcls" id="type" name="trand"/>
+                	<input type="text" class="inputcls" id="trand" name="trand"/>
                 </div>
                 <div data-title="车型">
-                	<input type="text" class="inputcls" id="model" name="model"/>
+                	<input type="text" class="inputcls" id="mode" name="mode"/>
                 </div>
                 <div data-title="裸车价">
                 	<input type="text" class="inputcls" />
@@ -202,7 +210,7 @@
 		}else{
 		var field = urlmap[1].split("&");
 			for(var i=0;i<field.length;i++){
-				var va = filed[i].split("=");
+				var va = field[i].split("=");
 				if(va[0]==key){
 					id=va[1];
 					

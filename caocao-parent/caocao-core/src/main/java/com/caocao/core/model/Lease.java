@@ -138,6 +138,8 @@ public class Lease {
     
     private Date signDateEnd;
     
+    private String signDateStr;
+    
     public Integer getId() {
         return id;
     }
@@ -512,5 +514,13 @@ public class Lease {
 
 	public void setSignDateEnd(Date signDateEnd) {
 		this.signDateEnd = signDateEnd;
+	}
+
+	public String getSignDateStr() {
+		return signDateStr;
+	}
+
+	public void setSignDateStr(String signDateStr) {
+		this.signDateStr = signDateStr;
 	}
 }

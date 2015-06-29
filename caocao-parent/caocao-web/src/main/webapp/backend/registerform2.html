@@ -16,7 +16,7 @@
 	$(function(){
 		//获取id名
 		var id = getId("id");
-		var url="http://localhost:8080/caocao/drivermanage/queryqualified.do?id="+id;
+		var url="/caocao/drivermanage/queryid.do?id="+id;
 		$.ajax({
 			url:url,
 			dataType:'json',
@@ -26,7 +26,8 @@
 				$("#birthPlace").val(data.birthPlace);
 				$("#livePlace").val(data.livePlace);
 				$("#email").val(data.email);
-				$("#drivelicenseDate").val(data.drivelicenseDate);
+				$("#cardno").val(data.cardno);
+				$("#qualifiedDate").val(data.qualifiedDate);
 				$("#educateDegree").val(data.educateDegree);
 				$("#height").val(data.height);
 				$("#weight").val(data.weight);
@@ -36,7 +37,7 @@
 					$("#radio2").attr("checked","checked").siblings().removeAttr("checked");
 				}
 				$("#brand").val(data.brand);
-				$("#model").val(data.model);
+				$("#mode").val(data.mode);
 			}
 		})
 	});
@@ -94,6 +95,9 @@
                 <div data-title="取得驾照时间">
                 	<input type="text" class="inputcls"  id="drivelicenseDate" name="drivelicenseDate"/>
                 </div>
+                <div data-title="培训合格日期">
+                	<input type="text" class="Wdate inputcls "  onclick="WdatePicker()"  id="qualifiedDate" name="qualifiedDate"/>
+                </div>
                 <div data-title="实际驾龄">
                 	<input type="text" class="inputcls" id="driverAge" name="driverAge"/>
                 </div>
@@ -122,10 +126,10 @@
                 
                 </div>
             	<div data-title="品牌">
-                	<input type="text" class="inputcls" id="type" name="trand"/>
+                	<input type="text" class="inputcls" id="trand" name="trand"/>
                 </div>
                 <div data-title="车型">
-                	<input type="text" class="inputcls" id="model" name="model"/>
+                	<input type="text" class="inputcls" id="mode" name="mode"/>
                 </div>
                 <div data-title="裸车价">
                 	<input type="text" class="inputcls" />
@@ -155,7 +159,7 @@
 		}else{
 		var field = urlmap[1].split("&");
 			for(var i=0;i<field.length;i++){
-				var va = filed[i].split("=");
+				var va = field[i].split("=");
 				if(va[0]==key){
 					id=va[1];
 					

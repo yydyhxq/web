@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.caocao.core.model.CarType;
 import com.caocao.core.service.CarTypeService;
+import com.caocao.web.constant.CarTypeCst;
 
 @Controller
 @RequestMapping("cartype")
@@ -85,6 +86,21 @@ public class CarTypeController {
 	public Map<String, Object> QueryPageList(@ModelAttribute CarType carType) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<CarType> list = carTypeService.QueryPageList(carType);
+		for(int i=0; i<list.size(); i++) {
+		    	if(null != list.get(i).getType()) {
+		    		if (1 == list.get(i).getType()) {
+		    			list.get(i).setTypeStr(CarTypeCst.CarType.TYPE_ECONOMICAL);
+		    		} else if (2 == list.get(i).getType()) {
+		    			list.get(i).setTypeStr(CarTypeCst.CarType.TYPE_COMFORTABLE);
+		    		} else if (3 == list.get(i).getType()) {
+		    			list.get(i).setTypeStr(CarTypeCst.CarType.TYPE_LUXURIOUS);
+		    		} else if (4 == list.get(i).getType()) {
+		    			list.get(i).setTypeStr(CarTypeCst.CarType.TYPE_BUSINESS);
+		    		}
+		    	} else {
+		    		list.get(i).setTypeStr("");
+		    	};
+		}
 		map.put("total", list.size());
 		map.put("rows", list);
 		return map;

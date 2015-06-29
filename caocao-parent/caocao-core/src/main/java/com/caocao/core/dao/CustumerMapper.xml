@@ -720,7 +720,8 @@
       _push_id = #{pushId,jdbcType=VARCHAR},
       _used = #{used,jdbcType=INTEGER},
       _input_invitecode = #{inputInvitecode,jdbcType=VARCHAR},
-      _version = #{version,jdbcType=DOUBLE}
+      _version = #{version,jdbcType=DOUBLE},
+      _register_time = #{registerTime,jdbcType=TIMESTAMP}
     where _id = #{id,jdbcType=INTEGER}
   </update>
   
@@ -746,7 +747,8 @@
 			_push_id as pushId, 
 			_used as used, 
 			_input_invitecode as inputInvitecode, 
-			_version as version
+			_version as version,
+			_register_time as registerTime
     from 	tsp_caocao_custumer
     where 	1=1
     <if test="name != null and name != ''">and _name = #{name,jdbcType=VARCHAR}</if>
@@ -778,7 +780,8 @@
 			_push_id as pushId, 
 			_used as used, 
 			_input_invitecode as inputInvitecode, 
-			_version as version
+			_version as version,
+			_register_time as registerTime
     from 	tsp_caocao_custumer
     where 	1=1
      <if test="phone != null and phone != ''">and _phone = #{phone,jdbcType=VARCHAR}</if>
@@ -806,7 +809,8 @@
 			_push_id as pushId, 
 			_used as used, 
 			_input_invitecode as inputInvitecode, 
-			_version as version
+			_version as version,
+			_register_time as registerTime
     from 	tsp_caocao_custumer
     where 	1=1
     <if test="id != null">and _id = #{id,jdbcType=INTEGER}</if>

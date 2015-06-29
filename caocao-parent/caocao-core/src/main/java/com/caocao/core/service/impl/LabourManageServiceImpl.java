@@ -21,7 +21,7 @@ public class LabourManageServiceImpl implements LabourManageService {
 	}
 	
 	public Labour QueryById(Labour labour) {
-		 Labour modelDO = labourMapper.QueryOne(labour);
+		 Labour modelDO = labourMapper.QueryById(labour);
 		 return modelDO;
 	}
 	

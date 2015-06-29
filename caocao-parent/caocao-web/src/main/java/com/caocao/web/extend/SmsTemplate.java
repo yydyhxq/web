@@ -32,4 +32,8 @@ public class SmsTemplate {
 		return "尊敬的" + userNike + "您有一预约单xxxxxxxxxxxx}" + oderMsg
 				+ "请准时抵达乘客上车地" + location + "避免耽误乘客行程.";
 	}
+	
+	public static String userLoginNotify(String code) {
+		return "您本次后台管理系统登陆验证码为"+code+"请在3分钟内使用!";
+	}
 }
