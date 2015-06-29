@@ -10,4 +10,16 @@ public class DateAndStr {
 		String str = sdf.format(date);
 		return str;
 	}
+	
+	public static String Year(Date date) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+		String str = sdf.format(date);
+		return str;
+	}
+	
+	public static String Month(Date date) {
+		SimpleDateFormat sdf = new SimpleDateFormat("MM");
+		String str = sdf.format(date);
+		return str;
+	}
 }

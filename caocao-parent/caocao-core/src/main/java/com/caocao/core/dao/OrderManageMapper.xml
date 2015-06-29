@@ -21,7 +21,7 @@
 	where
 			a._customer_id = b._id
 			and a._driver_id = c._id
-			and and a._order_type = 1
+			and a._order_type = 1
 			<if test="passengerPhone != null and passengerPhone != ''">and b._phone = #{passengerPhone,jdbcType=VARCHAR}</if>
 			<if test="driverPhone != null and driverPhone != ''">and c._phone = #{driverPhone,jdbcType=VARCHAR}</if>
 			<if test="orderStatus != null">and a._order_status = #{orderStatus,jdbcType=INTEGER}</if>

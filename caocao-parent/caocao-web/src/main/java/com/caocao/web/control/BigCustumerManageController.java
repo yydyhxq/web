@@ -1,6 +1,5 @@
 package com.caocao.web.control;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -111,15 +110,17 @@ public class BigCustumerManageController {
 	public Map<String, Object> QueryBigCustumerAccount(@ModelAttribute BigCustumerAccount bigCustumerAccount) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<BigCustumerAccount> list = bigCustumerManageService.QueryBigCustumerAccount(bigCustumerAccount);
-		for(int i=0; i<list.size(); i++) {
-			if(null != list.get(i).getSex()) {
-				if(0 == list.get(i).getSex()) {
-					list.get(i).setSexStr(SexCst.Sex.MAN);
-				} else if (1 == list.get(i).getSex()) {
-					list.get(i).setSexStr(SexCst.Sex.WOMAN);
+		if(list.size()>0) {
+			for(int i=0; i<list.size(); i++) {
+				if(null != list.get(i).getSex()) {
+					if(0 == list.get(i).getSex()) {
+						list.get(i).setSexStr(SexCst.Sex.MAN);
+					} else if (1 == list.get(i).getSex()) {
+						list.get(i).setSexStr(SexCst.Sex.WOMAN);
+					}
 				}
+			  }
 			}
-		}
 		map.put("total", list.size());
 		map.put("rows", list);
 		return map;

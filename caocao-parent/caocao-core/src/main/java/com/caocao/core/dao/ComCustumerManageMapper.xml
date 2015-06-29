@@ -7,7 +7,7 @@
 			a._sex as sex,
 			a._phone as phone,
 			a._invite_code as inviteCode,
-			a._create_time as registerTime,
+			a._register_time as registerTime,
 			b._cost_city as costCity,
 			d._type as carType,
 			count(*) as times,

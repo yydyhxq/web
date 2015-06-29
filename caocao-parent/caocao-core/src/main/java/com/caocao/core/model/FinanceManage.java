@@ -8,7 +8,11 @@ public class FinanceManage {
 	
 	private Date year;
 	
+	private String yearStr;
+	
 	private Date month;
+	
+	private String monthStr;
 	
 	private Double totalMoney;
 	
@@ -18,11 +22,15 @@ public class FinanceManage {
 	
 	private Date costProduceDate;
 	
+	private String costProduceDateStr;
+	
 	private Date costProduceBegin;
 	
 	private Date costProduceEnd;
 	
 	private Date costArriveDate;
+	
+	private String costArriveDateStr;
 	
 	private Date costArriveBegin;
 	
@@ -42,30 +50,6 @@ public class FinanceManage {
 	
 	private Double platServiceCost;
 
-	public Double getServiceAward() {
-		return serviceAward;
-	}
-
-	public void setServiceAward(Double serviceAward) {
-		this.serviceAward = serviceAward;
-	}
-
-	public Double getOtherAward() {
-		return otherAward;
-	}
-
-	public void setOtherAward(Double otherAward) {
-		this.otherAward = otherAward;
-	}
-
-	public Double getPlatServiceCost() {
-		return platServiceCost;
-	}
-
-	public void setPlatServiceCost(Double platServiceCost) {
-		this.platServiceCost = platServiceCost;
-	}
-
 	public String getCompanyName() {
 		return companyName;
 	}
@@ -82,12 +66,28 @@ public class FinanceManage {
 		this.year = year;
 	}
 
+	public String getYearStr() {
+		return yearStr;
+	}
+
+	public void setYearStr(String yearStr) {
+		this.yearStr = yearStr;
+	}
+
 	public Date getMonth() {
 		return month;
 	}
 
 	public void setMonth(Date month) {
 		this.month = month;
+	}
+
+	public String getMonthStr() {
+		return monthStr;
+	}
+
+	public void setMonthStr(String monthStr) {
+		this.monthStr = monthStr;
 	}
 
 	public Double getTotalMoney() {
@@ -122,6 +122,14 @@ public class FinanceManage {
 		this.costProduceDate = costProduceDate;
 	}
 
+	public String getCostProduceDateStr() {
+		return costProduceDateStr;
+	}
+
+	public void setCostProduceDateStr(String costProduceDateStr) {
+		this.costProduceDateStr = costProduceDateStr;
+	}
+
 	public Date getCostProduceBegin() {
 		return costProduceBegin;
 	}
@@ -144,6 +152,14 @@ public class FinanceManage {
 
 	public void setCostArriveDate(Date costArriveDate) {
 		this.costArriveDate = costArriveDate;
+	}
+
+	public String getCostArriveDateStr() {
+		return costArriveDateStr;
+	}
+
+	public void setCostArriveDateStr(String costArriveDateStr) {
+		this.costArriveDateStr = costArriveDateStr;
 	}
 
 	public Date getCostArriveBegin() {
@@ -192,5 +208,29 @@ public class FinanceManage {
 
 	public void setInviteMoney(Double inviteMoney) {
 		this.inviteMoney = inviteMoney;
+	}
+
+	public Double getServiceAward() {
+		return serviceAward;
+	}
+
+	public void setServiceAward(Double serviceAward) {
+		this.serviceAward = serviceAward;
+	}
+
+	public Double getOtherAward() {
+		return otherAward;
+	}
+
+	public void setOtherAward(Double otherAward) {
+		this.otherAward = otherAward;
+	}
+
+	public Double getPlatServiceCost() {
+		return platServiceCost;
+	}
+
+	public void setPlatServiceCost(Double platServiceCost) {
+		this.platServiceCost = platServiceCost;
 	}
 }

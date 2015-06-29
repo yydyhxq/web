@@ -1,6 +1,0 @@
-gap.core.message.error=\u7cfb\u7edf\u7e41\u5fd9,\u7a0d\u540e\u518d\u8bd5!
-gap.core.message.success=\u64cd\u4f5c\u6210\u529f
-
-gap.core.exception.server.internal.error=\u7cfb\u7edf\u5185\u90e8\u5f02\u5e38, \u8bf7\u8054\u7cfb\u7ba1\u7406\u5458!
-gap.core.exception.database.error=\u6570\u636e\u5e93\u5f02\u5e38, \u8bf7\u8054\u7cfb\u7ba1\u7406\u5458!
-gap.core.exception.object.noexists=\u5bf9\u8c61\u5df2\u88ab\u4fee\u6539\u6216\u4e0d\u5b58\u5728!

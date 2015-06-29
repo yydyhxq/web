@@ -4,8 +4,8 @@
   <select id="SelectBigCustomerAccountStat" resultType="com.caocao.core.model.FinanceManage" parameterType="com.caocao.core.model.FinanceManage" >
 	select 
 		  d._name as companyName,
-		  date_format(a._createtime,'%Y') as year,
-		  date_format(a._createtime,'%m') as month,
+		  date_format(a._createtime,'%Y-%m-%d') as year,
+		  date_format(a._createtime,'%Y-%m-%d') as month,
 		  sum(a._cost_money) as totalMoney,
 		  sum(a._cost_money) -sum(_cost_real_money)  as disTotalMoney,
 	   	  sum(_cost_real_money) as incomeTotal
@@ -18,15 +18,15 @@
 		  and c._owner=2  
 		  and d._company_code=b._company_code
 		  <if test="companyName != null and companyName != ''">and d._name like '%#{companyName,jdbcType=VARCHAR}%'</if>
-		  <if test="year != null and year != ''"><![CDATA[and DATE_FORMAT(a._createtime,'%Y') = DATE_FORMAT(#{year,jdbcType=TIMESTAMP}, '%Y')]]></if>
- 		  <if test="month != null and month != ''"><![CDATA[and DATE_FORMAT(a._createtime, '%m') <= DATE_FORMAT(#{month,jdbcType=TIMESTAMP}, '%m')]]></if>
+		  <if test="year != null and year != ''">and DATE_FORMAT(a._createtime,'%Y') = DATE_FORMAT(#{year,jdbcType=TIMESTAMP}, '%Y')</if>
+ 		  <if test="month != null and month != ''">and DATE_FORMAT(a._createtime, '%m') = DATE_FORMAT(#{month,jdbcType=TIMESTAMP}, '%m')</if>
 	group by d._name,date_format(a._createtime,'%Y'),date_format(a._createtime,'%m')
   </select>
   
   <select id="SelectBusinesTotalIncomeStat" resultType="com.caocao.core.model.FinanceManage" parameterType="com.caocao.core.model.FinanceManage" >
     select 
-    		date_format(a._createtime,'%Y') as year,
-    		date_format(a._createtime,'%m') as month,
+    		date_format(a._createtime,'%Y-%m-%d') as year,
+    		date_format(a._createtime,'%Y-%m-%d') as month,
 		    sum(a._cost_money) as totalMoney,
 		    sum(a._cost_money) -sum(_cost_real_money) as disTotalMoney,
 			sum(_cost_real_money) as incomeTotal
@@ -34,19 +34,20 @@
  			tsp_caocao_customer_bill_info a,
 			tsp_caocao_custumer b ,
 			tsp_caocao_order  c 
-			<if test="year != null and year != ''"><![CDATA[and DATE_FORMAT(a._createtime,'%Y') = DATE_FORMAT(#{year,jdbcType=TIMESTAMP}, '%Y')]]></if>
- 		    <if test="month != null and month != ''"><![CDATA[and DATE_FORMAT(a._createtime, '%m') <= DATE_FORMAT(#{month,jdbcType=TIMESTAMP}, '%m')]]></if>
+	where   1=1
+			<if test="year != null and year != ''">and DATE_FORMAT(a._createtime,'%Y') = DATE_FORMAT(#{year,jdbcType=TIMESTAMP}, '%Y')</if>
+ 		    <if test="month != null and month != ''">and DATE_FORMAT(a._createtime, '%m') = DATE_FORMAT(#{month,jdbcType=TIMESTAMP}, '%m')</if>
 	group by date_format(a._createtime,'%Y'),date_format(a._createtime,'%m')
   </select>
   
   <select id="SelectPlatRewardStat" resultType="com.caocao.core.model.FinanceManage" parameterType="com.caocao.core.model.FinanceManage" >
-    select 	date_format(a._createtime,'%Y') as year,
-    		date_format(a._createtime,'%Y-%m-%d')as costProduceDate ,
+    select 	date_format(a._createtime,'%Y-%m-%d') as year,
+    		date_format(a._createtime,'%Y-%m-%d') as costProduceDate,
 			sum(a._cost_money -a._cost_real_money)  as totalBackMoney
  	from 
  			tsp_caocao_driver_bill_info a 
- 	where
- 			<if test="year != null and year != ''"><![CDATA[and DATE_FORMAT(a._createtime,'%Y') = DATE_FORMAT(#{year,jdbcType=TIMESTAMP}, '%Y')]]></if>
+ 	where   1=1
+ 			<if test="year != null and year != ''">and DATE_FORMAT(a._createtime,'%Y') = DATE_FORMAT(#{year,jdbcType=TIMESTAMP}, '%Y')</if>
  			<if test="costProduceBegin != null and costProduceBegin != ''"><![CDATA[and DATE_FORMAT(a._createtime, '%Y-%m-%d') >= DATE_FORMAT(#{costProduceBegin,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
  			<if test="costProduceEnd != null and costProduceEnd != ''"><![CDATA[and DATE_FORMAT(a._createtime, '%Y-%m-%d') <= DATE_FORMAT(#{costProduceEnd,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
  			group by DATE_FORMAT(a._createtime,'%Y-%m-%d')
@@ -54,7 +55,7 @@
   
   <select id="SelectDriverIncome" resultType="com.caocao.core.model.FinanceManage" parameterType="com.caocao.core.model.FinanceManage" >
     select 
-		    date_format(a._createtime,'%Y') as year,
+		    date_format(a._createtime,'%Y-%m-%d') as year,
 		    DATE_FORMAT(a._createtime,'%Y-%m-%d') as costArriveDate,
 			sum(a._cost_money) as baseIncomeMoney,
 			0 as servicereward,
@@ -62,8 +63,8 @@
 			sum(a._cost_money) as incomeTotal
  	from 
  			tsp_caocao_driver_bill_info a 
- 	where
- 			<if test="year != null and year != ''"><![CDATA[and DATE_FORMAT(a._createtime,'%Y') = DATE_FORMAT(#{year,jdbcType=TIMESTAMP}, '%Y')]]></if>
+ 	where   1=1
+ 			<if test="year != null and year != ''">and DATE_FORMAT(a._createtime,'%Y') = DATE_FORMAT(#{year,jdbcType=TIMESTAMP}, '%Y')</if>
  			<if test="costArriveBegin != null and costArriveBegin != ''"><![CDATA[and DATE_FORMAT(a._createtime, '%Y-%m-%d') >= DATE_FORMAT(#{costArriveBegin,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
  			<if test="costArriveEnd != null and costArriveEnd != ''"><![CDATA[and DATE_FORMAT(a._createtime, '%Y-%m-%d') <= DATE_FORMAT(#{costArriveEnd,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
  			group by DATE_FORMAT(a._createtime,'%Y-%m-%d')

@@ -31,7 +31,6 @@
 			if(name==""||sex==""||phone==""){
 				layer.msg("必填项为空");return false;
 			}
-			
 			var form = $("#form").serialize();
 			var url = 'http://localhost:8080//caocao/drivermanage/add.do';
 			$.ajax({
@@ -91,8 +90,8 @@
                 </div>
                 <div data-title="性别">
                 	<span class="radio" >
-                        <input type="radio" name="sex" value="0" checked="checked"/>是
-                        <input type="radio" name="sex" value="1"  style="margin-left:35px"/>否
+                        <input type="radio" name="sex" value="0" checked="checked"/>男
+                        <input type="radio" name="sex" value="1"  style="margin-left:35px"/>女
                     </span>
                 </div>
                 <div data-title="户籍所在地">

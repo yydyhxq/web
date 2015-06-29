@@ -86,7 +86,8 @@ public class CarTypeController {
 	public Map<String, Object> QueryPageList(@ModelAttribute CarType carType) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<CarType> list = carTypeService.QueryPageList(carType);
-		for(int i=0; i<list.size(); i++) {
+		if(list.size()>0) {
+			for(int i=0; i<list.size(); i++) {
 		    	if(null != list.get(i).getType()) {
 		    		if (1 == list.get(i).getType()) {
 		    			list.get(i).setTypeStr(CarTypeCst.CarType.TYPE_ECONOMICAL);
@@ -99,7 +100,8 @@ public class CarTypeController {
 		    		}
 		    	} else {
 		    		list.get(i).setTypeStr("");
-		    	};
+		    	}
+		    }
 		}
 		map.put("total", list.size());
 		map.put("rows", list);

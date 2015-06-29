@@ -171,7 +171,6 @@
                                 <thead>
                                     <tr>
                                     	<th data-options="field:'id',width:80" hidden="true">id</th>
-                                    	
                                         <th data-options="field:'name',width:90 ">姓名</th>
                                         <th data-options="field:'sexStr',width:90">性别</th>
                                         <th data-options="field:'phone',width:90">手机号</th>
@@ -214,8 +213,9 @@
                     <input type="text" class="inputcls required" id="name" name="name" />
                     <label>性别</label>
                     <select class="select" name="sex" id="sex">
-                        <option value="1">男</option>
-                        <option value="2">女</option>
+                     	<option value="">--请选择性别--</option>
+                        <option value="0">男</option>
+                        <option value="1">女</option>
                     </select>
                 </div>
                 <div class="toastcls1 clearfix">
@@ -254,6 +254,8 @@
         var url;
         var type;
         function newuser() {
+        	$("#registerTime").attr("name","registerTime");
+        	$("#sex").attr('name','sex');
         	$("#save").show().siblings("#save1").hide();
         	$("#registerTime").attr("name","registerTime");
             $("#dlg").dialog("open").dialog('setTitle', 'New User'); ;
@@ -263,7 +265,7 @@
         }
         function edituser() {
         	$("#registerTime").attr("name","registerTimeStr");
-        	
+        	$("#sex").attr('name','sexStr');
         	$("#save1").show().siblings("#save").hide();
             var row = $("#dg").datagrid("getSelected");
             if (row) {
@@ -322,9 +324,8 @@
 		
 		
 		function saveuser1(){ 
-			
 			$("#registerTime").attr("name","registerTime");
-			
+			$("#sex").attr('name','sex');
 			var name = $("#name").val(); //获取公司名称
 		    /* var companyAddress = $("#companyAddress").val(); //获取公司地址  */
 			var sex = $("#sex").val(); //获取所在城市	

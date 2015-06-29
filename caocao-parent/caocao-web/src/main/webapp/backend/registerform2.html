@@ -16,15 +16,22 @@
 	$(function(){
 		//获取id名
 		var id = getId("id");
+		
 		var url="/caocao/drivermanage/queryid.do?id="+id;
 		$.ajax({
 			url:url,
 			dataType:'json',
 			success:function(data){
 				$("#name").val(data.name);
-				$("#sex").val(data.sex);
+				/* $("#sex").val(data.sexStr); */
+				if(data.sex=="0"){
+				 	$("#sex").val("男"); 
+				}else{
+					 $("#sex").val("女"); 	
+				}
 				$("#birthPlace").val(data.birthPlace);
 				$("#livePlace").val(data.livePlace);
+				$("#phone").val(data.phone);
 				$("#email").val(data.email);
 				$("#cardno").val(data.cardno);
 				$("#qualifiedDate").val(data.qualifiedDate);
@@ -74,7 +81,7 @@
                 	<input type="text" class="inputcls" id="name" name="name"/>
                 </div>
                 <div data-title="性别">
-                	<input type="text" class="inputcls" id="sex" name="sex" />
+                	<input type="text" class="inputcls" id="sex" name="sexStr" />
                 </div>
                 <div data-title="户籍所在地">
                 	<input type="text" class="inputcls"  id="birthPlace" name="birthPlace" />

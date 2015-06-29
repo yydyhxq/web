@@ -86,11 +86,13 @@ public class BigCompanyController {
 	public Map<String, Object> QueryPageList(@ModelAttribute VipCompany vipCompany) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<VipCompany> list = bigCompanyService.QueryPageList(vipCompany);
-		for(int i=0; i<list.size(); i++) {
-			if(list.get(i).getSignDate() != null) {
-				list.get(i).setSignDateStr(DateAndStr.DateToStr(list.get(i).getSignDate()));
+		if(list.size()>0) {
+			for(int i=0; i<list.size(); i++) {
+				if(list.get(i).getSignDate() != null) {
+					list.get(i).setSignDateStr(DateAndStr.DateToStr(list.get(i).getSignDate()));
+				}
+			  }
 			}
-		}
 		map.put("total", list.size());
 		map.put("rows", list);
 		return map;

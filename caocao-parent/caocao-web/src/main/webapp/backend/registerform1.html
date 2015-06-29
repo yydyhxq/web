@@ -25,11 +25,12 @@
 				if(data.sex=="0"){
 					$("#sex1").attr("checked","checked").siblings().removeAttr("checked");
 				}else{
-					$("sex2").attr("checked","checked").siblings().removeAttr("checked");
+					$("#sex2").attr("checked","checked").siblings().removeAttr("checked");
 				}
 				$("#birthPlace").val(data.birthPlace);
 				$("#livePlace").val(data.livePlace);
 				$("#email").val(data.email);
+				$("#phone").val(data.phone);
 				$("#cardno").val(data.cardno);
 				$("#qualifiedDate").val(data.qualifiedDate);
 				$("#educateDegree").val(data.educateDegree);

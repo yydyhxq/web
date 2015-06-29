@@ -23,13 +23,11 @@
 		
 			//查询
 		$("#search").click(function(){
-			var year = $("input[name='year']").val(); //获取年
-			var month= $("input[name='month']").val(); //获取月
-			var month= $("input[name='costProduceBegin']").val();
-			var month= $("input[name='costProduceEnd']").val();
+			var year = $("select[name='year']").val(); //获取年
+			var costProduceBegin= $("input[name='costProduceBegin']").val();
+			var costProduceEnd= $("input[name='costProduceEnd']").val();
 			$("#dg").datagrid('load',{
-				year:year,
-				month:month,
+				year:year,			
 				costProduceBegin:costProduceBegin,
 				costProduceEnd:costProduceEnd
 			})
@@ -138,18 +136,18 @@
                     	<div class="mainConcls2 clearfix">
                             <label>年度</label>
                             <select class="select" name="year" id="year">
-                				<option value="2015">2015</option>
-                                <option value="2016">2016</option>
-                                <option value="2017">2017</option>
-                                <option value="2018">2018</option>
-                                <option value="2019">2019</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
-                                <option value="2024">2024</option>
-                                <option value="2025">2025</option>                      
-                			</select>                         
+                				<option value="2015-01-01">2015</option>
+                                <option value="2016-01-01">2016</option>
+                                <option value="2017-01-01">2017</option>
+                                <option value="2018-01-01">2018</option>
+                                <option value="2019-01-01">2019</option>
+                                <option value="2020-01-01">2020</option>
+                                <option value="2021-01-01">2021</option>
+                                <option value="2022-01-01">2022</option>
+                                <option value="2023-01-01">2023</option>
+                                <option value="2024-01-01">2024</option>
+                                <option value="2025-01-01">2025</option>                      
+                			</select>                
                         	<label style="margin-left:10px">费用产生日期</label>
                             <input type="text" class="Wdate inputcls rightcls8"   onclick="WdatePicker()" name="costProduceBegin">
                             <label class="mainConcls2_2">至</label>
@@ -165,8 +163,8 @@
                    		 <table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'/caocao/financemanage/queryplat.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                             <thead>
                                 <tr>
-                                    <th data-options="field:'year',width:90">年度</th>
-                                    <th data-options="field:'month',width:120">费用产生日期</th>
+                                    <th data-options="field:'yearStr',width:90">年度</th>
+                                    <th data-options="field:'costProduceDateStr',width:120">费用产生日期</th>
                                     <th data-options="field:'totalBackMoney',width:90">合计返利金额</th>
                                 </tr>
                              </thead>                   

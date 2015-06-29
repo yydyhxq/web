@@ -93,7 +93,7 @@ $(function(){
                                 <li><em></em><a href="vipWatch.html">账户明细查看</a></li>
                             </ul>
                         </li>
-                        <li><a class="mainMenucls currentcls1">普通客户管理</a>
+                        <li class="currentcls1"><a class="mainMenucls ">普通客户管理</a>
                         	<ul class="thirdMenu ">
                             	<li class="currentcls2"><em></em><a href="basicService.html">基本信息维护</a></li>
                                 <li><em></em><a href="basicWatch.html">账户明细查看</a></li>
@@ -153,12 +153,12 @@ $(function(){
                     <!--内容 start-->
 
                     <div class="mainConcls3">
-                    	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'/caocao/comcustumer/comcustumer.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
+                    	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'/caocao/comcustumer/custumerbase.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                         	<thead>
                             	<tr>
                                 	<th  data-options="field:'id',width:80" hidden="true">id</th>
                                     <th  data-options="field:'name',width:80">姓名</th>
-                                    <th  data-options="field:'sex',width:80">性别</th>
+                                    <th  data-options="field:'sexStr',width:80">性别</th>
                                     <th  data-options="field:'phone',width:80">手机号</th>
                                     <th  data-options="field:'costTimes',width:80">消费次数</th>
                                     <th  data-options="field:'costMoney',width:80">消费金额</th>
