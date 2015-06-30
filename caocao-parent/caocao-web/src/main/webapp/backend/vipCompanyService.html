@@ -280,7 +280,7 @@
         function edituser() {
         	$("#save1").show().siblings("#save").hide();
         	$("#signDate").attr('name','signDateStr')
-        	alert($("#signDate").attr('name'))
+        	
             var row = $("#dg").datagrid("getSelected");
             if (row) {
                 $("#dlg").dialog("open").dialog('setTitle', 'Edit User');
@@ -340,7 +340,7 @@
 		
 		function saveuser1(){  
 			$("#signDate").attr("name","signDate");
-			alert($("#signDate").attr("name"));
+			
 			var name = $("#name").val(); //获取公司名称
 			var companyAddress = $("#companyAddress").val(); //获取公司地址
 			var cityCode = $("#cityCode").val(); //获取所在城市

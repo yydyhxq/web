@@ -22,6 +22,7 @@
 			var livePlace=$("#livePlace").val();//获取现居住地址
 			var phone=$("#phone").val();//联系电话
 			var email=$("#email").val();//电子邮箱
+			var driverAge = $("#driverAge").val()
 			var educateDegree=$("#educateDegree").val();//学历
 			var height=$("#height").val();//身高/体重
 			var weight=$("#weight").val();//身高/体重
@@ -32,7 +33,7 @@
 				layer.msg("必填项为空");return false;
 			}
 			var form = $("#form").serialize();
-			var url = 'http://localhost:8080//caocao/drivermanage/add.do';
+			var url = '/caocao/drivermanage/add.do';
 			$.ajax({
 				type:"post",
 				url:url,
@@ -45,7 +46,7 @@
 		        	if(result=="4"){layer.alert("系统异常请联系管理员")}
 		        	if(result=="3"){  
 		        		layer.alert("保存成功")
-		        		
+		        		setTimeout('back("driverService.html")',3000);
 		        		/* setTimeout(window.location.href="driverService.html",3000); */
 		        	};
 				},
@@ -56,6 +57,12 @@
 			})
 		});
 	});
+	
+	function back(url){
+		var url = url;
+		window.location.href=url;
+		
+	}
 </script>
 <title>应聘人员信息登记表</title>
 </head>
@@ -111,7 +118,7 @@
                 	<input type="text" class="inputcls" id="cardno" name="cardno"/>
                 </div>
                 <div data-title="取得驾照时间">
-                	<input type="text" class="Wdate inputcls "  onclick="WdatePicker({position:{left:200,top:0}})"  />
+                	<input type="text" class="Wdate inputcls "  onclick="WdatePicker({position:{left:200,top:0}})"  id="drivelicenseDate" name="drivelicenseDate" />
                 </div>
                  <div data-title="培训合格日期">
                 	<input type="text" class="Wdate inputcls "  onclick="WdatePicker({position:{left:200,top:0}})"  id="qualifiedDate" name="qualifiedDate"/>

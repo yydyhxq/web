@@ -41,6 +41,7 @@ public class DriverManageController {
 //			success = 0;
 //			return success;
 //		}
+		driver.setIsQualified(1);
 		driver.setCreatetime(new Date());
 		Driver modelDO = driverManageService.QueryOne(driver);
 		if(!(modelDO == null)) {
@@ -67,6 +68,7 @@ public class DriverManageController {
 //			success = 0;
 //			return success;
 //		}
+		driver.setIsQualified(1);
 		driver.setUpdatetime(new Date());
 		Driver modelDO = driverManageService.QueryById(driver);
 		if(!(modelDO == null)) {

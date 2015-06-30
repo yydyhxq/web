@@ -549,7 +549,7 @@
     <if test="id != null and id != ''">and _id = #{id,jdbcType=INTEGER}</if>
     <if test="username != null and username != ''">and _username = #{username,jdbcType=VARCHAR}</if>
     <if test="phone != null and phone != ''">and _phone = #{phone,jdbcType=VARCHAR}</if>
- 	<if test="companyName != null and companyName != ''">and _company_name like '%#{companyName,jdbcType=VARCHAR}%'</if>
+ 	<if test="companyName != null and companyName != ''">and _company_name like concat(concat('%',{companyName,jdbcType=VARCHAR}),'%')</if>
   </select>
   
   <select id="QueryOne" resultType="com.caocao.core.model.Admin" parameterType="com.caocao.core.model.Admin" >

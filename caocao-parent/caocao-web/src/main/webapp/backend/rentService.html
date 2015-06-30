@@ -29,12 +29,12 @@
 		 //查询
 		$("#search").click(function(){
 			var name = $("input[name='name']").val(); //获取用户名称
-			var phone =$("input[name='phone']").val(); //获取用户手机号
+			var contactPhone =$("input[name='contactPhone']").val(); //获取用户手机号
 			var cityCode =$("input[name='cityCode']").val();//获取公司名称
 			
 			$("#dg").datagrid('load',{
 				name:name,
-				phone:phone,
+				contactPhone:contactPhone,
 				cityCode:cityCode
 			})
 			$('#dg').datagrid('reload');    // reload the current page data			
@@ -145,7 +145,7 @@
                		<div class="mainConcls1  clearfix">
                     	<div class="mainConcls2 clearfix">
                        		<label>公司名称</label><input type="text" class="inputcls" name="name" />
-                            <label>联系电话</label><input type="text" class="inputcls" name="phone" />
+                            <label>联系电话</label><input type="text" class="inputcls" name="contactPhone" />
                             <label>所在城市</label><input type="text"  placeholder="请输入城市名" id="cityCode" name="cityCode" class="inputcls" />
                         </div>                       
                         <div class="mainConcls2 mainConcls2_1 clearfix">
@@ -278,7 +278,7 @@
 			var companyCode =$("#companyCode").val();//获取企业代码
 			var masterName = $("#masterName").val(); //获取法人
 			var masterNumber = $("#masterNumber").val(); //获取法人身份证
-			var phone = $("#phone").val(); //获取备联系电话
+			var contactPhone = $("#contactPhone").val(); //获取备联系电话
 			var signDate = $("#signDate").val(); //获取签约日期
 			var remark = $("#remark").val(); //获取备注名称
 			if(name==""){layer.msg("请输入公司名称");return false;}
@@ -287,7 +287,7 @@
 			if(companyCode==""){layer.msg("请输入企业代码");return false;}
 			if(masterName==""){layer.msg("法人不能为空");return false;}
 			if(masterNumber==""){layer.msg("请输入法人身份证");return false;}
-			if(phone==""){layer.msg("请输联系电话");return false;}
+			if(contactPhone==""){layer.msg("请输联系电话");return false;}
 			if(signDate=""){layer.msg("请输入签约日期");return false;}
 			
 			var form = $("#fm").serialize();
@@ -319,7 +319,7 @@
 			var companyCode =$("#companyCode").val();//获取企业代码
 			var masterName = $("#masterName").val(); //获取法人
 			var masterNumber = $("#masterNumber").val(); //获取法人身份证
-			var phone = $("#phone").val(); //获取备联系电话
+			var contactPhone = $("#contactPhone").val(); //获取备联系电话
 			var signDate = $("#signDate").val(); //获取签约日期
 			var remark = $("#remark").val(); //获取备注名称
 			if(name==""){layer.msg("请输入公司名称");return false;}
@@ -328,7 +328,7 @@
 			if(companyCode==""){layer.msg("请输入企业代码");return false;}
 			if(masterName==""){layer.msg("法人不能为空");return false;}
 			if(masterNumber==""){layer.msg("请输入法人身份证");return false;}
-			if(phone==""){layer.msg("请输联系电话");return false;}
+			if(contactPhone==""){layer.msg("请输联系电话");return false;}
 			if(signDate==""){layer.msg("请输入签约日期");return false;}
 			
 			var form = $("#fm").serialize();

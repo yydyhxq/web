@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class BookOrder {
 
-	private String orderId;
+	private Integer orderId;
 	
 	private String passengerName;
 	
@@ -45,12 +45,12 @@ public class BookOrder {
 	private Date onCarTime;
 	
 	private Double costMoney;
-
-	public String getOrderId() {
+	
+	public Integer getOrderId() {
 		return orderId;
 	}
 
-	public void setOrderId(String orderId) {
+	public void setOrderId(Integer orderId) {
 		this.orderId = orderId;
 	}
 

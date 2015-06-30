@@ -41,6 +41,7 @@ public class UserManageController {
 //			success = 0;
 //			return success;
 //		}
+		admin.setIsactive(0);
 		admin.setCreatetime(new Date());
 		Admin modelDO = userManageService.QueryOne(admin);
 		if(!(modelDO == null)) {

@@ -274,8 +274,8 @@
 			_version as version
     from 	tsp_caocao_cartype
     where 	1=1
-    <if test="brand != null and brand != ''">and _brand like '%#{brand,jdbcType=VARCHAR}%'</if>
-    <if test="mode != null and mode != ''">and _mode like '%#{mode,jdbcType=VARCHAR}%'</if>
+    <if test="brand != null and brand != ''">and _brand like concat(concat('%',#{brand,jdbcType=VARCHAR}),'%')</if>
+    <if test="mode != null and mode != ''">and _mode like concat(concat('%',#{mode,jdbcType=VARCHAR}),'%')</if>
     <if test="type != null and type != ''">and _type = #{type,jdbcType=INTEGER}</if>
   </select>
   

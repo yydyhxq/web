@@ -32,7 +32,8 @@
 				$("#email").val(data.email);
 				$("#phone").val(data.phone);
 				$("#cardno").val(data.cardno);
-				$("#qualifiedDate").val(data.qualifiedDate);
+				$("#driverAge").val(data.driverAge);
+				$("#qualifiedDate").val(data.qualifiedDateStr);
 				$("#educateDegree").val(data.educateDegree);
 				$("#height").val(data.height);
 				$("#weight").val(data.weight);
@@ -78,7 +79,9 @@
 		        	if(result=="2"){layer.alert("数据修改失败")}
 		        	if(result=="4"){layer.alert("系统异常请联系管理员")}
 		        	if(result=="3"){  
-		        		layer.alert("保存成功")};
+		        		layer.alert("保存成功");
+		        		setTimeout('back("driverService.html")',3000);	
+		        	};
 				},
 				error:function(){
 					layer.msg("网络异常，请稍后再试！")	
@@ -220,5 +223,11 @@
 		}
 		return id;
 	 }
+	
+	function back(url){
+		var url = url;
+		window.location.href=url;
+		
+	}
 </script>
 </html>

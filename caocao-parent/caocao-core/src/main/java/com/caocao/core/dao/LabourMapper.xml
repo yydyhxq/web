@@ -548,7 +548,7 @@
     		_sign_date as signDate
     from 	tsp_caocao_labour 
     where 	1=1
-    <if test="name != null and name != ''">and _name like '%#{name,jdbcType=VARCHAR}%'</if>
+    <if test="name != null and name != ''">and _name like concat(concat('%',#{name,jdbcType=VARCHAR}),'%')</if>
     <if test="contactPhone != null and contactPhone != ''">and _contact_phone = #{contactPhone,jdbcType=VARCHAR}</if>
     <if test="cityCode != null and cityCode != ''">and _city_code = #{cityCode,jdbcType=VARCHAR}</if>
     <if test="signDateBegin != null and signDateBegin != ''"><![CDATA[and DATE_FORMAT(_sign_date, '%Y-%m-%d') >= DATE_FORMAT(#{signDateBegin,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>

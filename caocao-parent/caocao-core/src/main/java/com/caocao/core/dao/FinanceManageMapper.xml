@@ -17,7 +17,7 @@
 	where b._type=2 
 		  and c._owner=2  
 		  and d._company_code=b._company_code
-		  <if test="companyName != null and companyName != ''">and d._name like '%#{companyName,jdbcType=VARCHAR}%'</if>
+		  <if test="companyName != null and companyName != ''">and d._name like concat(concat('%',#{companyName,jdbcType=VARCHAR}),'%')</if>
 		  <if test="year != null and year != ''">and DATE_FORMAT(a._createtime,'%Y') = DATE_FORMAT(#{year,jdbcType=TIMESTAMP}, '%Y')</if>
  		  <if test="month != null and month != ''">and DATE_FORMAT(a._createtime, '%m') = DATE_FORMAT(#{month,jdbcType=TIMESTAMP}, '%m')</if>
 	group by d._name,date_format(a._createtime,'%Y'),date_format(a._createtime,'%m')
