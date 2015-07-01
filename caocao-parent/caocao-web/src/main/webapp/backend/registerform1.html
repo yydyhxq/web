@@ -44,6 +44,7 @@
 				}
 				$("#brand").val(data.brand);
 				$("#mode").val(data.mode);
+				$("#remark").val(data.remark);
 			}
 
 		});
@@ -80,7 +81,7 @@
 		        	if(result=="4"){layer.alert("系统异常请联系管理员")}
 		        	if(result=="3"){  
 		        		layer.alert("保存成功");
-		        		setTimeout('back("driverService.html")',3000);	
+		        		setTimeout('back("driverService.html")',1500);	
 		        	};
 				},
 				error:function(){
@@ -145,7 +146,7 @@
                 	<input type="text" class="inputcls" id="cardno" name="cardno"/>
                 </div>
                 <div data-title="取得驾照时间">
-                	<input type="text" class="inputcls" onclick="WdatePicker({position:{left:200,top:0}})"  id="drivelicenseDate" name="drivelicenseDate"/>
+                	<input type="text" class="Wdate inputcls" onclick="WdatePicker({position:{left:200,top:0}})"  id="drivelicenseDate" name="drivelicenseDate"/>
                 </div>
                 <div data-title="培训合格日期">
                 	<input type="text" class="Wdate inputcls "  onclick="WdatePicker({position:{left:200,top:0}})"  id="qualifiedDate" name="qualifiedDate"/>

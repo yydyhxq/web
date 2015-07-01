@@ -87,7 +87,7 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
 .toastbtns .btnA{margin:0px 10px;width:87px;height:28px;line-height:28px;}
 .toastbtns .btnA:hover{background:#8E8EE7;color:#fff;-webkit-transition: all 0.3s ease-in-out;-moz-transition: all 0.3s ease-in-out;-o-transition: all 0.3s ease-in-out;-ms-transition: all 0.3s ease-in-out;}
 .inputcls.required{background:#FFEE99;}
-.toastcls .select2-container .select2-choice{   background-color: #FFEE99;
+.panel  .select2-container .select2-choice{   background-color: #FFEE99;
     background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #FFEE99), color-stop(0.5, #FFEE99));
     background-image: -webkit-linear-gradient(center bottom, #FFEE99 0%, #FFEE99 50%);
     background-image: -moz-linear-gradient(center bottom, #FFEE99 0%, #FFEE99 50%);

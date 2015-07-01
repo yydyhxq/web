@@ -41,12 +41,22 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
-				<version>2.6</version>
 				<configuration>
 					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
 			<plugin>
+			    <groupId>org.apache.tomcat.maven</groupId>
+			    <artifactId>tomcat7-maven-plugin</artifactId>
+			    <version>2.1</version>
+			    <configuration>
+			        <!-- 注意此处的url -->
+			        <url>http://localhost:8080/manager/text</url>
+			        <server>tomcat7</server> <!-- 此处的名字必须和setting.xml中配置的ID一致-->
+			        <path>/caocao</path> <!-- 此处的名字是项目发布的工程名-->
+			    </configuration>
+			</plugin>
+			<!-- <plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.1</version>
@@ -56,7 +66,7 @@
 					<uriEncoding>UTF-8</uriEncoding>
 					<server>tomcat7</server>
 				</configuration>
-			</plugin>
+			</plugin> -->
 			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>tomcat7-maven-plugin</artifactId> 
 				<version>2.1</version> <configuration> <path>/caocao</path> <port>8080</port> 
 				<uriEncoding>utf-8</uriEncoding> <ignorePackaging>true</ignorePackaging> 
@@ -145,17 +155,6 @@
 				<plugin>
 					<artifactId>maven-site-plugin</artifactId>
 					<version>2.0.1</version>
-				</plugin>
-				<plugin>
-				    <groupId>org.apache.tomcat.maven</groupId>
-				    <artifactId>tomcat7-maven-plugin</artifactId>
-				    <version>2.1</version>
-				    <configuration>
-				        <!-- 注意此处的url -->
-				        <url>http://localhost:8080/manager/text</url>
-				        <server>tomcat7</server> <!-- 此处的名字必须和setting.xml中配置的ID一致-->
-				        <path>/mavenProject</path> <!-- 此处的名字是项目发布的工程名-->
-				    </configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>

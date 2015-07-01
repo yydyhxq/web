@@ -45,10 +45,14 @@
 				}
 				$("#brand").val(data.brand);
 				$("#mode").val(data.mode);
+				$("#remark").val(data.remark);
 			}
 		})
 	});
 </script>
+<style>
+	 input[readonly]{background-color:#fff}
+</style>
 <title>应聘人员信息登记表</title>
 </head>
 
@@ -78,71 +82,71 @@
         	<div class="formcls">
             
             	<div data-title="姓名">
-                	<input type="text" class="inputcls" id="name" name="name"/>
+                	<input type="text" class="inputcls" id="name" name="name" readonly="readonly" />
                 </div>
                 <div data-title="性别">
-                	<input type="text" class="inputcls" id="sex" name="sexStr" />
+                	<input type="text" class="inputcls" id="sex" name="sexStr" readonly="readonly"/>
                 </div>
                 <div data-title="户籍所在地">
-                	<input type="text" class="inputcls"  id="birthPlace" name="birthPlace" />
+                	<input type="text" class="inputcls"  id="birthPlace" name="birthPlace" readonly="readonly"/>
                 </div>
                 <div data-title="现居住地址">
-                	<input type="text" class="inputcls"  id="livePlace" name="livePlace"/>
+                	<input type="text" class="inputcls"  id="livePlace" name="livePlace" readonly="readonly"/>
                 </div>
                 <div data-title="联系电话">
-                	<input type="text" class="inputcls" id="phone"  name="phone"/>
+                	<input type="text" class="inputcls" id="phone"  name="phone" readonly="readonly"/>
                 </div>
                 <div data-title="电子邮箱">
-                	<input type="text" class="inputcls"  id="email" name="email"/>
+                	<input type="text" class="inputcls"  id="email" name="email" readonly="readonly"/>
                     <i>非必填</i>
                 </div>
                 <div data-title="身份证/护照号">
-                	<input type="text" class="inputcls" id="cardno" name="cardno"/>
+                	<input type="text" class="inputcls" id="cardno" name="cardno" readonly="readonly"/>
                 </div>
                 <div data-title="取得驾照时间">
-                	<input type="text" class="inputcls"  id="drivelicenseDate" name="drivelicenseDate"/>
+                	<input type="text" class="inputcls"  id="drivelicenseDate" name="drivelicenseDate" readonly="readonly" />
                 </div>
                 <div data-title="培训合格日期">
-                	<input type="text" class="Wdate inputcls "  onclick="WdatePicker()"  id="qualifiedDate" name="qualifiedDate"/>
+                	<input type="text" class="Wdate inputcls "   id="qualifiedDate" name="qualifiedDate" readonly="readonly" />
                 </div>
                 <div data-title="实际驾龄">
-                	<input type="text" class="inputcls" id="driverAge" name="driverAge"/>
+                	<input type="text" class="inputcls" id="driverAge" name="driverAge" readonly="readonly" />
                 </div>
                 <div data-title="学历">
-                	<input type="text" class="inputcls"  id="educateDegree" name="educateDegree"/>
+                	<input type="text" class="inputcls"  id="educateDegree" name="educateDegree" readonly="readonly" />
                 </div>
                 <div data-title="身高(CM)">
-                	<input type="text" class="inputcls" id="height" name="height"/>
+                	<input type="text" class="inputcls" id="height" name="height" readonly="readonly" />
                 </div>
                 <div data-title="体重(KG)">
-                	<input type="text" class="inputcls" id="weight" name="weight"/>
+                	<input type="text" class="inputcls" id="weight" name="weight" readonly="readonly"/>
                 </div>
                  <div data-title="应聘形式">
                  	<span class="radio">
-                        <input type="radio" name="isSpecificduty" value="1"  id="radio1" checked="checked"/>兼职
-                        <input type="radio" name="isSpecificduty" value="0"  id="radio2" style="margin-left:20px"/>全职
+                        <input type="radio" name="isSpecificduty" value="1"  id="radio1" checked="checked" readonly="readonly" />兼职
+                        <input type="radio" name="isSpecificduty" value="0"  id="radio2" style="margin-left:20px" readonly="readonly" />全职
                     </span>
                 </div>
                  <div data-title="名下是否有自驾车">
                 	<span class="radio" >
-                        <input type="radio" name="hasCar" value="1" checked="checked"/>是
-                        <input type="radio" name="hasCar" value="0"  style="margin-left:35px"/>否
+                        <input type="radio" name="hasCar" value="1" checked="checked" readonly="readonly" />是
+                        <input type="radio" name="hasCar" value="0"  style="margin-left:35px" readonly="readonly" />否
                     </span>
                 </div>
                 <div data-title="如有自驾车" class="spiltecls">
                 
                 </div>
             	<div data-title="品牌">
-                	<input type="text" class="inputcls" id="trand" name="trand"/>
+                	<input type="text" class="inputcls" id="trand" name="trand" readonly="readonly" />
                 </div>
                 <div data-title="车型">
-                	<input type="text" class="inputcls" id="mode" name="mode"/>
+                	<input type="text" class="inputcls" id="mode" name="mode" readonly="readonly" />
                 </div>
                 <div data-title="裸车价">
-                	<input type="text" class="inputcls" />
+                	<input type="text" class="inputcls" readonly="readonly" />
                 </div>
                 <div data-title="车龄">
-                	<input type="text" class="inputcls" />
+                	<input type="text" class="inputcls" readonly="readonly" />
                 </div>
             </div>
            	

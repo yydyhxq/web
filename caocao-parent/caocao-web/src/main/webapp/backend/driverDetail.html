@@ -15,37 +15,44 @@
 	$(function(){
 		//获取id名
 		var id = getId("id");
-		var url="/caocao/drivermanage/queryid.do?id="+id;
-		$.ajax({
-			url:url,
-			dataType:'json',
-			success:function(data){				
-				$("#name").html(data.name);
-				if(data.sex=="0"){
-					$("#sex").html("男");
-				}else{
-					$("#sex").html("女");
+		if(id!=""){
+			
+			var url="/caocao/drivermanage/queryid.do?id="+id;
+			$.ajax({
+				url:url,
+				dataType:'json',
+				success:function(data){				
+					$("#name").html(data.name);
+					if(data.sex=="0"){
+						$("#sex").html("男");
+					}else{
+						$("#sex").html("女");
+					}
+					$("#birthPlace").html(data.birthPlace);
+					$("#livePlace").html(data.livePlace);
+					$("#email").html(data.email);
+					$("#cardno").val(data.cardno);
+					$("#livePlace").html(data.livePlace);
+					$("#birthPlace").html(data.birthPlace);
+					$("#height").html(data.height);
+					$("#weight").html(data.weight);			
+					$("#brand").html(data.brand);
+					$("#totalService").html(data.totalService);
+					$("#starLevel").html(data.starLevel);
+					$("#inviteCode").html(data.inviteCode);
+					$("#registerTimeStr").html(data.registerTimeStr);
+					$("#distance").html(data.distance);
+					$("#city").html(data.city);
+					$("#remark").val(data.remark);
+					$("#licenceNo").val(data.licenceNo);
+					$("#educateDegree").val(data.educateDegree);
+					$("#remark").val(data.remark);
 				}
-				$("#birthPlace").html(data.birthPlace);
-				$("#livePlace").html(data.livePlace);
-				$("#email").html(data.email);
-				$("#cardno").val(data.cardno);
-				$("#livePlace").html(data.livePlace);
-				$("#birthPlace").html(data.birthPlace);
-				$("#height").html(data.height);
-				$("#weight").html(data.weight);			
-				$("#brand").html(data.brand);
-				$("#totalService").html(data.totalService);
-				$("#starLevel").html(data.starLevel);
-				$("#inviteCode").html(data.inviteCode);
-				$("#registerTimeStr").html(data.registerTimeStr);
-				$("#distance").html(data.distance);
-				$("#city").html(data.city);
-				$("#remark").val(data.remark);
-				$("#licenceNo").val(data.licenceNo);
-			}
 
-		});
+			});
+			
+		}
+		
 
 	})
 </script>
@@ -90,7 +97,7 @@
                 <span class="spancls1">联系电话 :<i id="phone"></i></span>
             </div>
              <div class=" mainConcls2 clearfix">
-            	<span class="spancls1">学历 : <i id=""></i></span>
+            	<span class="spancls1">学历 : <i id="educateDegree"></i></span>
                 <span class="spancls1">专业 : <i id=""></i></span>
                 <span class="spancls1">毕业院校 : <i id=""></i></span>
             </div>
@@ -111,7 +118,7 @@
             </div>
         	 <div class="mainConcls2 clearfix">
             	<span class="spancls1">所属租赁公司 : <i id=""></i></span>
-                <span class="spancls1">所属劳务公司 : <i id=""></i></span>
+                <span class="spancls1">所属劳务公司 : <i id="labId"></i></span>
                
             </div>
             <div class="mainConcls2 clearfix">
