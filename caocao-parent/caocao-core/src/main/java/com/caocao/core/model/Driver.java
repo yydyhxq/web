@@ -292,6 +292,41 @@ public class Driver {
     
     private String sexStr;
     
+    private String onlineStr;
+    
+    //取得驾照时间
+    private String drivelicenseDateStr;
+    
+    //紧急联系人
+    private String emergencyPeople;
+    
+    //紧急联系电话
+    private String emergencyPhone;
+    
+    //人才评测得分
+    private Double evaluateScore;
+    
+    //是否通过初试  0：否；1：是
+    private Integer passFirstTry;
+    
+    //是否通过复试  0：否；1：是
+    private Integer passSecondTry;
+    
+    //是否通过培训  0：否；1：是
+    private Integer passTrain;
+    
+    //是否获得劳动合同  0：否；1：是
+    private Integer obtainContract;
+    
+    //所在城市
+    private String cityName;
+    
+    //加入方式
+    private Integer joinWay;
+    
+    //面试未通过原因
+    private String firstNoPass;
+    
     public Integer getId() {
         return id;
     }
@@ -1138,5 +1173,101 @@ public class Driver {
 
 	public void setSexStr(String sexStr) {
 		this.sexStr = sexStr;
+	}
+
+	public String getOnlineStr() {
+		return onlineStr;
+	}
+
+	public void setOnlineStr(String onlineStr) {
+		this.onlineStr = onlineStr;
+	}
+
+	public String getEmergencyPeople() {
+		return emergencyPeople;
+	}
+
+	public void setEmergencyPeople(String emergencyPeople) {
+		this.emergencyPeople = emergencyPeople;
+	}
+
+	public String getEmergencyPhone() {
+		return emergencyPhone;
+	}
+
+	public void setEmergencyPhone(String emergencyPhone) {
+		this.emergencyPhone = emergencyPhone;
+	}
+
+	public Double getEvaluateScore() {
+		return evaluateScore;
+	}
+
+	public void setEvaluateScore(Double evaluateScore) {
+		this.evaluateScore = evaluateScore;
+	}
+
+	public Integer getPassFirstTry() {
+		return passFirstTry;
+	}
+
+	public void setPassFirstTry(Integer passFirstTry) {
+		this.passFirstTry = passFirstTry;
+	}
+
+	public Integer getPassSecondTry() {
+		return passSecondTry;
+	}
+
+	public void setPassSecondTry(Integer passSecondTry) {
+		this.passSecondTry = passSecondTry;
+	}
+
+	public Integer getPassTrain() {
+		return passTrain;
+	}
+
+	public void setPassTrain(Integer passTrain) {
+		this.passTrain = passTrain;
+	}
+
+	public Integer getObtainContract() {
+		return obtainContract;
+	}
+
+	public void setObtainContract(Integer obtainContract) {
+		this.obtainContract = obtainContract;
+	}
+
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
+	public Integer getJoinWay() {
+		return joinWay;
+	}
+
+	public void setJoinWay(Integer joinWay) {
+		this.joinWay = joinWay;
+	}
+
+	public String getFirstNoPass() {
+		return firstNoPass;
+	}
+
+	public void setFirstNoPass(String firstNoPass) {
+		this.firstNoPass = firstNoPass;
+	}
+
+	public String getDrivelicenseDateStr() {
+		return drivelicenseDateStr;
+	}
+
+	public void setDrivelicenseDateStr(String drivelicenseDateStr) {
+		this.drivelicenseDateStr = drivelicenseDateStr;
 	}
 }

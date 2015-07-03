@@ -45,8 +45,74 @@ $(function(){
 		
 	
 	});
-	
-	
-		
 
+	// 日期比较
+		function compare(startTime,endTime){
+			var a=0;
+			if(startTime!=""&&endTime!=""){
+				var startTime = split(startTime);
+				var endTime = split(endTime);
+				if(endTime<=startTime){
+					a=1;
+				}else{
+					a=0
+				}
+			}
+			return a;
+		}
+		
+		//日期比较
+		function split(time){
+			var time =time;
+			var Arrtime = time.split("-");
+			var sum="";
+			for(var i=0;i<Arrtime.length;i++){
+				sum += Arrtime[i];
+			}
+			return parseInt(sum);
+		}
+		
+		
+		//日期时间比较
+		function compare1(startTime,endTime){
+			var a=0;
+			if(startTime!=""&&endTime!=""){
+				var startTime = split1(startTime);
+				var endTime = split1(endTime);
+				if(endTime<=startTime){
+					a=1;
+				}else{
+					a=0
+				}
+			}
+			return a;
+		}
+		
+		function split1(time){
+			var yourtime =time;
+			yourtime = yourtime.replace("-","/");
+			var d1 = new Date(Date.parse(yourtime));    
+			return d1
+		}
+		
+		
+		//菜单栏当前选项
+		function current1(id,index){
+			var $id = $("#"+id);
+			var index = index -1;
+			$id.addClass("currentcls").children(".secondMenu")
+			.children("li").eq(index).addClass("currentcls2");
+					
+		}
+		
+		function current2(id,index1,index2){
+			var $id = $("#"+id);
+			var index1 = index1-1;
+			var index2 = index2-1;
+			$id.addClass("currentcls").children(".secondMenu").children("li")
+			.eq(index1).addClass("currentcls1").children(".thirdMenu").children("li")
+			.eq(index2).addClass("currentcls2");
+		}
+		
+		
 

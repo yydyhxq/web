@@ -5,4 +5,6 @@ import com.caocao.core.model.Admin;
 public interface LoginService {
 
 	Admin QueryOne(Admin admin);
+	
+	int updateLoginTime(int id);
 }

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.caocao.core.model.Admin;
 import com.caocao.core.service.UserManageService;
 import com.caocao.web.constant.ActiveCst;
+import com.caocao.web.constant.DateAndStr;
 
 @Controller
 @RequestMapping("usermanage")
@@ -97,6 +98,10 @@ public class UserManageController {
 				} else if(1 == list.get(i).getIsactive()) {
 					list.get(i).setIsactiveStr(ActiveCst.IsActive.YES);
 				}
+			}
+			
+			if(null != list.get(i).getLogintime()) {
+				list.get(i).setLoginTimeStr(DateAndStr.DateToStrHour(list.get(i).getLogintime()));
 			}
 		}
 		map.put("total", list.size());

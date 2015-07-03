@@ -53,7 +53,7 @@ public class LoginController {
 		MobileHttpDto dto = new MobileHttpDto();
 		if (result == true) {
 			dto.setStatus(ResultState.SUCCESS);
-			session.setMaxInactiveInterval(60 *10);
+			session.setMaxInactiveInterval(60 *3);
 			session.setAttribute(mobile, code);
 		} else {
 			dto.setStatus(ResultState.FAIL);
@@ -89,6 +89,7 @@ public class LoginController {
 			result = 2;
 			return result;
 		}
+		loginService.updateLoginTime(modelDO.getId());
 		result = 4;
 		return result;
 		

@@ -1,0 +1,85 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
+pageEncoding="UTF-8"%> 
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+<link href="css/common.css" type="text/css" rel="stylesheet"/>
+<link href="css/style.css" type="text/css" rel="stylesheet"/>
+
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script> 
+<!--[if IE]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
+<title>历史订单详情</title>
+</head>
+
+<body>
+	
+
+	<!--header start-->
+    <div class="fn-title">
+        <div class="navbar navBg">
+        	<div class="navIcon">
+            	
+            </div>
+            <div class="navUser">
+            	<a href="login.html">退出</a>
+                <span class="sx">|</span>
+                <a href="userInfo.html">个人设置</a>
+                <span class="topUserInfo_manage">欢迎您，管理员</span>
+            </div>
+        </div>
+    </div>
+    <!--header end-->
+   <div class="container detailcls  detailcls1">
+   		<div class="mainCon">
+            <a href="historyOrder.html"><<返回</a>
+            <h3>历史订单详情 </h3>
+            <div class="formcls formcls1">
+            	<div data-title="起点"> 
+                	<input type="text" class="inputcls formcls2"  value="滨江区浦沿街道1980号" id="startPlace"/>
+                </div>
+                <div data-title="终点">
+                	<input type="text" class="inputcls formcls2" value="萧山区恒隆广场" id="destination"/>
+                </div>
+                <div data-title="搭乘车型">
+                	<input type="text" class="inputcls" value="奔驰S600	"  id="trand" />
+                </div>
+                
+            	<div data-title="优惠码">
+                	<input type="text" class="inputcls"  value="00.00" id="" />
+                </div>
+              
+                <div data-title="起步价">
+                	<input type="text" class="inputcls"  value="00.00" id=""/>
+                </div>
+                <div data-title="行驶里程（公里）">
+                	<input type="text" class="inputcls" value="19.22" id="" />
+                </div>
+                <div data-title="行驶时间">
+                	<input type="text" class="inputcls"  value="9.5m" id=""/>
+                </div>
+                <div data-title="费用小计">
+                	<input type="text" class="inputcls"  value="19.00" id=""/>
+                </div>
+                <div data-title="优惠金额">
+                	<input type="text" class="inputcls"  value="2.90" id=""/>
+                </div>
+               <div data-title="已收费">
+                	<input type="text" class="inputcls formcls2"  value="17.00" id=""/>
+                </div>
+             
+            	
+            
+         
+        </div>
+   </div>
+    
+
+    
+</body>
+</html>

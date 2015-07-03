@@ -1,5 +1,6 @@
 package com.caocao.core.service;
 
+import java.io.InputStream;
 import java.util.List;
 
 import com.caocao.core.model.Driver;
@@ -17,4 +18,6 @@ public interface DriverManageService {
 	int insert(Driver driver);
 	
 	int update(Driver driver);
+	
+	String DriversImport(InputStream is, String type);
 }

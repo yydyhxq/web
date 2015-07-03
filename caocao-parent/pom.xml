@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.caocao.zhuanche</groupId>
 	<artifactId>caocao-parent</artifactId>
@@ -46,27 +47,20 @@
 				</configuration>
 			</plugin>
 			<plugin>
-			    <groupId>org.apache.tomcat.maven</groupId>
-			    <artifactId>tomcat7-maven-plugin</artifactId>
-			    <version>2.1</version>
-			    <configuration>
-			        <!-- 注意此处的url -->
-			        <url>http://localhost:8080/manager/text</url>
-			        <server>tomcat7</server> <!-- 此处的名字必须和setting.xml中配置的ID一致-->
-			        <path>/caocao</path> <!-- 此处的名字是项目发布的工程名-->
-			    </configuration>
-			</plugin>
-			<!-- <plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.1</version>
 				<configuration>
-					<port>8080</port>
-					<path>/caocao</path>
-					<uriEncoding>UTF-8</uriEncoding>
-					<server>tomcat7</server>
+					<!-- 注意此处的url -->
+					<url>http://localhost:8080/manager/text</url>
+					<server>tomcat7</server> <!-- 此处的名字必须和setting.xml中配置的ID一致 -->
+					<path>/caocao</path> <!-- 此处的名字是项目发布的工程名 -->
 				</configuration>
-			</plugin> -->
+			</plugin>
+			<!-- <plugin> <groupId>org.apache.tomcat.maven</groupId> <artifactId>tomcat7-maven-plugin</artifactId> 
+				<version>2.1</version> <configuration> <port>8080</port> <path>/caocao</path> 
+				<uriEncoding>UTF-8</uriEncoding> <server>tomcat7</server> </configuration> 
+				</plugin> -->
 			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>tomcat7-maven-plugin</artifactId> 
 				<version>2.1</version> <configuration> <path>/caocao</path> <port>8080</port> 
 				<uriEncoding>utf-8</uriEncoding> <ignorePackaging>true</ignorePackaging> 
@@ -158,52 +152,17 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
-		<!--<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>org.apache.maven.plugins</groupId>
-										<artifactId>maven-resources-plugin</artifactId>
-										<versionRange>[2.0,)</versionRange>
-										<goals>
-											<goal>resources</goal>
-											<goal>testResources</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore/>
-									</action>
-								</pluginExecution>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>
-											org.apache.maven.plugins
-										</groupId>
-										<artifactId>
-											maven-compiler-plugin
-										</artifactId>
-										<versionRange>[3.1,)</versionRange>
-										<goals>
-											<goal>compile</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore/>
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>-->
+		<!--<pluginManagement> <plugins> <plugin> <groupId>org.eclipse.m2e</groupId> 
+			<artifactId>lifecycle-mapping</artifactId> <version>1.0.0</version> <configuration> 
+			<lifecycleMappingMetadata> <pluginExecutions> <pluginExecution> <pluginExecutionFilter> 
+			<groupId>org.apache.maven.plugins</groupId> <artifactId>maven-resources-plugin</artifactId> 
+			<versionRange>[2.0,)</versionRange> <goals> <goal>resources</goal> <goal>testResources</goal> 
+			</goals> </pluginExecutionFilter> <action> <ignore/> </action> </pluginExecution> 
+			<pluginExecution> <pluginExecutionFilter> <groupId> org.apache.maven.plugins 
+			</groupId> <artifactId> maven-compiler-plugin </artifactId> <versionRange>[3.1,)</versionRange> 
+			<goals> <goal>compile</goal> </goals> </pluginExecutionFilter> <action> <ignore/> 
+			</action> </pluginExecution> </pluginExecutions> </lifecycleMappingMetadata> 
+			</configuration> </plugin> </plugins> </pluginManagement> -->
 	</build>
 	<modules>
 		<module>caocao-util</module>
@@ -211,8 +170,8 @@
 		<module>caocao-service-integration</module>
 		<!-- <module>caocao-nio</module> -->
 		<module>caocao-web</module>
-       <!--  <module>caocao-server</module> -->
-  </modules>
+		<!-- <module>caocao-server</module> -->
+	</modules>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -220,6 +179,16 @@
 				<artifactId>junit</artifactId>
 				<version>${junit.version}</version>
 				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi</artifactId>
+				<version>${poi.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi-ooxml</artifactId>
+				<version>${poi.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>commons-lang</groupId>
@@ -480,12 +449,12 @@
 		</snapshotRepository>
 	</distributionManagement>
 	<properties>
-	
+
 		<!-- global setting -->
 		<sourceEncoding>UTF-8</sourceEncoding>
 		<java-version>1.6</java-version>
-		
-		
+
+
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junit.version>4.11</junit.version>
 		<commons-lang.version>2.6</commons-lang.version>
@@ -512,5 +481,6 @@
 		<protobuf-java.version>2.5.0</protobuf-java.version>
 		<jackson-all.version>1.8.5</jackson-all.version>
 		<jstl.version>1.2.1</jstl.version>
+		<poi.version>3.9</poi.version>
 	</properties>
 </project>

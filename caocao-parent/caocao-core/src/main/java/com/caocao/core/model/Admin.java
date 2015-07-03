@@ -134,6 +134,8 @@ public class Admin {
     
     private String isactiveStr;
     
+    private String loginTimeStr;
+    
     public Integer getId() {
         return id;
     }
@@ -492,5 +494,13 @@ public class Admin {
 
 	public void setIsactiveStr(String isactiveStr) {
 		this.isactiveStr = isactiveStr;
+	}
+
+	public String getLoginTimeStr() {
+		return loginTimeStr;
+	}
+
+	public void setLoginTimeStr(String loginTimeStr) {
+		this.loginTimeStr = loginTimeStr;
 	}
 }

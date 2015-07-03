@@ -1,5 +1,6 @@
 package com.caocao.core.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -26,5 +27,13 @@ public class LoginServiceImpl implements LoginService {
 			modelDO = list.get(0);
 		}
 		return modelDO;
+	}
+	
+	public int updateLoginTime(int id) {
+		Admin admin = new Admin();
+		admin.setId(id);
+		admin.setLogintime(new Date());
+		int result = adminMapper.updateByPrimaryKeySelective(admin);
+		return result;
 	}
 }

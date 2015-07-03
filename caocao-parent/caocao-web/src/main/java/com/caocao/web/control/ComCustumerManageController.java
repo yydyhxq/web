@@ -54,7 +54,7 @@ public class ComCustumerManageController {
 	public Map<String, Object> QueryComCustumerAccount(@ModelAttribute ComCustumerAccount comCustumerAccount) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<ComCustumerAccount> list = comCustumerManageService.SelectComCustumerAccount(comCustumerAccount);
-		if(list.size()>1) {
+		if(list.size()>0) {
 			for(int i=0; i<list.size(); i++) {
 				if(null != list.get(i).getSex()) {
 					if(0 == list.get(i).getSex()) {
@@ -62,7 +62,7 @@ public class ComCustumerManageController {
 					} else if (1 == list.get(i).getSex()) {
 						list.get(i).setSexStr(SexCst.Sex.WOMAN);
 					}
-				}
+				  }
 			  }
 		}
 		map.put("total", list.size());

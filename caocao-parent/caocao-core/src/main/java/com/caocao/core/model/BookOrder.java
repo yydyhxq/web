@@ -20,7 +20,7 @@ public class BookOrder {
 	
 	private Date appointStartBegin;
 	
-	private Date appointStarrtEnd;
+	private Date appointStartEnd;
 	
 	private Date orderCreateBegin;
 	
@@ -45,7 +45,7 @@ public class BookOrder {
 	private Date onCarTime;
 	
 	private Double costMoney;
-	
+
 	public Integer getOrderId() {
 		return orderId;
 	}
@@ -110,12 +110,12 @@ public class BookOrder {
 		this.appointStartBegin = appointStartBegin;
 	}
 
-	public Date getAppointStarrtEnd() {
-		return appointStarrtEnd;
+	public Date getAppointStartEnd() {
+		return appointStartEnd;
 	}
 
-	public void setAppointStarrtEnd(Date appointStarrtEnd) {
-		this.appointStarrtEnd = appointStarrtEnd;
+	public void setAppointStartEnd(Date appointStartEnd) {
+		this.appointStartEnd = appointStartEnd;
 	}
 
 	public Date getOrderCreateBegin() {
@@ -213,5 +213,4 @@ public class BookOrder {
 	public void setCostMoney(Double costMoney) {
 		this.costMoney = costMoney;
 	}
-	
 }
