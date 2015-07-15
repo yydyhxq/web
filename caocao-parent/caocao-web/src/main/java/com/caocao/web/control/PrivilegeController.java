@@ -27,5 +27,8 @@ public class PrivilegeController {
 	public List<Privilege> QueryPrivilegeList(Privilege privilege) {
 		List<Privilege> list = privilegeService.QueryPrivilegeList(privilege);
 		return list;
+		//
+		//
+		//
 	}
 }
