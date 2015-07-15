@@ -1,6 +1,8 @@
 // JavaScript Document
 
 $(function(){
+
+
 	
 	// 菜单栏
 	$(".secondMenu").addClass("fn-hide");
@@ -43,7 +45,30 @@ $(function(){
 		return o;
 		};
 		
-	
+		//获取下拉选项框的值
+		getName();
+		
+
+		//点击获取拉下选择框
+		$(".selectPoint").on("click",function(){
+			var $em = $(this).children(".emcls");
+			$em.toggleClass("emclsp");
+			$(".selectArea").toggleClass("fn-hide");
+		});
+		
+		$(".selectArea input").on("click",function(){
+			var dataId=$(this).attr("dataId");
+			var checked = $(this).attr("checked");
+			if(checked=="checked"){
+				$('#dg').datagrid('hideColumn',dataId);
+				$(this).removeAttr("checked");
+			}else{
+				$('#dg').datagrid('showColumn',dataId);
+				$(this).attr("checked","checked");
+			}
+		});
+		
+		
 	});
 
 	// 日期比较
@@ -52,7 +77,7 @@ $(function(){
 			if(startTime!=""&&endTime!=""){
 				var startTime = split(startTime);
 				var endTime = split(endTime);
-				if(endTime<=startTime){
+				if(endTime<startTime){
 					a=1;
 				}else{
 					a=0
@@ -73,13 +98,13 @@ $(function(){
 		}
 		
 		
-		//日期时间比较
+	/*	//日期时间比较
 		function compare1(startTime,endTime){
 			var a=0;
 			if(startTime!=""&&endTime!=""){
 				var startTime = split1(startTime);
 				var endTime = split1(endTime);
-				if(endTime<=startTime){
+				if(endTime<startTime){
 					a=1;
 				}else{
 					a=0
@@ -93,7 +118,7 @@ $(function(){
 			yourtime = yourtime.replace("-","/");
 			var d1 = new Date(Date.parse(yourtime));    
 			return d1
-		}
+		}*/
 		
 		
 		//菜单栏当前选项
@@ -115,4 +140,42 @@ $(function(){
 		}
 		
 		
+		
+		//获取相应长度字符
+		function fix(num, length) {
+			return ('' + num).length < length ? ((new Array(length + 1)).join('0') + num).slice(-length) : '' + num;
+		}
 
+		//获取下拉框的值
+		function getName(){
+			var $th = $("#dg thead th");
+			var name ="";
+			var html="";
+			var startIndex = 7;
+			var $selectArea = $(".selectArea ul");
+			for(var i=0;i<$th.length;i++){
+				var data = $th.eq(i).attr("data-options");
+				var endIndex = data.indexOf("',width");
+				html = $th.eq(i).html();
+				name = data.substring(startIndex,endIndex).trim();
+				if(html.indexOf("id")<0){
+					$selectArea.append('<li><input type="checkbox"  dataId=' +name +'  checked="checked"/>'+html+'</li>');
+				}
+			}
+		}
+		
+		
+		//控制输入数字长度 （手机号，身份证）
+		  function chekNum(obj,num){
+			  	var num = parseInt(num);
+		        obj.value = obj.value.replace(/[^\d.]/g,"");
+		        obj.value = obj.value.replace(/^\./g,"");
+		        obj.value = obj.value.replace(/\.{2,}/g,".");
+		        obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+		        if(obj.value.length > num){
+		                obj.value = obj.value.substring(0,num);      
+		        }
+		    }
+		
+
+	

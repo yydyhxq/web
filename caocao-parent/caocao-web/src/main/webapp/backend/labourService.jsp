@@ -10,13 +10,10 @@ pageEncoding="UTF-8"%>
 	$(function(){
 		//当前菜单
 		current1("company",3);
-		
-		
+			
 		//所在城市
 		  var test=new Vcity.CitySelector({input:'cityCode'});
 		  var test=new Vcity.CitySelector({input:'cityCode1'});
-		
-	
 		 //查询
 		$("#search").click(function(){
 			var name = $("input[name='name']").val(); //获取用户名称
@@ -94,6 +91,18 @@ pageEncoding="UTF-8"%>
                         <a href="#" class="btn1" onclick="edituser()" >编辑</a> 
                     </div>
                     <div class="mainConcls3">
+                    	<!-- 点击区域start -->
+                    	<div class="datagrid-header selectPoint" >
+                    		<em class="emcls"></em>
+                    	</div>
+                    	<!-- 点击区域end -->
+                    	<!-- 弹出框 -->
+	                    <div class="selectArea fn-hide">
+	                    	<ul>
+	                    	</ul>
+	                    </div>
+	                  	<!-- 弹出框 -->
+                    
                     	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'../labourmanage/query.do',singleSelect:true,fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                         	<thead>
                             	<tr>
@@ -148,11 +157,11 @@ pageEncoding="UTF-8"%>
                     <label>法人</label>
                     <input type="text" class="inputcls required"  name="masterName" id="masterName"/>
                     <label>法人身份证号</label>
-                    <input type="text" class="inputcls required"  name="masterNumber"  id="masterNumber"/>
+                    <input type="text" class="inputcls required"  name="masterNumber"  id="masterNumber" onkeyup="chekNum(this,18)"/>
                 </div>
                 <div class="toastcls1 clearfix">
                     <label>联系电话</label>
-                    <input type="text" class="inputcls required" name="contactPhone" id="contactPhone"/>
+                    <input type="text" class="inputcls required" name="contactPhone" id="contactPhone" onkeyup="chekNum(this,11)" />
                     <label>签约日期</label>
                     <input type="text" class="Wdate inputcls rightcls8 required"  onclick="WdatePicker()"  name="signDate" id="signDate">
                 </div>

@@ -115,6 +115,8 @@ $(document).ready(function(){
 </head>
 
 <body>
+	
+
 	<div class="header">
     	<p></p>
     </div>
@@ -145,7 +147,7 @@ $(document).ready(function(){
     </div>
     <div class="footer">
     	<ul class="footerText"> 
-        	<li>建议使用ie7/8/9/10,firefox,chrome，safari浏览器<a href="#" target="_blank" > Chrome点击下载</a></li>
+        	<li>建议使用ie8/9/10,firefox,chrome，safari浏览器<a href="#" target="_blank" > Chrome点击下载</a></li>
           	<li>Copyright © 2009-2012 evun.cn,inc. 公司版权所有，保留所有权利。</li>  
         </ul>
     </div>

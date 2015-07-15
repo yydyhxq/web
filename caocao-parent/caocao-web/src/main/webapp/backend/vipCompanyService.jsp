@@ -33,8 +33,6 @@ pageEncoding="UTF-8"%>
 			})
 			$('#dg').datagrid('reload');    // reload the current page data			
 		})
-			
-	  
 	})
 </script>
 <!--[if IE]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
@@ -92,6 +90,18 @@ pageEncoding="UTF-8"%>
                         <a href="#" class="btn1" onclick="edituser()" >编辑</a> 
                     </div>
                     <div class="mainConcls3">
+                    	<!-- 点击区域start -->
+                    	<div class="datagrid-header selectPoint" >
+                    		<em class="emcls"></em>
+                    	</div>
+                    	<!-- 点击区域end -->
+                    	<!-- 弹出框 -->
+	                    <div class="selectArea fn-hide">
+	                    	<ul>
+	                    	</ul>
+	                    </div>
+	                  	<!-- 弹出框 -->
+                    
                     	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'../bigcompany/query.do',singleSelect:true,fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                         	<thead>
                             	<tr>
@@ -104,8 +114,7 @@ pageEncoding="UTF-8"%>
                                     <th data-options="field:'contactPhone',width:80">联系电话</th>
                                     <th data-options="field:'companyAddress',width:80">公司地址</th>
                                     <th data-options="field:'signDateStr',width:80">签约日期</th>
-                                    <th data-options="field:'remark',width:80">备注</th>
-                                   
+                                    <th data-options="field:'remark',width:80">备注</th>                                   
                                 </tr>
                             </thead>
                         </table>
@@ -146,11 +155,11 @@ pageEncoding="UTF-8"%>
                     <label>法人</label>
                     <input type="text" class="inputcls required"  name="masterName" id="masterName"/>
                     <label>法人身份证号</label>
-                    <input type="text" class="inputcls required"  name="masterNumber"  id="masterNumber"/>
+                    <input type="text" class="inputcls required"  name="masterNumber"  id="masterNumber" onkeyup="chekNum(this,18)"/>
                 </div>
                 <div class="toastcls1 clearfix">
                     <label>联系电话</label>
-                    <input type="text" class="inputcls required" name="contactPhone" id="contactPhone"/>
+                    <input type="text" class="inputcls required" name="contactPhone" id="contactPhone" onkeyup="chekNum(this,11)"/>
                     <label>签约日期</label>
                     <input type="text" class="Wdate inputcls rightcls8 required"  onclick="WdatePicker()"  name="signDate" id="signDate">
                 
@@ -191,16 +200,12 @@ pageEncoding="UTF-8"%>
                 $("#dlg").dialog("open").dialog('setTitle', 'Edit User');
                 $("#fm").form("load", row);
                 url = "../bigcompany/update.do?id=" + row.id;
+            }else {
+            	layer.alert("未选中任何对象")
             }
         }
 		
-		function lookUser(){
-			if (row){  
-				 url = "UserManage.aspx?id=" + row.id;
-			}  	
-			
-		}
-		
+
 		function saveuser(){
 			
 			var name = $("#name").val(); //获取公司名称

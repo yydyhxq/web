@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.caocao.core.dao.PrivilegeMapper" >
+<select id="QueryPrivilegeList" resultType="com.caocao.core.model.Privilege" parameterType="com.caocao.core.model.Privilege" >
+	select   a._id as id,
+   		     a._pid as pid,
+   		     a._name as name,
+			 b._user_id as userId
+	from 	 tsp_caocao_menu a
+             left join
+             tsp_caocao_user2menu b
+  	on 		 a._id = b._menu_id
+  			 and b._user_id = #{userId}
+  </select>
+</mapper>

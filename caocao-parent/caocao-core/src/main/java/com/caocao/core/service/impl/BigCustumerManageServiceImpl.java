@@ -57,7 +57,7 @@ public class BigCustumerManageServiceImpl implements BigCustumerManageService {
 	}
 	
 	public int update(Custumer custumer) {
-		int result = custumerMapper.updateByPrimaryKey(custumer);
+		int result = custumerMapper.updateByPrimaryKeySelective(custumer);
 		return result;
 	}
 }

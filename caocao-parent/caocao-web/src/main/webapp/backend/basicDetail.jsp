@@ -24,7 +24,7 @@ pageEncoding="UTF-8"%>
 		//获取id名
 		var id = getId("id");
 		
-		if(id!="") { $('#dg').datagrid('reload',{id:id})};
+		if(id!="") { $('#dg').datagrid({url:'../comcustumer/comcost.do?id='+id})};
 		
 		//查询
 		$("#search").click(function(){
@@ -74,7 +74,7 @@ pageEncoding="UTF-8"%>
                     <thead>
                         <tr>
                             <th  data-options="field:'id',width:80" hidden="true">id</th>
-                            <th  data-options="field:'costDate',width:80">消费日期</th>
+                            <th  data-options="field:'costDateStr',width:80">消费日期</th>
                             <th  data-options="field:'distance',width:80">行驶里程（公里）</th>
                             <th  data-options="field:'driverMinutes',width:80">行驶时间（分钟）</th>
                             <th  data-options="field:'costMoney',width:80">费用小计</th>
@@ -102,7 +102,7 @@ pageEncoding="UTF-8"%>
 		}else{
 		var field = urlmap[1].split("&");
 			for(var i=0;i<field.length;i++){
-				var va = filed[i].split("=");
+				var va = field[i].split("=");
 				if(va[0]==key){
 					id=va[1];
 				}	

@@ -35,8 +35,7 @@ pageEncoding="UTF-8"%>
 				$("#phone").val(data.phone);
 				$("#cardno").val(data.cardno);
 				$("#driverAge").val(data.driverAge);
-				alert(data.drivelicenseDateStr);
-				alert(data.qualifiedDateStr)
+				
 				$("#drivelicenseDate").val(data.drivelicenseDateStr);
 				$("#qualifiedDate").val(data.qualifiedDateStr);
 				$("#educateDegree").val(data.educateDegree);

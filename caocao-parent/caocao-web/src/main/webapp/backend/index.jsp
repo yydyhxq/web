@@ -1,5 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" 
-pageEncoding="UTF-8"%> 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -22,21 +25,38 @@ pageEncoding="UTF-8"%>
 			rownumbers:true,
 			singleSelect:true,
 			pageSize:10,
-			
+			pageList:[10,20,30,40,50],
 			columns:[[ 
 				{field:'id',title:'id',width:'100',hidden:'true'}, 
 				{field:'username',title:'姓名',width:'100'}, 
 				{field:'phone',title:'手机号',width:'100'}, 
 				{field:'post',title:'职位',width:'100',align:'center'} ,
 				{field:'isactiveStr',title:'是否启用',width:'100',align:'center'},
-				{field:'isactivetime',title:'启用时间',width:'100',align:'center'},
-				{field:'freezetime',title:'冻结时间',width:'100',align:'center'},
+				{field:'isactivetimeStr',title:'启用时间',width:'100',align:'center'},
+				{field:'freezetimeStr',title:'停用时间',width:'100',align:'center'},
 				{field:'loginTimeStr',title:'最近登录时间',width:'100',align:'center'},
 				{field:'companyName',title:'所属公司',width:'100',align:'center'},
-				{field:'remark',title:'备注',width:'100',align:'center'}
+				{field:'remark',title:'备注',width:'100',align:'center'},
+				{
+					title : '操作',
+					field : '_opt',//不对应数据库或json字段，取的名字
+					width : 100,
+					align:'center',
+					formatter:function(value,rec){   //格式化函数添加一个操作列
+						var isactive = rec.isactive;
+						if(isactive==1){
+	                    	var btn = '<a class="editcls" data-href="../usermanage/updatestatus.do?id='+rec.id+'&isactive='+rec.isactive+'"  onclick=freeZ(this);>停用</a>';	  
+						}else if(isactive==2){
+						    var btn = '<a class="editcls" data-href="../usermanage/updatestatus.do?id='+rec.id+'&isactive='+rec.isactive+'"  onclick=freeZ(this);>启用</a>';	  	
+						}
+	                    return btn; 
+	                }
+				}
 			]]
 			
 		});  
+		
+		
 	
 		//查询
 		$("#search").click(function(){
@@ -49,18 +69,21 @@ pageEncoding="UTF-8"%>
 				phone:phone,
 				companyName:companyName
 			})
+			
 			$('#dg').datagrid('reload');    // reload the current page data			
 		})
 		
 		
+	
+		
+		
 	});
+	
 </script>
 <title>后台首页</title>
 </head>
 
 <body>
-	
-
 	<!--header start-->
     <div class="fn-title">
         <div class="navbar navBg">
@@ -88,6 +111,11 @@ pageEncoding="UTF-8"%>
         	<div class="mainCon">
               
                <h3>用户信息维护</h3>
+               <%-- <c:forEach items="${buttonList}" var="item">  
+				<tr>  
+				  <td align="center" valign="middle">${item.name}</td>  
+				</tr>    
+				</c:forEach> --%>
                <div class="mainConcls">
                		<!--查询条件 start-->
                		<div class="mainConcls1 ">
@@ -99,7 +127,7 @@ pageEncoding="UTF-8"%>
                                 <option value="" >--请选择公司--</option>
                                 <option value="杭州优行科技有限公司" >杭州优行科技有限公司</option>
                             </select>
-                            <input type="button" class="buttoncls" value="查询" id="search"/>
+                            <input type="button" class="buttoncls" value="查询" id="search" />
                         </div>     	
                     </div>
                     <!--查询条件end-->
@@ -108,9 +136,34 @@ pageEncoding="UTF-8"%>
                     <div class="mainConcls4 clearfix">
                     	<a href="#" class="btn1"  onclick="newuser()">新增</a> 
                         <a href="#" class="btn1" onclick="edituser()">编辑</a> 
+                         
                     </div>
                     
+                     <!--[if lte IE 8]>
+					     <p>You are using an <strong>outdated</strong> browser. Please <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">upgrade your browser</a> to improve your experience.</p>
+					 <![endif]-->
+                    
                     <div class="mainConcls3"  >
+                   
+                    	<div class="datagrid-header selectPoint" >
+                    		<em class="emcls"></em>
+                    	</div>
+                    	<!-- 弹出框 -->
+	                    <div class="selectArea fn-hide">
+	                    	<ul>
+		                    	<li><input type="checkbox"  dataId="username"  checked="checked"/>姓名</li>
+		                    	<li><input type="checkbox"  dataId="phone"  checked="checked"/>手机号</li>
+		                    	<li><input type="checkbox"  dataId="post"  checked="checked"/>职位</li>
+		                    	<li><input type="checkbox"  dataId="isactivetimeStr"  checked="checked"/>启用时间</li>
+		                    	<li><input type="checkbox"  dataId="isactiveStr"  checked="checked"/>是否启用</li>
+		                    	<li><input type="checkbox"  dataId="freezetimeStr"  checked="checked"/>停用时间</li>
+		                    	<li><input type="checkbox"  dataId="loginTimeStr"  checked="checked"/>最近登陆时间</li>
+		                    	<li><input type="checkbox"  dataId="companyName"  checked="checked"/>所属公司</li>
+		                    	<li><input type="checkbox"  dataId="remark"  checked="checked"/>备注</li>
+	                    	</ul>
+	                    </div>
+	                  	<!-- 弹出框 -->
+	                  	
                     	<table id="dg"></table>
                     </div>	
                     
@@ -132,21 +185,22 @@ pageEncoding="UTF-8"%>
 	                 <label>姓名</label>
 	                 <input type="text" class="inputcls required"  required="true" name="username"  id="username"/>
 	                 <label>手机号</label>
-	                 <input type="text" class="inputcls required "  name="phone" id="phone" />
+	                 <input type="text" class="inputcls required "  name="phone" id="phone" onkeyup="chekNum(this,11)" />
 	             </div>
 	             <div class="toastcls1 clearfix">
 	                 <label>职位</label>
 	                 <input type="text" class="inputcls required" name="post" id="post"/>
 	                 <label>所属公司</label>
 	                 <select class="select  " name="companyName" id="companyName">
-	                     <option  value="--请选择公司--" >--请选择公司--</option>
+	                     <option  value="" >--请选择公司--</option>
 	                     <option value="杭州优行科技有限公司" >杭州优行科技有限公司</option>
 	                 </select>
 	              </div>
 	              <div class="toastcls1 clearfix" >
 	                 <label>备注</label>
-	                 <textarea class="textareacls" name="name" id="remark"></textarea>
+	                 <textarea class="textareacls" name="remark" id="remark"></textarea>
 	             </div>
+             	             
 	             <input type="text" name="isactive" style="display:none" >
 	    </form> 
 	</div>
@@ -173,6 +227,8 @@ pageEncoding="UTF-8"%>
                 $("#dlg").dialog("open").dialog('setTitle', 'Edit User');
                 $("#fm").form("load", row);
                 url = "../usermanage/update.do?id=" + row.id;
+            }else{
+            	layer.alert("未选中任何对象")
             }
         }
 		
@@ -186,7 +242,7 @@ pageEncoding="UTF-8"%>
 			if(username==""){layer.msg("请输入姓名");return false;}
 			if(phone==""||phone.length!=11){layer.msg("请输入正确的手机号");return false;}
 			if(post==""){layer.msg("职位不能为空");return false;}
-			if(companyName.indexOf("请选择公司")!=-1){layer.msg("请选择公司");return false;}
+			if(companyName==""){layer.msg("请选择公司");return false;}
 			
 			var form = $("#fm").serialize();
 		    $('#fm').form('submit',{  
@@ -206,7 +262,34 @@ pageEncoding="UTF-8"%>
 		        }  
 		    });  
 		}  
-
+		
+		//停用
+		function freeZ(obj){
+			$this = $(obj);
+			var html = $this.html(); //获取操作按钮的值
+			var url = $this.attr("data-href"); //获取操作的url
+			var $type = 1; //传递后台的参数
+			if(html=="停用"){
+				$type = 1; 
+			}else{
+				$type = 2;
+			}
+			
+			$.ajax({
+				url:url,
+				datatype:"json",
+				success:function(result){					
+					$('#dg').datagrid('reload');
+				},
+				error:function(){
+					layer.msg("网络异常，请稍后重试")
+				}
+				
+			});
+			
+		}
+		
+		
     </script>
 
 </html>

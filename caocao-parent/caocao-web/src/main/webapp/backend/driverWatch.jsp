@@ -8,7 +8,7 @@ pageEncoding="UTF-8"%>
 <script>
 	$(function(){
 		//当前菜单
-		current1("driver",5);
+		current1("driver",1);
 		
 		//select	
 		$(".select").select2();
@@ -84,6 +84,18 @@ pageEncoding="UTF-8"%>
 							 <a  class="btn1" onclick="detailUser()" >查看详情</a> 
                     </div>                      
                     <div class="mainConcls3">
+                    	<!-- 点击区域start -->
+                    	<div class="datagrid-header selectPoint" >
+                    		<em class="emcls "></em>
+                    	</div>
+                    	<!-- 点击区域end -->
+                    	<!-- 弹出框 -->
+	                    <div class="selectArea fn-hide">
+	                    	<ul> 	
+	                    	</ul>
+	                    </div>
+	                  	<!-- 弹出框 -->
+                    
                         <table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'../drivermanage/query.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                                 <thead>
                                     <tr>
@@ -92,10 +104,10 @@ pageEncoding="UTF-8"%>
                                         <th data-options="field:'sexStr',width:90">性别</th>
                                         <th data-options="field:'phone',width:90">手机号</th>
                                         <th data-options="field:'cardno',width:90">身份证</th>
-                                        <th data-options="field:'registerTime',width:90">注册时间</th>
-                                        <th data-options="field:'online',width:90">在线状态</th>
-                                        <th data-options="field:'labId',width:90">所属租赁公司</th>
-                                      	<th data-options="field:'qualifiedDate',width:90">培训合格日期</th>
+                                        <th data-options="field:'registerTimeStr',width:90">注册时间</th>
+                                        <th data-options="field:'onlineStr',width:90">在线状态</th>
+                                        <th data-options="field:'labIdStr',width:90">所属租赁公司</th>
+                                      	<th data-options="field:'qualifiedDateStr',width:90">培训合格日期</th>
                                         <th data-options="field:'totalService',width:90">服务次数</th>
                                         <th data-options="field:'starLevel',width:90">星级</th>
                                         <th data-options="field:'remark',width:100">备注</th>

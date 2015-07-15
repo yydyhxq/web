@@ -17,6 +17,7 @@ import com.caocao.core.model.ComCustumer;
 import com.caocao.core.model.ComCustumerAccount;
 import com.caocao.core.model.ComCustumerCost;
 import com.caocao.core.service.ComCustumerManageService;
+import com.caocao.web.constant.DateAndStr;
 import com.caocao.web.constant.SexCst;
 
 @Controller
@@ -36,9 +37,9 @@ public class ComCustumerManageController {
 		if(list.size()>0) {
 			for(int i=0; i<list.size(); i++) {
 				if(null != list.get(i).getSex()) {
-					if(0 == list.get(i).getSex()) {
+					if(1 == list.get(i).getSex()) {
 						list.get(i).setSexStr(SexCst.Sex.MAN);
-					} else if (1 == list.get(i).getSex()) {
+					} else if (2 == list.get(i).getSex()) {
 						list.get(i).setSexStr(SexCst.Sex.WOMAN);
 					}
 				}
@@ -57,9 +58,9 @@ public class ComCustumerManageController {
 		if(list.size()>0) {
 			for(int i=0; i<list.size(); i++) {
 				if(null != list.get(i).getSex()) {
-					if(0 == list.get(i).getSex()) {
+					if(1 == list.get(i).getSex()) {
 						list.get(i).setSexStr(SexCst.Sex.MAN);
-					} else if (1 == list.get(i).getSex()) {
+					} else if (2 == list.get(i).getSex()) {
 						list.get(i).setSexStr(SexCst.Sex.WOMAN);
 					}
 				  }
@@ -75,6 +76,14 @@ public class ComCustumerManageController {
 	public Map<String, Object> QueryComCustumerCost(@ModelAttribute ComCustumerCost comCustumerCost) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<ComCustumerCost> list = comCustumerManageService.SelectComCustumerCost(comCustumerCost);
+		for(int i=0; i<list.size(); i++) {
+			if(null != list.get(i).getCostDate()) {
+				list.get(i).setCostDateStr(DateAndStr.DateToStrHour(list.get(i).getCostDate()));
+			}
+			if(null != list.get(i).getStartLocation() || null != list.get(i).getEndLocation()) {
+				list.get(i).setStartAndEnd(list.get(i).getStartLocation()+" ~ "+list.get(i).getEndLocation());
+			}
+		}
 		map.put("total", list.size());
 		map.put("rows", list);
 		return map;

@@ -34,7 +34,11 @@ public class BookOrder {
 	
 	private String driverPhone;
 	
+	//订单状态
 	private Integer orderStatus;
+	
+	//订单状态
+	private String orderStatusStr;
 	
 	private String costCity;
 	
@@ -45,6 +49,17 @@ public class BookOrder {
 	private Date onCarTime;
 	
 	private Double costMoney;
+	
+	private String isBigStr;
+	
+	//订单产生时间
+	private String orderProduceTimeStr;
+	
+	//预约时间
+	private String appointmentTimeStr;
+	
+	//预约出发时间
+	private String appointStartTimeStr;
 
 	public Integer getOrderId() {
 		return orderId;
@@ -174,6 +189,14 @@ public class BookOrder {
 		this.orderStatus = orderStatus;
 	}
 
+	public String getOrderStatusStr() {
+		return orderStatusStr;
+	}
+
+	public void setOrderStatusStr(String orderStatusStr) {
+		this.orderStatusStr = orderStatusStr;
+	}
+
 	public String getCostCity() {
 		return costCity;
 	}
@@ -212,5 +235,37 @@ public class BookOrder {
 
 	public void setCostMoney(Double costMoney) {
 		this.costMoney = costMoney;
+	}
+
+	public String getIsBigStr() {
+		return isBigStr;
+	}
+
+	public void setIsBigStr(String isBigStr) {
+		this.isBigStr = isBigStr;
+	}
+
+	public String getOrderProduceTimeStr() {
+		return orderProduceTimeStr;
+	}
+
+	public void setOrderProduceTimeStr(String orderProduceTimeStr) {
+		this.orderProduceTimeStr = orderProduceTimeStr;
+	}
+
+	public String getAppointmentTimeStr() {
+		return appointmentTimeStr;
+	}
+
+	public void setAppointmentTimeStr(String appointmentTimeStr) {
+		this.appointmentTimeStr = appointmentTimeStr;
+	}
+
+	public String getAppointStartTimeStr() {
+		return appointStartTimeStr;
+	}
+
+	public void setAppointStartTimeStr(String appointStartTimeStr) {
+		this.appointStartTimeStr = appointStartTimeStr;
 	}
 }

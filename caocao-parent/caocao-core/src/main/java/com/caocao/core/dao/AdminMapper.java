@@ -124,5 +124,5 @@ public interface AdminMapper {
     
     Admin QueryById(Admin record);
     
-    int UpdateLoginTime(Admin record);
+    int updateStatus(Admin record);
 }

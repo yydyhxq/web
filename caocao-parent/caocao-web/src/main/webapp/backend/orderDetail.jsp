@@ -15,6 +15,35 @@ pageEncoding="UTF-8"%>
 <script type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script> 
 <!--[if IE]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
 <title>历史订单详情</title>
+<script>
+	$(function(){
+		//获取id名
+		var id = getId("orderId");
+		
+		 var url="../ordermanage/orderdetail.do?orderId="+id; 
+	
+		$.ajax({
+			url:url,
+			dataType:'json',
+			success:function(data){		
+				$("#startPlace").val(data.startPlace);
+				$("#endPlace").val(data.endPlace);
+				$("#livePlace").val(data.livePlace);
+				$("#carType").val(data.carType);
+				$("#privilegeCode").val(data.privilegeCode);
+				$("#startPrice").val(data.startPrice);
+				$("#distance").val(data.distance);
+				$("#driverMinutes").val(data.driverMinutes);
+				$("#costMoney").val(data.costMoney);
+				$("#discountMoney").val(data.discountMoney);
+				$("#costRealMoney").val(data.costRealMoney);				
+			}
+
+		});
+		
+
+	})
+</script>
 </head>
 
 <body>
@@ -37,49 +66,65 @@ pageEncoding="UTF-8"%>
     <!--header end-->
    <div class="container detailcls  detailcls1">
    		<div class="mainCon">
-            <a href="historyOrder.html"><<返回</a>
+            <a href="historyOrder.jsp"><<返回</a>
             <h3>历史订单详情 </h3>
             <div class="formcls formcls1">
             	<div data-title="起点"> 
-                	<input type="text" class="inputcls formcls2"  value="滨江区浦沿街道1980号" id="startPlace"/>
+                	<input type="text" class="inputcls formcls2"  value="" id="startPlace"/>
                 </div>
                 <div data-title="终点">
-                	<input type="text" class="inputcls formcls2" value="萧山区恒隆广场" id="destination"/>
+                	<input type="text" class="inputcls formcls2" value="" id="endPlace"/>
                 </div>
                 <div data-title="搭乘车型">
-                	<input type="text" class="inputcls" value="奔驰S600	"  id="trand" />
+                	<input type="text" class="inputcls" value="	"  id="carType" />
                 </div>
                 
             	<div data-title="优惠码">
-                	<input type="text" class="inputcls"  value="00.00" id="" />
+                	<input type="text" class="inputcls"  value="" id="privilegeCode" />
                 </div>
               
                 <div data-title="起步价">
-                	<input type="text" class="inputcls"  value="00.00" id=""/>
+                	<input type="text" class="inputcls"  value="" id="startPrice"/>
                 </div>
                 <div data-title="行驶里程（公里）">
-                	<input type="text" class="inputcls" value="19.22" id="" />
+                	<input type="text" class="inputcls" value="" id="distance" />
                 </div>
                 <div data-title="行驶时间">
-                	<input type="text" class="inputcls"  value="9.5m" id=""/>
+                	<input type="text" class="inputcls"  value="" id="driverMinutes"/>
                 </div>
                 <div data-title="费用小计">
-                	<input type="text" class="inputcls"  value="19.00" id=""/>
+                	<input type="text" class="inputcls"  value="" id="costMoney"/>
                 </div>
                 <div data-title="优惠金额">
-                	<input type="text" class="inputcls"  value="2.90" id=""/>
+                	<input type="text" class="inputcls"  value="" id="discountMoney"/>
                 </div>
                <div data-title="已收费">
-                	<input type="text" class="inputcls formcls2"  value="17.00" id=""/>
+                	<input type="text" class="inputcls formcls2"  value="" id="costRealMoney"/>
                 </div>
              
-            	
-            
-         
         </div>
    </div>
     
 
     
 </body>
+<script>
+	//获取url参数
+	function getId(key){
+		var id;
+		var urlmap = location.href.split("?");
+		if(urlmap[1]==""||urlmap[1]== undefined){
+			id=""; 
+		}else{
+		var field = urlmap[1].split("&");
+			for(var i=0;i<field.length;i++){
+				var va = field[i].split("=");
+				if(va[0]==key){
+					id=va[1];
+				}	
+			}
+		}
+		return id;
+	 }
+</script>
 </html>

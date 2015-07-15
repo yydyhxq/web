@@ -36,7 +36,7 @@ public class LabourManageServiceImpl implements LabourManageService {
 	}
 	
 	public int update(Labour labour) {
-		int result = labourMapper.updateByPrimaryKey(labour);
+		int result = labourMapper.updateByPrimaryKeySelective(labour);
 		return result;
 	}
 }

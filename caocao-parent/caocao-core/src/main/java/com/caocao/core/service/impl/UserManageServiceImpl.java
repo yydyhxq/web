@@ -36,7 +36,12 @@ public class UserManageServiceImpl implements UserManageService {
 	}
 	
 	public int update(Admin admin) {
-		int result = adminMapper.updateByPrimaryKey(admin);
+		int result = adminMapper.updateByPrimaryKeySelective(admin);
+		return result;
+	}
+	
+	public int updateStatus(Admin admin) {
+		int result = adminMapper.updateStatus(admin);
 		return result;
 	}
 

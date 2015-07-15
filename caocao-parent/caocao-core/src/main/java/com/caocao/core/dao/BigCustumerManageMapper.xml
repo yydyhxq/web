@@ -57,9 +57,7 @@
 			tsp_caocao_car c
        where a._id = b._order_id
              and a._car_id = c._id
-             <if test="custumerId != null and custumerId != ''">
-				and a._customer_id = #{custumerId} 
-			</if>
+			 and a._customer_id = #{custumerId} 
 			<if test="costDateBegin != null and costDateBegin != ''"><![CDATA[and DATE_FORMAT(b._createtime, '%Y-%m-%d') >= DATE_FORMAT(#{costDateBegin,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
  			<if test="costDateEnd != null and costDateEnd != ''"><![CDATA[and DATE_FORMAT(b._createtime, '%Y-%m-%d') <= DATE_FORMAT(#{costDateEnd,jdbcType=TIMESTAMP}, '%Y-%m-%d')]]></if>
        order by costDate desc

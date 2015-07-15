@@ -191,6 +191,17 @@
 				<version>${poi.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>${jsp.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jstl</artifactId>
+				<version>${jstl.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>commons-lang</groupId>
 				<artifactId>commons-lang</artifactId>
 				<version>${commons-lang.version}</version>
@@ -480,7 +491,8 @@
 		<commons-configuration.version>1.6</commons-configuration.version>
 		<protobuf-java.version>2.5.0</protobuf-java.version>
 		<jackson-all.version>1.8.5</jackson-all.version>
-		<jstl.version>1.2.1</jstl.version>
+		<jstl.version>1.2</jstl.version>
 		<poi.version>3.9</poi.version>
+		<jsp.version>2.1</jsp.version>
 	</properties>
 </project>

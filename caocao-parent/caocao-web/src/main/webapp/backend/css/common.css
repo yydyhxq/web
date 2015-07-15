@@ -78,6 +78,20 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
 .mainMenu1.currentcls>.mainMenucls,.mainMenu1>.mainMenucls:hover{background:#fff;border-left:3px solid #5f2967;color:#5f2967;border-top:1px solid #5f2967}
 .thirdMenu li{text-indent:50px;font-size:12px;}
 .row-fluid [class*="span"]{min-height:700px;}
+.selectArea {position:absolute;z-index:10002;padding:15px;background:#fff;border:1px solid #5f2967;top:40px;}
+.selectArea input{
+	width:16px;
+	height:16px;
+	border:none;
+	position:relative;
+	top:-2px;
+	margin-right:6px;
+}
+.selectArea li{margin-bottom:5px;}
+.datagrid-header.selectPoint{height:40px;width:25px;position:absolute;top:0px;border-top:1px solid #95B8E7;border-left:1px solid #95B8E7;z-index:10002}
+/* .selectPoint span{display:block;margin-top:6px;margin-left:10px;width:3px;height:3px;background:#05D;border-radius:100%;} */
+.selectPoint .emcls{background:url(../images/img_c.png) -1px -1px no-repeat;width:15px;height:15px;display:block;position:absolute;left:6px;top:14px;cursor:pointer}
+.selectPoint .emcls.emclsp{background-position:-17px -1px;}
 
 /*toast弹窗框*/
 .perContent{margin:20px auto;width:600px;padding:0px 7px;font-size:12px;}

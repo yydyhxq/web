@@ -12,7 +12,7 @@ public class ComCustumer {
 	
 	private String phone;
 	
-	private Integer times;
+	private Integer costTimes;
 	
 	private Double costMoney;
 	
@@ -66,12 +66,12 @@ public class ComCustumer {
 		this.phone = phone;
 	}
 
-	public Integer getTimes() {
-		return times;
+	public Integer getCostTimes() {
+		return costTimes;
 	}
 
-	public void setTimes(Integer times) {
-		this.times = times;
+	public void setCostTimes(Integer costTimes) {
+		this.costTimes = costTimes;
 	}
 
 	public Double getCostMoney() {

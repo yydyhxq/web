@@ -1,6 +1,9 @@
 package com.caocao.core.model;
 
 public class OrderDetail {
+	
+	//订单编号
+	private Integer orderId;
 
 	private String startPlace;
 	
@@ -21,6 +24,14 @@ public class OrderDetail {
 	private Double discountMoney;
 	
 	private Double costRealMoney;
+
+	public Integer getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
+	}
 
 	public String getStartPlace() {
 		return startPlace;

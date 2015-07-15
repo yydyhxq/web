@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.caocao.core.dao.OrderManageMapper;
 import com.caocao.core.model.BookOrder;
+import com.caocao.core.model.OrderDetail;
 import com.caocao.core.service.OrderManageService;
 
 @Service("orderManageService")
@@ -26,7 +27,12 @@ public class OrderManageServiceImpl implements OrderManageService {
 	}
 	
 	public List<BookOrder> SelectHistoryOrder(BookOrder bookOrder) {
-		List<BookOrder> historyList = orderManageMapper.SelectBookOrder(bookOrder);
+		List<BookOrder> historyList = orderManageMapper.SelectHistoryOrder(bookOrder);
 		return historyList;
+	}
+	
+	public OrderDetail SelectOrderDetail(OrderDetail orderDetail) {
+		OrderDetail detail = orderManageMapper.SelectOrderDetail(orderDetail);
+		return detail;
 	}
 }

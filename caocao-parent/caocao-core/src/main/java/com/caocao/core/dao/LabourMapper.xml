@@ -526,6 +526,7 @@
       _author_update = #{authorUpdate,jdbcType=VARCHAR},
       _is_valid = #{isValid,jdbcType=INTEGER},
       _version = #{version,jdbcType=DOUBLE},
+      _remark = #{remark,jdbcType=LONGVARCHAR},
       _sign_date = #{signDate,jdbcType=TIMESTAMP}
     where _id = #{id,jdbcType=INTEGER}
   </update>
@@ -545,6 +546,7 @@
     	    _author_update as authorUpdate, 
     	    _is_valid as isValid, 
     		_version as version,
+    		_remark as remark,
     		_sign_date as signDate
     from 	tsp_caocao_labour 
     where 	1=1
@@ -570,6 +572,7 @@
     	    _author_update as authorUpdate, 
     	    _is_valid as isValid, 
     		_version as version,
+    		_remark as remark,
     		_sign_date as signDate
     from 	tsp_caocao_labour 
     where 	1=1
@@ -591,6 +594,7 @@
     	    _author_update as authorUpdate, 
     	    _is_valid as isValid, 
     		_version as version,
+    		_remark as remark,
     		_sign_date as signDate
     from 	tsp_caocao_labour 
     where 	1=1

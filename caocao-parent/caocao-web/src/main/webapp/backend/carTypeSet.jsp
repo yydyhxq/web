@@ -15,35 +15,15 @@ pageEncoding="UTF-8"%>
 		//下拉框
 		$(".select").select2();	
 		
-			//新增
-		$("#add").click(function(){
-			layer.open({
-				type: 2, 
-				content: 'addCarTypeSet.html',
-				title : '新增',
-				border : [0],
-				area : ['620px' , '325px'],
-			});
-		})
-		
-		//编辑
-		$("#edit").click(function(){
-			layer.open({
-				type:2, 
-				content:'editCarTypeSet.html',
-				title : '编辑',
-				border : [0],
-				area : ['620px' , '325px'],
-			});
-		})
 		
 		//查询
 		$("#search").click(function(){
 			var brand = $("input[name='brand']").val(); //获取品牌名称
 			var mode = $("input[name='mode']").val(); //获取车型名称
 			var type = $("select[name='type']").val();//获取服务类型
-		
+		/* 	$("#dg").datagrid({url:'../cartype/query.do'}); */
 			$("#dg").datagrid('load',{
+		
 				brand:brand,
 				mode:mode,
 				type:type
@@ -51,7 +31,7 @@ pageEncoding="UTF-8"%>
 			$('#dg').datagrid('reload');    // reload the current page data			
 		})
 		
-	
+		
 	})
 </script>
 <title>车型设置</title>
@@ -88,11 +68,11 @@ pageEncoding="UTF-8"%>
                		<!--查询条件 start-->
                		<div class="mainConcls1 ">
                     	<div class="mainConcls2 clearfix">
-                       		<label>品牌名称</label><input type="text" class="inputcls"  name="brand"  />
-                            <label>车型名称</label><input type="text" class="inputcls"  name="mode" />
+                       		<label>品牌名称</label><input type="text" class="inputcls "  name="brand"  />
+                            <label>车型名称</label><input type="text" class="inputcls "  name="mode" />
                             <label>服务类型</label>
                             <select class="select" name="type"  >
-                            	<option value="0">--请选择服务类型--</option>
+                            	<option value="">--请选择服务类型--</option>
                             	<option value="1">经济型</option>
                             	<option value="2">舒适型</option>
                             	<option value="3">商务型</option>
@@ -111,14 +91,26 @@ pageEncoding="UTF-8"%>
                         <a href="#" class="btn1" onclick="edituser()">编辑</a>  
                     </div>
                     <div class="mainConcls3">
-                        	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'../cartype/query.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
+                    
+                    	<!-- 点击区域start -->
+                    	<div class="datagrid-header selectPoint" >
+                    		<em class="emcls "></em>
+                    	</div>
+                    	<!-- 点击区域end -->
+                    	<!-- 弹出框 -->
+	                    <div class="selectArea fn-hide">
+	                    	<ul> 	
+	                    	</ul>
+	                    </div>
+	                  	<!-- 弹出框 -->
+                    
+                        <table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'../cartype/query.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                         	<thead>
                             	<tr>
                             		<th data-options="field:'id',width:80 " hidden="true">id</th>
                                 	<th data-options="field:'brand',width:80">品牌名称</th>
                                     <th data-options="field:'mode',width:80">车型名称</th>
                                     <th data-options="field:'typeStr',width:80">服务类型</th>
-                                  
                                 </tr>
                             </thead>	
                         </table>
@@ -130,7 +122,7 @@ pageEncoding="UTF-8"%>
          <!--Body content end-->
       </div>
     </div>
-    
+  
     
 <div id="dlg" class="easyui-dialog" style="width: 700px; height: 365px; padding: 10px 20px;"
        closed="true" buttons="#dlg-buttons"> 
@@ -141,13 +133,13 @@ pageEncoding="UTF-8"%>
       <form id="fm" method="post"> 
              <div class="toastcls">
                 <div class="clearfix">
-                    <label>品牌名称</label><input type="text" class="inputcls"  name="brand" id="brand" />
-                    <label>车型名称</label><input type="text" class="inputcls"  name="mode"  id="brand" />
+                    <label>品牌名称</label><input type="text" class="inputcls required"  name="brand" id="brand"  />
+                    <label>车型名称</label><input type="text" class="inputcls required"  name="mode"  id="brand" />
                 </div>
                 <div class="toastcls1 clearfix">
                    <label>服务类型</label>
                    <select class="select" name="type" id="type" >
-                        <option value="0">--请选择服务类型--</option>
+                        <option value="">--请选择服务类型--</option>
                         <option value="1">经济型</option>
                         <option value="2">舒适型</option>
                         <option value="3">商务型</option>
@@ -176,7 +168,7 @@ pageEncoding="UTF-8"%>
         	$("#type").attr("name","type");
             $("#dlg").dialog("open").dialog('setTitle', 'New User'); ;
             $("#fm").form("clear");
-            url = "/caocao/cartype/add.do?";
+            url = "../cartype/add.do?";
             
         }
         function edituser() {
@@ -186,7 +178,7 @@ pageEncoding="UTF-8"%>
             if (row) {
                 $("#dlg").dialog("open").dialog('setTitle', 'Edit User');
                 $("#fm").form("load", row);
-                url = "/caocao/cartype/update.do?id=" + row.id;
+                url = "../cartype/update.do?id=" + row.id;
             }
         }
 		
@@ -255,5 +247,7 @@ pageEncoding="UTF-8"%>
 		    });  
 		}  
 		
+
+	
     </script>
 </html>

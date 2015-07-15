@@ -36,7 +36,7 @@ public class LeaseManageServiceImpl implements LeaseManageService {
 	}
 	
 	public int update(Lease lease) {
-		int result = leaseMapper.updateByPrimaryKey(lease);
+		int result = leaseMapper.updateByPrimaryKeySelective(lease);
 		return result;
 	}
 }

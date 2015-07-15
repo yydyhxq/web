@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.caocao.core.dao.MenuMapper" >
+<select id="QueryMenuList" resultType="com.caocao.core.model.Menu" parameterType="com.caocao.core.model.UserToMenu" >
+   select _id as id,
+   		  _pid as pid,
+   		  _name as name,
+   		  _url as url,
+   		  _grade as grade,
+   		  _hasNext as hasNext
+   from tsp_caocao_menu b 
+   where b._id in (select a._menu_id 
+   				   from tsp_caocao_user2menu a 
+   				   where 1=1
+   				         and a._user_id = #{userId}
+   				         and a._menu_pid = #{menuPid})
+  </select>
+</mapper>

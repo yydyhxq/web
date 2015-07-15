@@ -81,7 +81,20 @@ $(function(){
                     <!--内容 start-->
 
                     <div class="mainConcls3">
-                    	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'../comcustumer/custumerbase.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
+                    	<!-- 点击区域start -->
+                    	<div class="datagrid-header selectPoint" >
+                    		<em class="emcls "></em>
+                    	</div>
+                    	<!-- 点击区域end -->
+                    	<!-- 弹出框 -->
+	                    <div class="selectArea fn-hide">
+	                    	<ul> 	
+	                    	</ul>
+	                    </div>
+	                  	<!-- 弹出框 -->
+                    
+                    
+                    	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'../comcustumer/combase.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                         	<thead>
                             	<tr>
                                 	<th  data-options="field:'id',width:80" hidden="true">id</th>
@@ -93,7 +106,7 @@ $(function(){
                                     <th  data-options="field:'inviteCode',width:80">邀请码</th>
                                     <th  data-options="field:'starLevel',width:80">星级</th>
                                     <th  data-options="field:'carType',width:80">车型偏好</th>
-                                    <th  data-options="field:'registerDate',width:200">注册时间</th>
+                                    <th  data-options="field:'registerDate',width:80">注册时间</th>
                                     <th  data-options="field:'costCity',width:80">消费城市</th>
                                 </tr>
                             </thead>

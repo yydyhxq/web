@@ -15,4 +15,6 @@ public interface UserManageService {
 	int insert(Admin admin);
 	
 	int update(Admin admin);
+	
+	int updateStatus(Admin admin);
 }

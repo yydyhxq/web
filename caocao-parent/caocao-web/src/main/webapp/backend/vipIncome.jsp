@@ -104,6 +104,18 @@ pageEncoding="UTF-8"%>
                     <!--查询条件end-->
                     <!--内容 start-->
                     <div class="mainConcls3">
+                    		<!-- 点击区域start -->
+                    	<div class="datagrid-header selectPoint" >
+                    		<em class="emcls"></em>	
+                    	</div>
+                    	<!-- 点击区域end -->
+                    	<!-- 弹出框 -->
+	                    <div class="selectArea fn-hide">
+	                    	<ul>
+	                    	</ul>
+	                    </div>
+	                  	<!-- 弹出框 -->
+                    
                     	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'../financemanage/querycustumer.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                             <thead>
                                 <tr>

@@ -19,7 +19,7 @@ pageEncoding="UTF-8"%>
 				dataType:'json',
 				success:function(data){				
 					$("#name").html(data.name);
-					if(data.sex=="0"){
+					if(data.sex=="1"){
 						$("#sex").html("男");
 					}else{
 						$("#sex").html("女");
@@ -77,6 +77,7 @@ pageEncoding="UTF-8"%>
    		<div class="mainCon">
             <a href="driverWatch.jsp"><<返回</a>
             <h3>司机详细信息 <span class="stauscls">当前在线</span></h3>
+         
             <div class=" mainConcls2 clearfix">
             	<span class="spancls1">姓名 : <i id="name"></i></span>
                 <span class="spancls1">性别 : <i id="sex"></i></span>
@@ -135,7 +136,7 @@ pageEncoding="UTF-8"%>
             </div>
             <div class="mainConcls2 clearfix">
             	<label class="labelcls1">驾驶证号:</label>
-                <input type="text" readonly="readonly" class="inputcls1 w370" id="licenceNo" value="1234444444"   />
+                <input type="text" readonly="readonly" class="inputcls1 w370" id="licenceNo" value=""   />
             </div>
              <div class="mainConcls2 mainConcls2_3 clearfix">
             	<label class="labelcls1">正本图片:</label>
@@ -145,7 +146,7 @@ pageEncoding="UTF-8"%>
             </div>
             <div class="mainConcls2 clearfix">
             	<label class="labelcls1">行驶证号:</label>
-                <input type="text" readonly="readonly" class="inputcls1 w370" id="" value="1582456HHHRRTTPP"   />
+                <input type="text" readonly="readonly" class="inputcls1 w370" id="" value=""   />
             </div>
             <div class="mainConcls2 mainConcls2_3 clearfix">
             	<label class="labelcls1">正本图片:</label>

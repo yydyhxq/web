@@ -36,7 +36,7 @@ public class BigCompanyServiceImpl implements BigCompanyService {
 	}
 	
 	public int update(VipCompany vipCompany) {
-		int result = vipCompanyMapper.updateByPrimaryKey(vipCompany);
+		int result = vipCompanyMapper.updateByPrimaryKeySelective(vipCompany);
 		return result;
 	}
 

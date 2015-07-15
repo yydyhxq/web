@@ -136,6 +136,10 @@ public class Admin {
     
     private String loginTimeStr;
     
+    private String isactivetimeStr;
+    
+    private String freezetimeStr;
+    
     public Integer getId() {
         return id;
     }
@@ -502,5 +506,21 @@ public class Admin {
 
 	public void setLoginTimeStr(String loginTimeStr) {
 		this.loginTimeStr = loginTimeStr;
+	}
+
+	public String getIsactivetimeStr() {
+		return isactivetimeStr;
+	}
+
+	public void setIsactivetimeStr(String isactivetimeStr) {
+		this.isactivetimeStr = isactivetimeStr;
+	}
+
+	public String getFreezetimeStr() {
+		return freezetimeStr;
+	}
+
+	public void setFreezetimeStr(String freezetimeStr) {
+		this.freezetimeStr = freezetimeStr;
 	}
 }

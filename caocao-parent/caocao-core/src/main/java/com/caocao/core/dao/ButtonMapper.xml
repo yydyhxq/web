@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.caocao.core.dao.ButtonMapper" >
+<select id="QueryButtonList" resultType="com.caocao.core.model.Button" parameterType="com.caocao.core.model.UserToButton" >
+   select _id as id,
+   		  _name as name,
+   		  _url as url,
+   		  _menu_id as menuId 
+   from tsp_caocao_button b 
+   where b._id in (select a._button_id 
+   				   from tsp_caocao_user2button a 
+   				   where a._user_id = #{userId} 
+   				   		 and a._menu_id = #{menuId})
+  </select>
+</mapper>

@@ -67,7 +67,7 @@ pageEncoding="UTF-8"%>
                             <label>手机号</label><input type="text" class="inputcls"  />
                             <label>所属公司</label>
 							<select class="select" id="companyCode" name="companyCode">
-		                        <option value="请选择公司">--请选择公司--</option>   
+		                        <option value="">--请选择公司--</option>   
 		                        <option value="10000">杭州优行科技有限公司</option>                   
 		                    </select>
                             <input type="button" class="buttoncls" value="查询" />   
@@ -80,10 +80,22 @@ pageEncoding="UTF-8"%>
                     <!--内容 start-->
                    
                     <div class="mainConcls3">
+                    	<!-- 点击区域start -->
+                    	<div class="datagrid-header selectPoint" >
+                    		<em class="emcls "></em>
+                    	</div>
+                    	<!-- 点击区域end -->
+                    	<!-- 弹出框 -->
+	                    <div class="selectArea fn-hide">
+	                    	<ul> 	
+	                    	</ul>
+	                    </div>
+	                  	<!-- 弹出框 -->
+	                  	
                     	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'../bigcustumermanage/queryaccount.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                                 <thead>
                                     <tr>
-                                    	<th data-options="field:'id',width:90,hidden:'true'">姓名</th>
+                                    	<th data-options="field:'id',width:90" hidden="true">id</th>
                                         <th data-options="field:'name',width:90 ">姓名</th>
                                         <th data-options="field:'sexStr',width:90">性别</th>
                                         <th data-options="field:'phone',width:90">手机号</th>

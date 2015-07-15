@@ -13,5 +13,5 @@ public interface OrderManageMapper {
 	
 	List<BookOrder> SelectHistoryOrder(BookOrder record);
 	
-	OrderDetail SelectOrderDetail(OrderDetail OrderDetail);
+	OrderDetail SelectOrderDetail(OrderDetail record);
 }

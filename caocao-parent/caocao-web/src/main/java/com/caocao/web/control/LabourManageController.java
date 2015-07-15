@@ -87,7 +87,7 @@ public class LabourManageController {
 			Map<String, Object> map = new HashMap<String, Object>();
 			List<Labour> list = labourManageService.QueryPageList(labour);
 			for(int i=0; i<list.size(); i++) {
-				if(list.get(i).getSignDate() != null) {
+				if(null != list.get(i).getSignDate()) {
 					list.get(i).setSignDateStr(DateAndStr.DateToStr(list.get(i).getSignDate()));
 				}
 			}

@@ -50,7 +50,7 @@ public class DriverManageServiceImpl implements DriverManageService {
 	}
 	
 	public int update(Driver driver) {
-		int result = driverMapper.updateByPrimaryKey(driver);
+		int result = driverMapper.updateByPrimaryKeySelective(driver);
 		return result;
 	}
 	

@@ -524,7 +524,8 @@
       _createtime = #{createtime,jdbcType=TIMESTAMP},
       _updatetime = #{updatetime,jdbcType=TIMESTAMP},
       _author_update = #{authorUpdate,jdbcType=VARCHAR},
-      _version = #{version,jdbcType=DOUBLE}
+      _version = #{version,jdbcType=DOUBLE},
+      _remark = #{remark,jdbcType=LONGVARCHAR}
     where _id = #{id,jdbcType=INTEGER}
   </update>
   
@@ -593,4 +594,12 @@
     where 	1=1
    			and _id = #{id,jdbcType=INTEGER}
   </select>
+  
+  <update id="updateStatus" parameterType="com.caocao.core.model.Admin" >
+    update tsp_caocao_admin
+    set   _isActive = #{isactive,jdbcType=INTEGER},
+	      _isActiveTime = #{isactivetime,jdbcType=TIMESTAMP},
+	      _freezeTime = #{freezetime,jdbcType=TIMESTAMP}
+    where _id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

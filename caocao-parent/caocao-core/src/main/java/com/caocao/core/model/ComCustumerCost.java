@@ -35,6 +35,8 @@ public class ComCustumerCost {
 	private String endLocation;
 	
 	private String startAndEnd;
+	
+	private String costDateStr;
 
 	public Integer getId() {
 		return id;
@@ -162,6 +164,14 @@ public class ComCustumerCost {
 
 	public void setStartAndEnd(String startAndEnd) {
 		this.startAndEnd = startAndEnd;
+	}
+
+	public String getCostDateStr() {
+		return costDateStr;
+	}
+
+	public void setCostDateStr(String costDateStr) {
+		this.costDateStr = costDateStr;
 	}
 	
 }

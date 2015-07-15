@@ -1,5 +1,7 @@
 package com.caocao.web.control;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -13,7 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.caocao.core.model.Admin;
+import com.caocao.core.model.Button;
+import com.caocao.core.model.Menu;
+import com.caocao.core.model.UserToButton;
+import com.caocao.core.model.UserToMenu;
+import com.caocao.core.service.ButtonService;
 import com.caocao.core.service.LoginService;
+import com.caocao.core.service.MenuService;
 import com.caocao.service.integration.sms.MessageFactory;
 import com.caocao.util.MobileCode;
 import com.caocao.web.constant.ResultState;
@@ -27,6 +35,12 @@ public class LoginController {
 			.getLogger(LoginController.class);
 	@Resource
 	private LoginService loginService;
+	
+	@Resource
+	private MenuService menuService;
+	
+	@Resource
+	private ButtonService buttonService;
 	
 	@Resource(name = "messageFactory")
 	private MessageFactory messageFactory;
@@ -83,13 +97,24 @@ public class LoginController {
 			return result;
 		}
 		if(modelDO.getIsactive() == null) {
-			modelDO.setIsactive(0);
+			modelDO.setIsactive(2);
 		}
-		if(!StringUtils.isEmpty(modelDO.getPhone()) && 0 == modelDO.getIsactive()) {
+		if(!StringUtils.isEmpty(modelDO.getPhone()) && 2 == modelDO.getIsactive()) {
 			result = 2;
 			return result;
 		}
+		UserToMenu userToMenu = new UserToMenu();
+		userToMenu.setUserId(modelDO.getId());
+		userToMenu.setMenuPid(0);
+		List<Menu> menuList = menuService.QueryMenuList(userToMenu);
+		session.setAttribute("user", modelDO);
+		session.setAttribute("menuList", menuList);
 		loginService.updateLoginTime(modelDO.getId());
+		UserToButton userToButton = new UserToButton();
+		userToButton.setUserId(1);
+		userToButton.setMenuId(15);
+		List<Button> buttonList = buttonService.QueryButtonList(userToButton);
+		session.setAttribute("buttonList", buttonList);
 		result = 4;
 		return result;
 		

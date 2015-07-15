@@ -13,4 +13,6 @@
 <script type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script> 
 <script type="text/javascript" src="js/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="js/city.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/json2.js"></script>
 <!--[if IE]><script type="text/javascript" src="js/html5.js"></script><![endif]-->

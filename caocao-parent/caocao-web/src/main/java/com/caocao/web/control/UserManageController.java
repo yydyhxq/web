@@ -42,8 +42,9 @@ public class UserManageController {
 //			success = 0;
 //			return success;
 //		}
-		admin.setIsactive(0);
+		admin.setIsactive(1);
 		admin.setCreatetime(new Date());
+		admin.setIsactivetime(new Date());
 		Admin modelDO = userManageService.QueryOne(admin);
 		if(!(modelDO == null)) {
 			success = 1;
@@ -84,6 +85,35 @@ public class UserManageController {
 			return success;
 		}
 	}
+	
+	//0：必填写项不能为空！；1:后台数据已发生变化，请重新提取数据；2：数据修改失败；3：数据修改成功；4:系统异常请联系管理员；
+	@RequestMapping(value = "/updatestatus")
+	@ResponseBody
+	public int updateStatus(@ModelAttribute Admin admin) {
+		int success = 100;
+		if(1 == admin.getIsactive()) {
+			admin.setIsactive(2);
+			admin.setIsactivetime(null);
+			admin.setFreezetime(new Date());
+		} else if(2 == admin.getIsactive()) {
+			admin.setIsactive(1);
+			admin.setFreezetime(null);
+			admin.setIsactivetime(new Date());
+		}
+		Admin modelDO = userManageService.QueryById(admin);
+		if(!(modelDO == null)) {
+				int result = userManageService.updateStatus(admin);
+				if(result > 0) {
+					success = 3;
+				} else {
+					success = 2;
+				}
+				return success;
+		} else {
+			success = 4;
+			return success;
+		}
+	}
 		
 	//查询批量用户信息
 	@RequestMapping(value = "/query")
@@ -93,7 +123,7 @@ public class UserManageController {
 		List<Admin> list = userManageService.QueryPageList(admin);
 		for(int i=0; i<list.size(); i++) {
 			if(null != list.get(i).getIsactive()) {
-				if(0 == list.get(i).getIsactive()) {
+				if(2 == list.get(i).getIsactive()) {
 					list.get(i).setIsactiveStr(ActiveCst.IsActive.NO);
 				} else if(1 == list.get(i).getIsactive()) {
 					list.get(i).setIsactiveStr(ActiveCst.IsActive.YES);
@@ -102,6 +132,12 @@ public class UserManageController {
 			
 			if(null != list.get(i).getLogintime()) {
 				list.get(i).setLoginTimeStr(DateAndStr.DateToStrHour(list.get(i).getLogintime()));
+			}
+			if(null != list.get(i).getIsactivetime()) {
+				list.get(i).setIsactivetimeStr(DateAndStr.DateToStrHour(list.get(i).getIsactivetime()));
+			}
+			if(null != list.get(i).getFreezetime()) {
+				list.get(i).setFreezetimeStr(DateAndStr.DateToStrHour(list.get(i).getFreezetime()));
 			}
 		}
 		map.put("total", list.size());

@@ -30,7 +30,7 @@
                 		<!--<li><em></em><a href="driverInterview.jsp">司机初审/面试</a></li> 
                         <li><em></em><a href="dirverRetrial.jsp">司机复试</a></li> 
                          <li><em></em><a href="driverContract.jsp">合同/协议签订</a></li>-->
-                        <li><em></em><a href="driverService.jsp">司机培训</a></li> 
+                       <!--  <li><em></em><a href="driverService.jsp">司机培训</a></li>  -->
                         <li><em></em><a href="driverWatch.jsp">司机信息查看</a></li>                     
                     </ul>
                 </li>

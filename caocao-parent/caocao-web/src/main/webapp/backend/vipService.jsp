@@ -94,6 +94,18 @@ pageEncoding="UTF-8"%>
                         <a href="#" class="btn1" >批量导入</a>
                     </div>
                     <div class="mainConcls3">
+                    	<!-- 点击区域start -->
+                    	<div class="datagrid-header selectPoint" >
+                    		<em class="emcls "></em>
+                    	</div>
+                    	<!-- 点击区域end -->
+                    	<!-- 弹出框 -->
+	                    <div class="selectArea fn-hide">
+	                    	<ul> 	
+	                    	</ul>
+	                    </div>
+	                  	<!-- 弹出框 -->
+                    
                     	<table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'../bigcustumermanage/querybase.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                                 <thead>
                                     <tr>
@@ -141,16 +153,16 @@ pageEncoding="UTF-8"%>
                     <label>性别</label>
                     <select class="select" name="sex" id="sex">
                      	<option value="">--请选择性别--</option>
-                        <option value="0">男</option>
-                        <option value="1">女</option>
+                        <option value="1">男</option>
+                        <option value="2">女</option>
                     </select>
                 </div>
                 <div class="toastcls1 clearfix">
                      <label>联系电话</label>
-                     <input type="text" class="inputcls required" id="phone" name="phone" />
+                     <input type="text" class="inputcls required" id="phone" name="phone" onkeyup="chekNum(this,11)"/>
                      <label>公司名称</label>
                      <select class="select" id="companyCode" name="companyCode">
-                        <option value="请选择公司">--请选择公司--</option>   
+                        <option value="">--请选择公司--</option>   
                         <option value="10000">杭州优行科技有限公司</option>                   
                      </select>
                 </div>
@@ -204,12 +216,6 @@ pageEncoding="UTF-8"%>
             }
         }
 		
-		function lookUser(){
-			if (row){  
-				 url = "UserManage.aspx?id=" + row.id;
-			}  	
-			
-		}
 		
 		function saveuser(){  
 			

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.caocao.core.dao.DataPrivilegeMapper" >
+<select id="QueryDataPrivilege" resultType="com.caocao.core.model.DataPrivilege" parameterType="com.caocao.core.model.DataPrivilege" >
+   select _id as id,
+   		  _user_id as userId,
+   		  _menu_id as menuId,
+   		  _hasData as hasData 
+   from tsp_caocao_data a 
+   where a._user_id = #{userId} 
+   		 and a._menu_id = #{menuId}
+  </select>
+</mapper>

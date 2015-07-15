@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.caocao.core.model.Driver;
 import com.caocao.core.service.DriverManageService;
 import com.caocao.web.constant.DateAndStr;
+import com.caocao.web.constant.DriverOnlineCst;
 import com.caocao.web.constant.OnlineCst;
 import com.caocao.web.constant.SexCst;
 
@@ -105,17 +106,19 @@ public class DriverManageController {
 				list.get(i).setQualifiedDateStr(DateAndStr.DateToStr(list.get(i).getQualifiedDate()));
 			}
 			if(null != list.get(i).getSex()) {
-				if(0 == list.get(i).getSex()) {
+				if(1 == list.get(i).getSex()) {
 					list.get(i).setSexStr(SexCst.Sex.MAN);
-				} else if (1 == list.get(i).getSex()) {
+				} else if (2 == list.get(i).getSex()) {
 					list.get(i).setSexStr(SexCst.Sex.WOMAN);
 				}
 			}
 			if(null != list.get(i).getOnline()) {
-				if(0 == list.get(i).getOnline()) {
-					list.get(i).setOnlineStr(OnlineCst.OnlineStatus.NO);
-				} else if(1 == list.get(i).getOnline()) {
-					list.get(i).setOnlineStr(OnlineCst.OnlineStatus.Yes);
+				if(1 == list.get(i).getOnline()) {
+					list.get(i).setOnlineStr(DriverOnlineCst.DriverOnline.ONE);
+				} else if (2 == list.get(i).getOnline()) {
+					list.get(i).setOnlineStr(DriverOnlineCst.DriverOnline.TWO);
+				} else if(3 == list.get(i).getOnline()) {
+					list.get(i).setOnlineStr(DriverOnlineCst.DriverOnline.THREE);
 				}
 			}
 		}
@@ -138,9 +141,9 @@ public class DriverManageController {
 					list.get(i).setDrivelicenseDateStr(DateAndStr.DateToStr(list.get(i).getDrivelicenseDate()));
 				}
 				if(null != list.get(i).getSex()) {
-					if(0 == list.get(i).getSex()) {
+					if(1 == list.get(i).getSex()) {
 						list.get(i).setSexStr(SexCst.Sex.MAN);
-					} else if (1 == list.get(i).getSex()) {
+					} else if (2 == list.get(i).getSex()) {
 						list.get(i).setSexStr(SexCst.Sex.WOMAN);
 					}
 				}

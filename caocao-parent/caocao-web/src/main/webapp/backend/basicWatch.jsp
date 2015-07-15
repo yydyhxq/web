@@ -76,6 +76,18 @@ pageEncoding="UTF-8"%>
                     <!--内容 start-->
                   
                     <div class="mainConcls3">
+                    	<!-- 点击区域start -->
+                    	<div class="datagrid-header selectPoint" >
+                    		<em class="emcls"></em>	
+                    	</div>
+                    	<!-- 点击区域end -->
+                    	<!-- 弹出框 -->
+	                    <div class="selectArea fn-hide">
+	                    	<ul>
+	                    	</ul>
+	                    </div>
+	                  	<!-- 弹出框 -->
+                    
                    		 <table id="dg" class="easyui-datagrid" style="width:1077px;height:450px"  data-options="url:'../comcustumer/comaccount.do',fitColumns:true,singleSelect:true,pagination:true,rownumbers:true">
                         	<thead>
                             	<tr>
@@ -83,7 +95,7 @@ pageEncoding="UTF-8"%>
                                     <th  data-options="field:'name',width:80">姓名</th>
                                     <th  data-options="field:'sexStr',width:80">性别</th>
                                     <th  data-options="field:'phone',width:80">手机号</th>
-                                    <th  data-options="field:'costMoney',width:80">消费总金额</th>
+                                    <th  data-options="field:'totalCost',width:80">消费总金额</th>
                                   	<th  data-options="field:'cityCode',width:80">所在城市</th>
                                 </tr> 
                             </thead>

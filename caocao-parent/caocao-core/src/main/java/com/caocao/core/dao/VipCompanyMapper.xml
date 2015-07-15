@@ -526,6 +526,7 @@
       _author_create = #{authorCreate,jdbcType=VARCHAR},
       _author_update = #{authorUpdate,jdbcType=VARCHAR},
       _version = #{version,jdbcType=DOUBLE},
+      _remark = #{remark,jdbcType=LONGVARCHAR},
       _sign_date = #{signDate,jdbcType=TIMESTAMP}
     where _id = #{id,jdbcType=INTEGER}
   </update>
@@ -545,7 +546,8 @@
 			_author_create as authorCreate,
 			_author_update as authorUpdate, 
 			_sign_date as signDate,
-			_version as version
+			_version as version,
+			_remark as remark
     from 	tsp_caocao_vipcompany
     where 	1=1
     <if test="name != null and name != ''">and _name like concat(concat('%',#{name,jdbcType=VARCHAR}),'%')</if>
@@ -570,7 +572,8 @@
 			_author_create as authorCreate,
 			_author_update as authorUpdate, 
 			_sign_date as signDate,
-			_version as version
+			_version as version,
+			_remark as remark
     from 	tsp_caocao_vipcompany
     where 	1=1
     		and _company_code = #{companyCode,jdbcType=VARCHAR}
@@ -591,7 +594,8 @@
 			_author_create as authorCreate,
 			_author_update as authorUpdate, 
 			_sign_date as signDate,
-			_version as version
+			_version as version,
+			_remark as remark
     from 	tsp_caocao_vipcompany
     where 	1=1
     and _id = #{id,jdbcType=INTEGER}
