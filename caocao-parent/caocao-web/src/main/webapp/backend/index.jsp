@@ -104,6 +104,37 @@ pageEncoding="UTF-8"%>
 		$.cookie("con",n, { expires: 1 }); //存入cookie
 		console.log($.cookie("con"));  */
 		
+		$("#smoothmenu1 li").click(function(){
+			var $li = $(this);
+			/*var pid = $(this).attr("pid");
+			var url = $(this).attr("href");*/
+			var url ="../menu/querymenus.do?userId=1&menuPid=1";
+			$.ajax({
+				type:'get',
+				url:url,
+				dataType:'json',
+				success:function(data){
+					console.log(data)
+					var length= data.length();
+					if(length>0){
+						var html = "<ul>";
+						var liUrl;
+						var liName;
+						for(var i=0;i<length;i++){
+							liUrl = data.url;
+							liName = data.name;
+							html += "<li><a href="+liUrl+">"+liName+"</li>" ;
+						}
+						html = html+"</ul>";
+						$li.append(html);
+					}
+					
+				}
+								
+				
+			});
+		})
+		
 	});
 	
 </script>
@@ -119,9 +150,48 @@ pageEncoding="UTF-8"%>
         	<div class="navIcon">
             	
             </div>
-            <!--菜单start-->
-        	<%@ include file="/backend/common/menu.jsp"%>
-       		 <!--菜单end-->
+            <div id="smoothmenu1" >
+			<ul>
+				<li><a href="#">用户管理</a>
+                	
+                </li>
+				<li><a href="#">企业管理</a>
+					<ul>
+						<li><a href="#">大客户管理</a></li>
+						<li><a href="#">租赁公司管理</a></li>
+						<li><a href="#">劳务公司</a></li>
+					</ul>
+				</li>
+				<li><a href="#">车辆管理</a>
+					<ul>
+						<li><a href="#">车型设置</a></li>	
+					</ul>
+				</li>
+				<li><a href="#">司机管理</a>
+                	<ul>
+                   	 	<li><a href="#">司机信息查看</a></li>	
+						
+					</ul>
+                </li>
+				<li><a href="#">客户管理</a>
+					<ul>
+						<li><a href="#">大客户管理</a></li>
+						<li><a href="#">普通客户管理</a>
+							<ul>
+								<li><a href="#">Sub Item 2.1.1</a></li>
+								<li><a href="#">Sub Item 2.1.2</a></li>
+								<li><a href="#">Sub Item 2.1.4</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li><a href="#">订单管理</a></li>
+                <li><a href="#">推广管理</a></li>
+                <li><a href="#">财务管理</a></li>
+			</ul>
+			<br style="clear: left" />
+		</div>
+         
        		 
             <div class="navUser">
             	<a href="login.jsp">退出</a>

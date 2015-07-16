@@ -94,24 +94,14 @@ $(function(){
 		});
 		
 		
-		$(".priviLcls3").on("dblclick",function(){
+		/*$(".priviLcls3").on("dblclick",function(){
 			$(".priviLcls2").show();
-		});
+		});*/
 		
-		$(document).click(function(){
-			$(".priviLcls2").hide();
-		});		
-		$(".priviLcls2").click(function(e){
-		var ev = e || window.event;
-			if(ev.stopPropagation){
-					ev.stopPropagation();
-			 }
-			else if(window.event){
-					window.event.cancelBubble = true;//兼容IE
-			}
-		})
+		
 		
 	});
+
 
 	// 日期比较
 		function compare(startTime,endTime){

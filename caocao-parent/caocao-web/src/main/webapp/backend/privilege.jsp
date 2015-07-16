@@ -7,6 +7,13 @@ pageEncoding="UTF-8"%>
 <%@ include file="/backend/common/script.jsp"%>
 
 <script>
+	ddsmoothmenu.init({
+		mainmenuid: "smoothmenu1", 		//菜单div的ID
+		orientation: 'h', 				//水平菜单or垂直菜单 : 请设置"h" or "v"
+		classname: 'ddsmoothmenu', 		//导航菜单的ul标签的class样式名，在这里是ddsmoothmenu.css的样式名
+		contentsource: "markup"	,	 	//"markup" or ["container_id", "path_to_menu_file"]
+		//customtheme: ["#1c5a80", "#18374a"] //菜单背景色和鼠标移过去时的颜色
+	})
 
 	$(function(){
 		//当前选项
@@ -14,6 +21,19 @@ pageEncoding="UTF-8"%>
 		
 		//下拉框
 		$(".select").select2();	
+		
+		
+		//datagrid 自适应	
+		$("#dg").datagrid("resize",{  
+			width: getWidth(0.62)  
+		});                
+	
+		$(window).resize(function(){  
+				//alert("change....");  
+			$("#dg").datagrid("resize",{  
+				width: getWidth(0.62)  
+			});                
+		})
 		
 		//双击显示权限管理
 		$("#dg").datagrid({
@@ -66,7 +86,7 @@ pageEncoding="UTF-8"%>
 					}
 				}
 			};
-
+		
 			var zNodes =[
 				{ id:1, pId:0, name:"系统设置", open:true},
 				{ id:11, pId:1, name:"基本参数设置", open:true},
@@ -105,6 +125,19 @@ pageEncoding="UTF-8"%>
 			
 		 $.fn.zTree.init($("#tree"), setting, zNodes);
 		
+		 $(document).click(function(){
+				$(".priviLcls2").hide();
+			});		
+		 
+		$(".priviLcls1").click(function(e){
+			var ev = e || window.event;
+				if(ev.stopPropagation){
+						ev.stopPropagation();
+				 }
+				else if(window.event){
+						window.event.cancelBubble = true;//兼容IE
+				}
+			})
 	});
 	
 </script>
@@ -120,6 +153,11 @@ pageEncoding="UTF-8"%>
         	<div class="navIcon">
             	
             </div>
+            
+            <!--菜单start-->
+        	<%@ include file="/backend/common/menu.jsp"%>
+       		 <!--菜单end-->
+       		 
             <div class="navUser">
             	<a href="login.jsp">退出</a>
                 <span class="sx">|</span>
@@ -131,11 +169,7 @@ pageEncoding="UTF-8"%>
     <!--header end-->
     <div class="container-fluid">
       <div class="row-fluid">
-      	
-     	<!--菜单start-->
-        	<%@ include file="/backend/common/menu.jsp"%>
-        <!--菜单end--
-        
+
          <!--Body content start-->
         <div class="rightArea">
         	
@@ -168,7 +202,7 @@ pageEncoding="UTF-8"%>
 				        			<input type="button" class="buttoncls" value="保存" id="save">
 				        		</h4>
 				        		<!-- 操作和数据权限  start-->
-				        		<div class="priviLcls2 "  >
+				        		<div class="priviLcls2  fn-hide">
 				        			<div class="priviLcls2_1">
 				        				<h4>操作权限</h4>
 				        				<ul class="thirdTree">
@@ -194,11 +228,11 @@ pageEncoding="UTF-8"%>
 				        				<ul class="thirdTree">
 				        					<li>
 				        						<input type="radio" class="radiocls" name="privilege" value="0"/>
-				        						<span >全部</span>
+				        						<span>全部</span>
 				        					</li>
 				        					<li>
 				        						<input type="radio" class="radiocls" name="privilege" value="1" />
-				        						<span >本公司</span>
+				        						<span>本公司</span>
 				        					</li>
 				        				</ul>
 				        			</div>

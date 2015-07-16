@@ -99,9 +99,7 @@
           <div id="smoothmenu1" >
 			<ul>
 				<li><a href="#">用户管理</a>
-                	<ul>
-						<li><a href="#">用户信息维护</a></li>
-					</ul>
+                	
                 </li>
 				<li><a href="#">企业管理</a>
 					<ul>
