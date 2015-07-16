@@ -1,14 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%> 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ page isELIgnored="false" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
+pageEncoding="UTF-8"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <%@ include file="/backend/common/meta.jsp"%>
 <%@ include file="/backend/common/script.jsp"%>
 <script>
+	ddsmoothmenu.init({
+		mainmenuid: "smoothmenu1", 		//菜单div的ID
+		orientation: 'h', 				//水平菜单or垂直菜单 : 请设置"h" or "v"
+		classname: 'ddsmoothmenu', 		//导航菜单的ul标签的class样式名，在这里是ddsmoothmenu.css的样式名
+		contentsource: "markup"	,	 	//"markup" or ["container_id", "path_to_menu_file"]
+		//customtheme: ["#1c5a80", "#18374a"] //菜单背景色和鼠标移过去时的颜色
+	})
+
 	$(function(){
 		//当前选项
 		current1("admin",1);
@@ -17,7 +22,7 @@
 		$(".select").select2();	
 					
 		$('#dg').datagrid({ 
-		    width:'1077px',
+		    width: getWidth(0.95) ,
 			height:'450px',
 			url:"../usermanage/query.do", 
 			fitColumns:true,
@@ -56,8 +61,12 @@
 			
 		});  
 		
-		
-	
+		$(window).resize(function(){  
+				//alert("change....");  
+			$("#dg").datagrid("resize",{  
+				width: getWidth(0.95)  
+			});                
+		})
 		//查询
 		$("#search").click(function(){
 			var username = $("input[name='username']").val(); //获取用户名称
@@ -74,8 +83,26 @@
 		})
 		
 		
-	
 		
+		 //执行tabs
+		var data = { title: '用户管理维护', url: '../backend/index.jsp' };	
+	    var cookie = JSON.stringify(data);
+	    $.cookie("con",cookie); 
+		 
+		var data = { title: '用户管理维护', url: '../backend/index.jsp' };	
+		tabs(data);
+		
+	/* 	 var cookie =[{ title: '用户管理维护', url: '../backend/index.jsp'}];
+		cookie=JSON.stringify(cookie)
+		$.cookie("con",cookie, { expires: 1 }); 
+		var data = { title: '用户管理维护', url: '../backend/index.jsp' }
+		var cookieStr = $.cookie("con"); //获取cookie
+		var cookieJson = JSON.parse(cookieStr); // 转化成 json	
+		var s = cookielist(cookieJson,data);
+		s.push(data);
+		var n = JSON.stringify(s);//转换成字符串
+		$.cookie("con",n, { expires: 1 }); //存入cookie
+		console.log($.cookie("con"));  */
 		
 	});
 	
@@ -84,12 +111,18 @@
 </head>
 
 <body>
+	
+
 	<!--header start-->
     <div class="fn-title">
         <div class="navbar navBg">
         	<div class="navIcon">
             	
             </div>
+            <!--菜单start-->
+        	<%@ include file="/backend/common/menu.jsp"%>
+       		 <!--菜单end-->
+       		 
             <div class="navUser">
             	<a href="login.jsp">退出</a>
                 <span class="sx">|</span>
@@ -102,20 +135,17 @@
     <div class="container-fluid">
       <div class="row-fluid">
       	
-     	<!--菜单start-->
-        	<%@ include file="/backend/common/menu.jsp"%>
-        <!--菜单end--
+     	
         
          <!--Body content start-->
         <div class="rightArea">
         	<div class="mainCon">
               
-               <h3>用户信息维护</h3>
-               <%-- <c:forEach items="${buttonList}" var="item">  
-				<tr>  
-				  <td align="center" valign="middle">${item.name}</td>  
-				</tr>    
-				</c:forEach> --%>
+               <h3>
+               	<ul>
+               		
+               	</ul>
+          </h3>
                <div class="mainConcls">
                		<!--查询条件 start-->
                		<div class="mainConcls1 ">
@@ -144,7 +174,6 @@
 					 <![endif]-->
                     
                     <div class="mainConcls3"  >
-                   
                     	<div class="datagrid-header selectPoint" >
                     		<em class="emcls"></em>
                     	</div>
@@ -268,12 +297,6 @@
 			$this = $(obj);
 			var html = $this.html(); //获取操作按钮的值
 			var url = $this.attr("data-href"); //获取操作的url
-			var $type = 1; //传递后台的参数
-			if(html=="停用"){
-				$type = 1; 
-			}else{
-				$type = 2;
-			}
 			
 			$.ajax({
 				url:url,

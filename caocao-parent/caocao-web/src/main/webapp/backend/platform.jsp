@@ -29,6 +29,10 @@ pageEncoding="UTF-8"%>
 				layer.msg("结束日期不能小于开始日期");
 			}
 		})
+		
+		 //执行tabs
+		var data = {title: '平台返利', url: '../backend/platform.jsp' };	
+		tabs(data);
 	})
 </script>
 <title>平台返利</title>
@@ -60,7 +64,7 @@ pageEncoding="UTF-8"%>
          <!--Body content start-->
         <div class="rightArea">
         	<div class="mainCon">
-               <h3>平台返利</h3>
+               <h3><ul></ul></h3>
                <div class="mainConcls">
                		<!--查询条件 start-->
                		<div class="mainConcls1 clearfix">

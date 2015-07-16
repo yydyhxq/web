@@ -34,7 +34,7 @@ table td.nooverflow{word-break:break-all;white-space:normal; overflow:visible;}
 .inputcls{float:left;}
 .input[type="file"], input[type="image"], input[type="reset"], input[type="button"], input[type="radio"], input[type="checkbox"]{width:60px;height:30px;line-height:30px;}
 input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly]{cursor:default}
-.btn1{display:block;float:left;background: url(../images/btnup.png) no-repeat;width: 102px;height: 25px;line-height:25px;text-align:center;color: #fff;border: 0px;cursor: pointer;margin-right:10px;}
+.btn1{display:block;float:left;background: url(../images/btnup1.png) no-repeat;width: 102px;height: 25px;line-height:25px;text-align:center;color: #fff;border: 0px;cursor: pointer;margin-right:10px;}
 .btn1:hover{color:#fff;text-decoration:none;}
 .btn1:active{color:#fff;}
 .btn1:focus {color:#fff;text-decoration:none;}
@@ -51,14 +51,14 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
 
 
 /*后台管理首页*/
-.navBg{background:#5f2967;height:98px;margin-bottom:10px;overflow:hidden}
+.navBg{background:#006bb9;height:98px;margin-bottom:10px;}
 .navIcon{float:left;margin-left:105px;font-size:22px;color:#fff;background:url(../images/logo.png) no-repeat 0px 16px;width:198px;height:98px;}
-.navUser{float:right;margin-right:100px;padding-top:55px;width:400px;height:35px;color:#fff;font-size:12px;}
+.navUser{position:absolute;width:400px;height:35px;color:#fff;font-size:12px;top:40px;right:20px}
 .navUser a{color:#fff;float:right;}
 .sx{float:right;margin:0px 13px;}
 .topUserInfo_manage{float:right;margin-right:25px;}
 .leftArea{background:#5F2968;width:190px;float:left;min-height:700px;}
-.rightArea{background:#fff;margin-left:210px;min-height:700px;}
+.rightArea{background:#fff;min-height:700px;position:relative;}
 
 /*导航栏*/
 .row-fluid .span2{padding-top:20px;background:#2065C9;min-width:190px;}

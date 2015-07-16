@@ -28,6 +28,10 @@ pageEncoding="UTF-8"%>
 				layer.msg("结束日期不能小于开始日期");
 			}
 		})	
+		
+		 //执行tabs
+		var data = {title: '司机收入', url: '../backend/driverIncome.jsp' };	
+		tabs(data);
 	})
 </script>
 <title>司机收入</title>
@@ -59,7 +63,7 @@ pageEncoding="UTF-8"%>
          <!--Body content start-->
         <div class="rightArea">
         	<div class="mainCon">
-               <h3>司机收入</h3>
+               <h3><ul></ul></h3>
                <div class="mainConcls">
                		<!--查询条件 start-->
                		<div class="mainConcls1 clearfix">

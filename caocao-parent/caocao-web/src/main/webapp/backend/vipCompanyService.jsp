@@ -32,8 +32,26 @@ pageEncoding="UTF-8"%>
 				signDateEnd:signDateEnd
 			})
 			$('#dg').datagrid('reload');    // reload the current page data			
-		})
+		});
+		
+		
+		//执行tabs
+		var data ={title:'大客户公司管理',url:'../backend/vipCompanyService.jsp'};	
+		tabs(data);
+		/* var cookieStr = $.cookie("con"); 
+		var cookieJson = JSON.parse(cookieStr); 
+		cookieJson  = splice(cookieJson)
+		var s = cookielist(cookieJson,data);
+		s.push(data);
+		$(".mainCon h3 ul").append("<li><a href="+data.url+">"+data.title+"</a></li>");
+		var cookieJsonStr = JSON.stringify(s);  //转化成字符串
+		$.cookie("con",cookieJsonStr); //将值存入cookie  */
 	})
+	
+	
+	
+	
+	
 </script>
 <!--[if IE]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
 
@@ -66,7 +84,7 @@ pageEncoding="UTF-8"%>
          <!--Body content start-->
         <div class="rightArea">
         	<div class="mainCon">
-               <h3>大客户企业维护</h3>
+               <h3><ul></ul></h3>
                <div class="mainConcls">
                		<!--查询条件 start-->
                		<div class="mainConcls1  clearfix">

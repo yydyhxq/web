@@ -9,6 +9,8 @@ pageEncoding="UTF-8"%>
 <link href="css/style.css" type="text/css" rel="stylesheet"/>
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/json2.js"></script>
 <!--[if IE]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
 <script>
 $(document).ready(function(){
@@ -107,6 +109,10 @@ $(document).ready(function(){
 			}    	
 		});
 	});
+	
+	var data = { title: '用户管理维护', url: '../backend/index.jsp' };	
+    var cookie = JSON.stringify(data);
+    $.cookie("con",cookie);
  });  
 
 </script>

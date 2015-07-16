@@ -30,6 +30,9 @@
 .mainCon{width:98%;margin:auto;padding-top:10px;}
 .mainCon h3{margin:10px auto;background:#f0f0f0;font-size:16px;height:30px;line-height:30px;text-indent:10px;}
 .mainCon h3 a,.mainCon h4 a{display:block;float:right;margin-right:20px;color:#09C;font-size:14px;font-weight:normal;}
+.mainCon h3 li{float:left;height:28px;width:150px;text-align:center;border:1px solid #ccc;background:#f0f0f0;position:relative;border-radius:4px;-webkit-border-radius:4px;-moz-border-radius:4px;}
+.mainCon h3 li em{position:absolute;right:5px;top:5px;width:10px;height:10px;background:red url(../images/x.png);}
+.mainCon h3 li a{height:28px;line-height:28px;float:none;text-align:center;margin-right:0px;text-indent:0px;color:#666666}
 label{display:block;float:left;width:85px;line-height:30px;text-align:right;margin-right:5px;}
 .mainConcls1{margin-top:30px;margin-left:20px;position:relative}
 .mainConcls2{height:30px;margin-bottom:20px;min-width:900px;position:relative}
@@ -42,11 +45,30 @@ label{display:block;float:left;width:85px;line-height:30px;text-align:right;marg
 .mainConcls3 td{height:40px;line-height:40px;font-size:12px;padding:0 5px;}
 .mainConcls3 td::nth-child(even){background:#fbfcfc;}
 .mainConcls4{padding-left:20px;margin-bottom:20px;height:20px;}
-.buttoncls{float:left;margin-left:25px;background:#5f2967;color:#fff;border-radius:5px;}
-.buttoncls.buttoncls1{width:60px;height:30px;float:right;margin-right:20px;margin-top:5px;background:#5f2967;}
+.buttoncls{float:left;margin-left:25px;background:#006bb9;color:#fff;border-radius:5px;}
+.buttoncls.buttoncls1{width:60px;height:30px;float:right;margin-right:20px;margin-top:5px;background:#006bb9;}
 .redColor{color:red;}
 .edit a{margin-right:10px;}
 
+/*用户权限维护*/
+.priviLcls{position:absolute;right:0;top:0;z-index:10002;background:#fff;border:1px solid #95B8E7;width:430px;font-size:12px;}
+.priviLcls h4{font-size:14px;width:100px;line-height:40px;background:#F4F4F4;height:40px;width:100%;text-indent:20px;font-weight:normal;}
+.priviLcls h4 .buttoncls{float:right;margin-right:20px;margin-top:4px;}
+.priviLcls1{padding:10px;height:388px;overflow-y:scroll}
+.ztree li span{line-height:16px;marign-right:2px;}
+.iconTree{background:url(../images/zTreeStandard.png) no-repeat;width:13px;height:13px;display:inline-block;}
+.icon-switchP{background-position:-97px -74px;} 
+.icon-switchA{background-position:-79px -74px;}
+.icon-uncheck{background-position:-0px 0px;}
+.icon-check{background-position:-14px 0px;}
+.secondTree{margin-left:35px;}
+.thirdTree{margin-left:20px;}
+/* .thirdTree{margin-left:20px} */
+.priviLcls2{position:absolute;height:120px;width:202px;right:20px;top:120px;background:#fff;border:1px solid #696969;border-right:none;}
+.priviLcls2_1 {float:left;width:100px;height:100%;border-right:1px solid #696969;}
+.priviLcls2_1 .radiocls{width:13px;height:13px;position:relative;top:-2px;}
+.priviLcls2_1 h4{margin-bottom:10px;}
+.priviLcls3 {cursor:pointer;}
 
 /*详情页*/
 .detailcls{background:#fff;width:940px;height:1400px;font-size:12px;}

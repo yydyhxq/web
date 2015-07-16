@@ -29,6 +29,10 @@ pageEncoding="UTF-8"%>
 				})
 				$('#dg').datagrid('reload');    // reload the current page data			
 			})
+			
+			
+		
+			
 	})
 </script>
 <title>司机培训合格维护</title>

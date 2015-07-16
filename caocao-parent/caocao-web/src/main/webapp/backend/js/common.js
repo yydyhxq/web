@@ -15,23 +15,17 @@ $(function(){
 		}else{
 			childUl.hide().addClass("fn-hide");
 			}
-	})
-	
-	
+	});
 	
 	// 二级菜单栏
 	$(".secondMenu .mainMenucls").click(function(){
 		$(this).toggleClass("currentcls");
 	});
 	
-	
-	
-	
 	//推广维护 时段选择
 	
 		$(".select1").html('<option value="00:00">00:00</option><option value="00:00">00:00</option><option value="00:30">00:30</option><option value="01:00">01:00</option><option value="01:30">01:30</option><option value="02:00">02:00</option><option value="02:30">02:30</option><option value="03:00">03:00</option><option value="03:30">03:30</option><option value="04:00">04:00</option><option value="04:30">04:30</option><option value="05:00">05:00</option><option value="05:30">05:30</option><option value="06:00">06:00</option><option value="06:30">06:30</option><option value="07:00">07:00</option><option value="07:30">07:30</option><option value="08:00">08:00</option><option value="08:30">08:30</option><option value="09:00">09:00</option><option value="09:30">09:30</option><option value="10:00">10:00</option><option value="10:30">10:30</option><option value="11:00">11:00</option><option value="11:30">11:30</option><option value="12:00">12:00</option><option value="12:30">12:30</option><option value="13:00">13:00</option><option value="13:30">13:30</option><option value="14:00">14:00</option><option value="14:30">14:30</option><option value="15:00">15:00</option><option value="15:30">15:30</option><option value="16:00">16:00</option><option value="16:30">16:30</option><option value="17:00">17:00</option><option value="17:30">17:30</option><option value="18:00">18:00</option><option value="18:30">18:30</option><option value="19:00">19:00</option><option value="19:30">19:30</option><option value="20:00">20:00</option><option value="20:30">20:30</option><option value="21:00">21:00</option><option value="21:30">21:30</option><option value="22:00">22:00</option><option value="22:30">22:30</option><option value="23:00">23:00</option><option value="23:30">23:30</option>')
-		
-		
+				
 		var sy = $.extend({}, sy);/*定义一个全局变量*/
 		sy.serializeObject = function (form) { /*将form表单内的元素序列化为对象，扩展Jquery的一个方法*/
 		var o = {};
@@ -67,7 +61,55 @@ $(function(){
 				$(this).attr("checked","checked");
 			}
 		});
+
+		//后台权限设置
 		
+		
+		$(".icon-switchP").on("click",function(){
+			$(this).toggleClass("icon-switchA").siblings(".secondTree").slideToggle(200);
+		});
+		
+		
+		
+		
+		$(".parentTree").click(function(){
+			
+			var hasCheck = $(this).hasClass("icon-check");
+			var childlist = $(this).siblings("ul").find(".icon-uncheck");
+			if(!hasCheck){
+				childlist.addClass("icon-check");
+			}else{
+				childlist.removeClass("icon-check");
+			}
+		})
+		
+		$(".icon-uncheck").on("click",function(){
+			$(this).toggleClass("icon-check");
+			var hasCheck = $(this).hasClass("icon-check");
+			if(!hasCheck){
+				$(this).next("input").attr("checked","checked");
+			}else{
+				$(this).next("input").removeAttr("checked");
+			}
+		});
+		
+		
+		$(".priviLcls3").on("dblclick",function(){
+			$(".priviLcls2").show();
+		});
+		
+		$(document).click(function(){
+			$(".priviLcls2").hide();
+		});		
+		$(".priviLcls2").click(function(e){
+		var ev = e || window.event;
+			if(ev.stopPropagation){
+					ev.stopPropagation();
+			 }
+			else if(window.event){
+					window.event.cancelBubble = true;//兼容IE
+			}
+		})
 		
 	});
 
@@ -177,5 +219,121 @@ $(function(){
 		        }
 		    }
 		
+		  //添加tab栏
+		  function tabs(data){
+			 	var cookieStr = $.cookie("con"); 
+				var cookieJson = JSON.parse(cookieStr); 
+				cookieJson  = Splice(cookieJson);
+				if(cookieJson.length>6){
+					cookieJson.splice(0,1);   //如果cookie里的个数大于6个，就把cookie中的第一个jsp删了
+				}
+			
+				var s = cookielist(cookieJson,data);
+				s.push(data);
+				$(".mainCon h3 ul").append("<li><a href="+data.url+" >"+data.title+"</a></li>");
+				var cookieJsonStr = JSON.stringify(s);  //转化成字符串
+				$.cookie("con",cookieJsonStr); //将值存入cookie 
+		  }
+		  
+		  //删除tabs
+		  function deltabs(obj){
+			 var  $this = $(obj);
+			 var  title = $this.html();
+			 var $ul = $this.parent("li").parent("ul");
+			 var  Alist = $ul.children("li").children("a");
+			 for (var b=0;b<Alist.length;b++){
+				 if(Alist.eq(b).html()==title){
+					 var index = b;
+				 }
+			 }
+			 $ul.children("li").eq(index).remove();
+			 var cookieStr = $.cookie("con"); 
+			 var cookieJson = JSON.parse(cookieStr); 
+			 cookieJson =  Splice(cookieJson);
+			 var s=[];
+			 var l={};
+			 for(var i = 0;i<cookieJson.length;i++){
+				 if(title!= cookieJson[i].title){
+					 l = cookieJson[i];	 
+					
+				 }
+				 s[i] = l;
+			 } 
+			s= s;
+			var cookieJsonStr = JSON.stringify(s);  //转化成字符串
+		    $.cookie("con",cookieJsonStr); //将值存入cookie 
+				
+		  }
+		  
+		  
+		  
+		  //cookie 去重
+		  function Splice(cookie){
+		  var a = cookie;
+		  for(var i=0; i < a.length; i++) {
+			    for(var j=i+1; j < a.length; j++) {
+			        if(a[i].title == a[j].title) {
+			            a.splice(j,1);
 
+			        }
+			    }
+			}
+		 
+		  return a; 
+		
+		  }
+		  
+		  /*Array.prototype.removeRepeatAttr=function(){
+			    var tmp={},a=this.slice(); 
+			    for(var i=j=0;i<a.length;i++){
+			        if(!tmp[a[i].id]){
+			            tmp[a[i].id]=!0;
+			            j++;
+			        }else{
+			            this.splice(j,1);
+			        }
+			    };
+			}
+			var arr=[{"id":"1"}, {"id":"2"}, {"id":"1"}, {"id":"3"}, {"id":"2"}, {"id":"5"}, {"id":"3"}, {"id":"4"}, {"id":"2"}, {"id":"4"}];
+			arr.removeRepeatAttr();*/
+			 
+		  
+		  // 添加cookie
+		  
+		  function cookielist(obj,data){
+			  var data = data;
+			  var cookieJson  = obj;
+			  var s=[];
+			  var l={};
+			
+			  for(var i= 0 ; i<cookieJson.length;i++){
+				   if(cookieJson[i].title!=data.title && cookieJson[i].title!= undefined ){
+					     l = cookieJson[i];	  
+						 var title = cookieJson[i].title;
+						 var url = cookieJson[i].url;
+						 $(".mainCon h3 ul").append("<li><a href="+url+">"+title+"</a><em  onclick='emdelete(this)'></em></li>");
+				   }
+				   s[i] = l;
+				   
+				}
+			  return s;
+		  }
+		  
+		  
+		  //删除tabs
+			
+				function emdelete(obj){
+					$this= $(obj);
+					var a = $this.prev("a");
+					deltabs(a);
+				}
+		  
+		  
+		//datagrid获取宽度
+		function getWidth(percent){  
+	           return $(window).width() * percent;  
+	     }  
+		
+			
+		  
 	

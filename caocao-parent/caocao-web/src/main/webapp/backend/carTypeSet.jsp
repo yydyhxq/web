@@ -32,6 +32,10 @@ pageEncoding="UTF-8"%>
 		})
 		
 		
+		 //执行tabs
+		var data = { title: '车型设置', url: '../backend/carTypeSet.jsp' };	
+		tabs(data);
+		
 	})
 </script>
 <title>车型设置</title>
@@ -63,7 +67,7 @@ pageEncoding="UTF-8"%>
         <div class="rightArea">
         	<div class="mainCon">
               
-               <h3>车型设置</h3>
+               <h3><ul></ul></h3>
                <div class="mainConcls">
                		<!--查询条件 start-->
                		<div class="mainConcls1 ">
@@ -128,7 +132,7 @@ pageEncoding="UTF-8"%>
        closed="true" buttons="#dlg-buttons"> 
       
        <div class="ftitle"> 
-           信息编辑 
+          	 信息编辑 
        </div> 
       <form id="fm" method="post"> 
              <div class="toastcls">

@@ -27,6 +27,12 @@ pageEncoding="UTF-8"%>
 			})
 			$('#dg').datagrid('reload');    // reload the current page data			
 		})
+		
+
+		 //执行tabs
+		var data = { title: '普通客户信息查看', url: '../backend/basicWatch.jsp' };	
+		tabs(data);
+	
 	})
 </script>
 <title>普通客户信息查询</title>
@@ -58,7 +64,7 @@ pageEncoding="UTF-8"%>
          <!--Body content start-->
         <div class="rightArea">
         	<div class="mainCon">
-               <h3>普通客户信息查询</h3>
+               <h3><ul></ul></h3>
                <div class="mainConcls">
                		<!--查询条件 start-->
                		<div class="mainConcls1 clearfix">
