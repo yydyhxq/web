@@ -111,9 +111,12 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
     
     
  /*zTree*/
- #treeDemo{ width:1000px;position:absolute;left:23%;top:50px;}
- #treeDemo> li{float:left;width:100px;height:20px;}
- 
- 
- 
- 
+#treeDemo{ width:1000px;position:absolute;left:23%;top:50px;}
+#treeDemo> li{float:left;height:20px;}
+#treeDemo.ztree li ul{padding:0px;width:150px}
+#treeDemo.ztree li{background:#006bb9;width:150px;}
+#treeDemo.ztree li.level0{width:100px}
+#treeDemo.ztree li span{color:#fff;}
+#treeDemo.ztree li a{height:30px;line-height:30px;font:bold 12px Verdana;}
+#treeDemo.ztree li a.curSelectedNode{background:none;border:none;}
+#treeDemo.ztree li a:hover{text-decoration:none;opacity:0.8}

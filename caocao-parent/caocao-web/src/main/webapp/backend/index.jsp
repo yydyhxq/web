@@ -88,13 +88,17 @@ pageEncoding="UTF-8"%>
 
 		//菜单
 		var setting = {
+	
 				view: {
 					showLine: false,
 					showIcon:false,
+					
 				},
 				data: {
 					simpleData: {
-						enable: true
+						enable: true,
+						idKey:"id",
+						pIdKey:"pid"
 					}
 				}
 			};
@@ -114,25 +118,25 @@ pageEncoding="UTF-8"%>
 			
 		}) */
 			var zNodes =[
-				{ id:1, pId:0, name:"用户系统管理"},
-				{ id:11, pId:1, name:"用户信息维护",url:"#",target:"_self"},
-				{ id:12, pId:1, name:"用户权限维护",url:"#",target:"_self"},
-				{ id:2, pId:0, name:"企业管理"},
-				{ id:21, pId:2, name:"父节点21 - 展开",url:"#",target:"_self"},
-				{ id:22, pId:2, name:"父节点22 - 折叠",url:"#",target:"_self"},				
-				{ id:3, pId:0, name:"车型设置"},
-				{ id:31, pId:3, name:"车型设置",url:"#",target:"_self"},
-				{ id:4, pId:0, name:"司机管理"},
-				{ id:5, pId:0, name:"客户管理"},
-				{ id:51, pId:5, name:"大客户管理"},
-				{ id:52, pId:5, name:"普通客户管理"},
-				{ id:511, pId:51, name:"账户管理",url:"#",target:"_self"},
-				{ id:512, pId:51, name:"账户查看",url:"#",target:"_self"},
-				{ id:521, pId:52, name:"账户管理",url:"#",target:"_self"},
-				{ id:522, pId:52, name:"账户查看",url:"#",target:"_self"},
-				{ id:6, pId:0, name:"订单管理"},
-				{ id:7, pId:0, name:"推广维护"},
-				{ id:8 ,pId:0, name:"财务管理"}
+				{ id:1, pid:0, name:"用户系统管理"},
+				{ id:11, pid:1, name:"用户信息维护",url:"#",target:"_self"},
+				{ id:12, pid:1, name:"用户权限维护",url:"#",target:"_self"},
+				{ id:2, pid:0, name:"企业管理"},
+				{ id:21, pid:2, name:"父节点21 - 展开",url:"#",target:"_self"},
+				{ id:22, pid:2, name:"父节点22 - 折叠",url:"#",target:"_self"},				
+				{ id:3, pid:0, name:"车型设置"},
+				{ id:31, pid:3, name:"车型设置",url:"#",target:"_self"},
+				{ id:4, pid:0, name:"司机管理"},
+				{ id:5, pid:0, name:"客户管理"},
+				{ id:51, pid:5, name:"大客户管理"},
+				{ id:52, pid:5, name:"普通客户管理"},
+				{ id:511, pid:51, name:"账户管理",url:"#",target:"_self"},
+				{ id:512, pid:51, name:"账户查看",url:"#",target:"_self"},
+				{ id:521, pid:52, name:"账户管理",url:"#",target:"_self"},
+				{ id:522, pid:52, name:"账户查看",url:"#",target:"_self"},
+				{ id:6, pid:0, name:"订单管理"},
+				{ id:7, pid:0, name:"推广维护"},
+				{ id:8 ,pid:0, name:"财务管理"}
 				
 			];
 
