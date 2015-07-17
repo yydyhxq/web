@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.caocao.core.model.Privilege;
+import com.caocao.core.model.UserToMenu;
 import com.caocao.core.service.PrivilegeService;
 
 @Controller
@@ -27,5 +28,12 @@ public class PrivilegeController {
 	public List<Privilege> QueryPrivilegeList(Privilege privilege) {
 		List<Privilege> list = privilegeService.QueryPrivilegeList(privilege);
 		return list;
+	}
+	
+	@RequestMapping("/updateusermenu")
+	@ResponseBody
+	public int updateUserMenu(List<UserToMenu> userMenuList) {
+		int result = privilegeService.deleteByUserId(userMenuList.get(0));
+		return 1;
 	}
 }

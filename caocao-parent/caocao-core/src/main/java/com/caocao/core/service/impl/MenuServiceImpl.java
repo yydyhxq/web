@@ -17,8 +17,13 @@ public class MenuServiceImpl implements MenuService {
 	@Resource
 	private MenuMapper menuMapper;
 
-	public List<Menu> QueryMenuList(UserToMenu userToMenu) {
-		List<Menu> list = menuMapper.QueryMenuList(userToMenu);
+	public List<Menu> queryMenuList(UserToMenu userToMenu) {
+		List<Menu> list = menuMapper.queryMenuList(userToMenu);
+		return list;
+	}
+	
+	public List<Menu> queryUserMenu(UserToMenu userToMenu) {
+		List<Menu> list = menuMapper.queryUserMenu(userToMenu);
 		return list;
 	}
 }

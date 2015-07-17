@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.caocao.core.model.Menu;
 import com.caocao.core.model.UserToMenu;
@@ -24,8 +25,17 @@ public class MenuController {
 	private MenuService menuService;
 	
 	@RequestMapping("/querymenus")
-	public void QueryMenuList(@ModelAttribute UserToMenu userToMenu, HttpSession session) {
-		List<Menu> menuList = menuService.QueryMenuList(userToMenu);
+	@ResponseBody
+	public List<Menu> queryMenuList(@ModelAttribute UserToMenu userToMenu, HttpSession session) {
+		List<Menu> menuList = menuService.queryMenuList(userToMenu);
 		session.setAttribute("menuList", menuList);
+		return menuList;
+	}
+	
+	@RequestMapping("/usermenu")
+	@ResponseBody
+	public List<Menu> queryUserMenu(@ModelAttribute UserToMenu userToMenu, HttpSession session) {
+		List<Menu> userMenuList = menuService.queryUserMenu(userToMenu);
+		return userMenuList;
 	}
 }

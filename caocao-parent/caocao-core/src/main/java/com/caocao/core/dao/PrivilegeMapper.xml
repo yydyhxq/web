@@ -12,4 +12,9 @@
   	on 		 a._id = b._menu_id
   			 and b._user_id = #{userId}
   </select>
+  
+  <delete id="deleteByUserId" parameterType="com.caocao.core.model.UserToMenu" >
+    delete from tsp_caocao_user2menu
+    where _user_id = #{userId}
+  </delete>
 </mapper>

@@ -106,7 +106,7 @@ public class LoginController {
 		UserToMenu userToMenu = new UserToMenu();
 		userToMenu.setUserId(modelDO.getId());
 		userToMenu.setMenuPid(0);
-		List<Menu> menuList = menuService.QueryMenuList(userToMenu);
+		List<Menu> menuList = menuService.queryMenuList(userToMenu);
 		session.setAttribute("user", modelDO);
 		session.setAttribute("menuList", menuList);
 		loginService.updateLoginTime(modelDO.getId());

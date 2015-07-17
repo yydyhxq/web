@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.caocao.core.dao.PrivilegeMapper;
 import com.caocao.core.model.Privilege;
+import com.caocao.core.model.UserToMenu;
 import com.caocao.core.service.PrivilegeService;
 
 @Service("privilegeService")
@@ -28,5 +29,10 @@ public class PrivilegeServiceImpl implements PrivilegeService {
 			}
 		}
 		return list;
+	}
+	
+	public int deleteByUserId(UserToMenu userToMenu) {
+		int result = privilegeMapper.deleteByUserId(userToMenu);
+		return result;
 	}
 }
