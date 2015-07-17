@@ -8,6 +8,14 @@ pageEncoding="UTF-8"%>
 
 
 <script>
+	ddsmoothmenu.init({
+		mainmenuid: "smoothmenu1", 		//菜单div的ID
+		orientation: 'h', 				//水平菜单or垂直菜单 : 请设置"h" or "v"
+		classname: 'ddsmoothmenu', 		//导航菜单的ul标签的class样式名，在这里是ddsmoothmenu.css的样式名
+		contentsource: "markup"	,	 	//"markup" or ["container_id", "path_to_menu_file"]
+		//customtheme: ["#1c5a80", "#18374a"] //菜单背景色和鼠标移过去时的颜色
+	})
+
 	$(function(){
 		//当前菜单
 		current1("car",1)
@@ -15,6 +23,17 @@ pageEncoding="UTF-8"%>
 		//下拉框
 		$(".select").select2();	
 		
+		//datagrid 自适应	
+		$("#dg").datagrid("resize",{  
+			width: getWidth(0.95)  
+		});                
+	
+		$(window).resize(function(){  
+				//alert("change....");  
+			$("#dg").datagrid("resize",{  
+				width: getWidth(0.95)  
+			});                
+		})
 		
 		//查询
 		$("#search").click(function(){
@@ -47,6 +66,11 @@ pageEncoding="UTF-8"%>
         <div class="navbar navBg">
         	<div class="navIcon">
             </div>
+            
+            <!--菜单start-->
+        	<%@ include file="/backend/common/menu.jsp"%>
+       		 <!--菜单end-->
+       		 
             <div class="navUser">
             	<a href="login.html">退出</a>
                 <span class="sx">|</span>
@@ -59,9 +83,7 @@ pageEncoding="UTF-8"%>
     <div class="container-fluid">
       <div class="row-fluid">
       
-      		<!--菜单start-->
-        	<%@ include file="/backend/common/menu.jsp"%>
-       		 <!--菜单end-->
+      		
        		 
          <!--Body content start-->
         <div class="rightArea">

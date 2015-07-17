@@ -2,7 +2,7 @@
 
 $(function(){
 
-
+	
 	
 	// 菜单栏
 	$(".secondMenu").addClass("fn-hide");
@@ -97,9 +97,6 @@ $(function(){
 		/*$(".priviLcls3").on("dblclick",function(){
 			$(".priviLcls2").show();
 		});*/
-		
-		
-		
 	});
 
 
@@ -220,7 +217,7 @@ $(function(){
 			
 				var s = cookielist(cookieJson,data);
 				s.push(data);
-				$(".mainCon h3 ul").append("<li><a href="+data.url+" >"+data.title+"</a></li>");
+				$(".mainCon h3 ul").append("<li><a href="+data.url+" class='red'>"+data.title+"</a></li>");
 				var cookieJsonStr = JSON.stringify(s);  //转化成字符串
 				$.cookie("con",cookieJsonStr); //将值存入cookie 
 		  }
@@ -289,7 +286,6 @@ $(function(){
 			 
 		  
 		  // 添加cookie
-		  
 		  function cookielist(obj,data){
 			  var data = data;
 			  var cookieJson  = obj;
@@ -318,7 +314,18 @@ $(function(){
 					deltabs(a);
 				}
 		  
-		  
+				//datagrid 自适应	
+		function reSize(id,percent){	
+			var $obj= $("#"+id)
+			$obj.datagrid("resize",{  
+				width: getWidth(percent)  
+			});                
+			$(window).resize(function(){  	
+				$obj.datagrid("resize",{  
+					width: getWidth(percent)  
+				});                
+			});	
+		}	
 		//datagrid获取宽度
 		function getWidth(percent){  
 	           return $(window).width() * percent;  

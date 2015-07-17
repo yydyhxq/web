@@ -58,7 +58,7 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
 .sx{float:right;margin:0px 13px;}
 .topUserInfo_manage{float:right;margin-right:25px;}
 .leftArea{background:#5F2968;width:190px;float:left;min-height:700px;}
-.rightArea{background:#fff;min-height:700px;position:relative;}
+.rightArea{background:#fff;min-height:700px;position:relative;z-index:-1;}
 
 /*导航栏*/
 .row-fluid .span2{padding-top:20px;background:#2065C9;min-width:190px;}
@@ -107,3 +107,13 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
     background-image: -moz-linear-gradient(center bottom, #FFEE99 0%, #FFEE99 50%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#FFEE99', endColorstr = '#FFEE99', GradientType = 0);
     background-image: linear-gradient(to top, #FFEE99 0%, #FFEE99 50%);}
+    
+    
+    
+ /*zTree*/
+ #treeDemo{ width:1000px;position:absolute;left:23%;top:50px;}
+ #treeDemo> li{float:left;width:100px;height:20px;}
+ 
+ 
+ 
+ 

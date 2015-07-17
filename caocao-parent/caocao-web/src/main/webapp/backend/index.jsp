@@ -6,13 +6,7 @@ pageEncoding="UTF-8"%>
 <%@ include file="/backend/common/meta.jsp"%>
 <%@ include file="/backend/common/script.jsp"%>
 <script>
-	ddsmoothmenu.init({
-		mainmenuid: "smoothmenu1", 		//菜单div的ID
-		orientation: 'h', 				//水平菜单or垂直菜单 : 请设置"h" or "v"
-		classname: 'ddsmoothmenu', 		//导航菜单的ul标签的class样式名，在这里是ddsmoothmenu.css的样式名
-		contentsource: "markup"	,	 	//"markup" or ["container_id", "path_to_menu_file"]
-		//customtheme: ["#1c5a80", "#18374a"] //菜单背景色和鼠标移过去时的颜色
-	})
+	
 
 	$(function(){
 		//当前选项
@@ -91,50 +85,60 @@ pageEncoding="UTF-8"%>
 		 
 		var data = { title: '用户管理维护', url: '../backend/index.jsp' };	
 		tabs(data);
-		
-	/* 	 var cookie =[{ title: '用户管理维护', url: '../backend/index.jsp'}];
-		cookie=JSON.stringify(cookie)
-		$.cookie("con",cookie, { expires: 1 }); 
-		var data = { title: '用户管理维护', url: '../backend/index.jsp' }
-		var cookieStr = $.cookie("con"); //获取cookie
-		var cookieJson = JSON.parse(cookieStr); // 转化成 json	
-		var s = cookielist(cookieJson,data);
-		s.push(data);
-		var n = JSON.stringify(s);//转换成字符串
-		$.cookie("con",n, { expires: 1 }); //存入cookie
-		console.log($.cookie("con"));  */
-		
-		$("#smoothmenu1 li").click(function(){
-			var $li = $(this);
-			/*var pid = $(this).attr("pid");
-			var url = $(this).attr("href");*/
-			var url ="../menu/querymenus.do?userId=1&menuPid=1";
-			$.ajax({
-				type:'get',
-				url:url,
-				dataType:'json',
-				success:function(data){
-					console.log(data)
-					var length= data.length();
-					if(length>0){
-						var html = "<ul>";
-						var liUrl;
-						var liName;
-						for(var i=0;i<length;i++){
-							liUrl = data.url;
-							liName = data.name;
-							html += "<li><a href="+liUrl+">"+liName+"</li>" ;
-						}
-						html = html+"</ul>";
-						$li.append(html);
+
+		//菜单
+		var setting = {
+				view: {
+					showLine: false,
+					showIcon:false,
+				},
+				data: {
+					simpleData: {
+						enable: true
 					}
-					
 				}
-								
+			};
+
+	/* 	
+		$.ajax({
+			url:"",
+			type:"post",
+			dataType:"json",
+			success:function(data){
+				alert(data);
+				zNodes = data;
+			},
+			error:function(){
+				layer.alert("网络异常");
+			}
+			
+		}) */
+			var zNodes =[
+				{ id:1, pId:0, name:"用户系统管理"},
+				{ id:11, pId:1, name:"用户信息维护",url:"#",target:"_self"},
+				{ id:12, pId:1, name:"用户权限维护",url:"#",target:"_self"},
+				{ id:2, pId:0, name:"企业管理"},
+				{ id:21, pId:2, name:"父节点21 - 展开",url:"#",target:"_self"},
+				{ id:22, pId:2, name:"父节点22 - 折叠",url:"#",target:"_self"},				
+				{ id:3, pId:0, name:"车型设置"},
+				{ id:31, pId:3, name:"车型设置",url:"#",target:"_self"},
+				{ id:4, pId:0, name:"司机管理"},
+				{ id:5, pId:0, name:"客户管理"},
+				{ id:51, pId:5, name:"大客户管理"},
+				{ id:52, pId:5, name:"普通客户管理"},
+				{ id:511, pId:51, name:"账户管理",url:"#",target:"_self"},
+				{ id:512, pId:51, name:"账户查看",url:"#",target:"_self"},
+				{ id:521, pId:52, name:"账户管理",url:"#",target:"_self"},
+				{ id:522, pId:52, name:"账户查看",url:"#",target:"_self"},
+				{ id:6, pId:0, name:"订单管理"},
+				{ id:7, pId:0, name:"推广维护"},
+				{ id:8 ,pId:0, name:"财务管理"}
 				
+			];
+
+			$(document).ready(function(){
+				$.fn.zTree.init($("#treeDemo"), setting, zNodes);
 			});
-		})
-		
 	});
 	
 </script>
@@ -150,48 +154,8 @@ pageEncoding="UTF-8"%>
         	<div class="navIcon">
             	
             </div>
-            <div id="smoothmenu1" >
-			<ul>
-				<li><a href="#">用户管理</a>
-                	
-                </li>
-				<li><a href="#">企业管理</a>
-					<ul>
-						<li><a href="#">大客户管理</a></li>
-						<li><a href="#">租赁公司管理</a></li>
-						<li><a href="#">劳务公司</a></li>
-					</ul>
-				</li>
-				<li><a href="#">车辆管理</a>
-					<ul>
-						<li><a href="#">车型设置</a></li>	
-					</ul>
-				</li>
-				<li><a href="#">司机管理</a>
-                	<ul>
-                   	 	<li><a href="#">司机信息查看</a></li>	
-						
-					</ul>
-                </li>
-				<li><a href="#">客户管理</a>
-					<ul>
-						<li><a href="#">大客户管理</a></li>
-						<li><a href="#">普通客户管理</a>
-							<ul>
-								<li><a href="#">Sub Item 2.1.1</a></li>
-								<li><a href="#">Sub Item 2.1.2</a></li>
-								<li><a href="#">Sub Item 2.1.4</a></li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-				<li><a href="#">订单管理</a></li>
-                <li><a href="#">推广管理</a></li>
-                <li><a href="#">财务管理</a></li>
-			</ul>
-			<br style="clear: left" />
-		</div>
-         
+           
+         <ul id="treeDemo" class="ztree"></ul>
        		 
             <div class="navUser">
             	<a href="login.jsp">退出</a>
