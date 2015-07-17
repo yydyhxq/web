@@ -103,18 +103,18 @@ public class LoginController {
 			result = 2;
 			return result;
 		}
-		UserToMenu userToMenu = new UserToMenu();
-		userToMenu.setUserId(modelDO.getId());
-		userToMenu.setMenuPid(0);
-		List<Menu> menuList = menuService.queryMenuList(userToMenu);
+//		UserToMenu userToMenu = new UserToMenu();
+//		userToMenu.setUserId(modelDO.getId());
+//		userToMenu.setMenuPid(0);
+//		List<Menu> menuList = menuService.queryMenuList(userToMenu);
 		session.setAttribute("user", modelDO);
-		session.setAttribute("menuList", menuList);
+//		session.setAttribute("menuList", menuList);
 		loginService.updateLoginTime(modelDO.getId());
-		UserToButton userToButton = new UserToButton();
-		userToButton.setUserId(1);
-		userToButton.setMenuId(15);
-		List<Button> buttonList = buttonService.QueryButtonList(userToButton);
-		session.setAttribute("buttonList", buttonList);
+//		UserToButton userToButton = new UserToButton();
+//		userToButton.setUserId(1);
+//		userToButton.setMenuId(15);
+//		List<Button> buttonList = buttonService.QueryButtonList(userToButton);
+//		session.setAttribute("buttonList", buttonList);
 		result = 4;
 		return result;
 		

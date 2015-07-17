@@ -1,7 +1,7 @@
 <%@ page pageEncoding="UTF-8"%>
-<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%> 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
 <%@ page isELIgnored="false" %> 
 <!--菜单start-->
    <%-- <div class="leftArea">
@@ -96,7 +96,7 @@
         </div>
 
          --%>
-          <div id="smoothmenu1" >
+          <!-- <div id="smoothmenu1" >
 			<ul>
 				<li><a href="#">用户管理</a>
                 	
@@ -137,5 +137,16 @@
 			</ul>
 			<br style="clear: left" />
 		</div>
-         
+          -->
+          
+          
+          
+
+          
+           <ul id="treeDemo" class="ztree"></ul>
+          
+           <input type="text" name="userId" value=${user.id} style="display:none" >
+
+          
+          
         <!--菜单end-->

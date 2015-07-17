@@ -1,7 +1,41 @@
 // JavaScript Document
 
 $(function(){
+ 	//菜单
+	var setting = {
 
+			view: {
+				showLine: false,
+				showIcon:false,
+				
+			},
+			data: {
+				simpleData: {
+					enable: true,
+					idKey:"id",
+					pIdKey:"pid"
+				}
+			}
+		};
+
+	var userId = $("input[name='userId']").val();
+	$.ajax({
+		url:"../menu/usermenu.do?userId="+userId,
+		type:"post",
+		dataType:"json",
+		success:function(data){
+			console.log(data);
+			zNodes = data;
+			$(document).ready(function(){
+				$.fn.zTree.init($("#treeDemo"), setting, zNodes);
+			});
+		},
+		error:function(){
+			layer.alert("网络异常");
+		}
+		
+	}) ;
+      
 	
 	
 	// 菜单栏
@@ -332,5 +366,6 @@ $(function(){
 	     }  
 		
 			
+		
 		  
 	
